@@ -1,0 +1,1 @@
+class ApplicationController extends Backbone.Router

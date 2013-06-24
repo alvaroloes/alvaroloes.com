@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , ConnectMincer = require('connect-mincer');
+  , ConnectMincer = require('connect-mincer')
+  , nib = require('nib');
 
 global.APP_ROOT = __dirname;
 
@@ -35,6 +36,12 @@ var connectMincer = new ConnectMincer({
     'assets/js'
   ]
 });
+
+//Use nib library in stylus
+connectMincer.environment.getEngines('.styl').registerConfigurator(function (style) {
+  style.use(nib());
+});
+
 
 app.use(connectMincer.assets());
 

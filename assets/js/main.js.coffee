@@ -1,2 +1,4 @@
-#= require_tree lib
+#= require lib/index
+#= require app/index
 #= require_tree templates
+
