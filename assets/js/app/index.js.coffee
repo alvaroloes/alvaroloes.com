@@ -1,13 +1,21 @@
 #= require_self
+#= require ./controllers/controller
+#= require ./views/view
 #= require_tree .
 
-window.Universe =
+window.MyUniverse =
   Controllers: {}
   Models: {}
   Collection: {}
   Views: {}
+  # Instances
+  views: {}
 
 $ ->
   # Instatiate controllers
-  new Universe.Controllers.Sun()
+  new MyUniverse.Controllers.Sun()
+
+  # Instantiate views
+
+
   Backbone.history.start({pushState: true})
