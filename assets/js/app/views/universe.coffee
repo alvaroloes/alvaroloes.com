@@ -1,21 +1,35 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
   template: JST['templates/universe']
   className: 'universe'
-  @totalObjects = 200
+  @totalObjects = 500
   @defaultObjectOpt:
     maxCount: null
-    opacityLimits: [0.5,1]
-    sizeLimits: [0.1,0.8]
+    opacity: 'pulse' #{'pulse',<interval>}
+    pulseFrecuencyInterval: [0.2,1]
+    sizeInterval: [0.1,0.8]
     sizeUnits: 'em'
+    rotateInterval: [0,360]
 
 
   initialize: ->
     @objects = []
     @addObjects [
-      'assets/img/universe/espiral.svg'
       'assets/img/universe/estrella4puntas.svg'
       'assets/img/universe/estrella5puntas.svg'
       'assets/img/universe/estrella6puntas.svg'
+    ]
+    # Special objects
+    props =
+      maxCount: 2
+      opacity: [0.5,0.8]
+      sizeInterval: [20,50]
+      sizeUnits: 'px'
+    @addObjects [
+      $.extend({src: 'assets/img/universe/galaxia1.png'},props)
+      $.extend({src: 'assets/img/universe/galaxia2.png'},props)
+      $.extend({src: 'assets/img/universe/galaxia3.png'},props)
+      $.extend({src: 'assets/img/universe/galaxia4.png'},props)
+      $.extend({src: 'assets/img/universe/galaxia5.png'},props)
     ]
 
   render: ->
@@ -31,21 +45,33 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   shuffleObjects: ->
     i = 0
-    nObj = @objects.length
-    while i++ < @constructor.totalObjects
-      o = @objects[Math.floor(Math.random() * nObj)]
-      size = "#{o.sizeLimits[0] + Math.random() * (o.sizeLimits[1] - o.sizeLimits[0])}#{o.sizeUnits}"
-      $('<img/>')
+    while i < @constructor.totalObjects
+      o = @objects.sample()
+      if o.maxCount?
+        o.count ?= 0 # Private property
+        continue if ++o.count > o.maxCount
+      size = "#{o.sizeInterval.sampleInterval()}#{o.sizeUnits}"
+
+      $img = $('<img/>')
         .attr(src: o.src)
         .css(
           top: "#{Math.random() * 100}%"
           left: "#{Math.random() * 100}%"
           width: size
           height: size
-          opacity: o.opacityLimits[0] + Math.random() * (o.opacityLimits[1] - o.opacityLimits[0])
+          transform: "rotate(#{o.rotateInterval.sampleInterval()}deg)"
         )
         .addClass('object')
-        .appendTo(@$el)
+
+      if o.opacity == 'pulse'
+        $img.css animationDuration: "#{1 / (o.pulseFrecuencyInterval.sampleInterval())}s"
+      else
+        $img.css
+          animation: 'none'
+          opacity: o.opacity.sampleInterval()
+
+      $img.appendTo(@$el)
+      ++i
     null
 
 
