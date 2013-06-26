@@ -1,17 +1,20 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
-  template: JST['templates/universe']
+#  template: JST['templates/universe']
   className: 'universe'
-  @totalObjects = 500
+  @totalObjects = 100
   @defaultObjectOpt:
     maxCount: null
     opacity: 'pulse' #{'pulse',<interval>}
-    pulseFrecuencyInterval: [0.2,1]
+    pulseFrecuencyInterval: [0.2,1.5]
     sizeInterval: [0.1,0.8]
     sizeUnits: 'em'
     rotateInterval: [0,360]
 
 
   initialize: ->
+    # Initialize foreground elements
+    @solarSystem = new MyUniverse.Views.SolarSystem()
+    # Initialize background elements
     @objects = []
     @addObjects [
       'assets/img/universe/estrella4puntas.svg'
@@ -20,9 +23,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     ]
     # Special objects
     props =
-      maxCount: 2
+      maxCount: 1
       opacity: [0.5,0.8]
-      sizeInterval: [20,50]
+      sizeInterval: [20,30]
       sizeUnits: 'px'
     @addObjects [
       $.extend({src: 'assets/img/universe/galaxia1.png'},props)
@@ -33,8 +36,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     ]
 
   render: ->
-    @$el.html(@template())
+#    @$el.html(@template())
     @shuffleObjects()
+    @$el.append(@solarSystem.render().el)
     @
 
   addObjects: (objects)->

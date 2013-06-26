@@ -1,0 +1,35 @@
+@import 'nib'
+@import '../utils/config'
+
+size = 300em
+.solarSystem
+  position: absolute
+  top: 50%
+  left: 50%
+  margin-top: -(size/2)
+  margin-left: -(size/2)
+  z-index: 1000
+  width: size
+  height: size
+  border: 1px solid orange
+  &:active
+    transition: transform 1s ease-in-out
+    transform: scale(0.01)
+  .sun
+    position: absolute
+    top: 50%
+    left: 50%
+    width: size * 0.2
+    height: size * 0.2
+    margin-left: -(@width/2)
+    margin-top: -(@height/2)
+    background-image: url(/assets/img/solarSystem/sun.svg)
+    background-repeat: no-repeat
+    background-size: contain
+  .planet
+    position: absolute
+    border: 1px solid #ccc
+    width: size * 0.1
+    height: size * 0.1
+    &.personal
+      color: white

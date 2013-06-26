@@ -3,4 +3,5 @@ class MyUniverse.Controllers.Controller extends Backbone.Router
     unless MyUniverse.views.universe?
       MyUniverse.views.universe = new MyUniverse.Views.Universe().render()
       $('#superuniverse').html(MyUniverse.views.universe.el)
+
     next()
