@@ -11,3 +11,13 @@ Array::sampleInterval = (integer = false)->
     ini = Math.floor(ini)
     inc = Math.floor(inc)
   ini + inc
+
+# Homogenize requestAnimationFrame function
+window.requestAnimFrame = do ->
+  window.requestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.oRequestAnimationFrame ||
+  window.msRequestAnimationFrame ||
+  (callback)->
+    window.setTimeout(callback, 1000 / 60)

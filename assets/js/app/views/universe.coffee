@@ -1,44 +1,69 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
 #  template: JST['templates/universe']
   className: 'universe'
-  @totalObjects = 100
+  @totalObjects: 300
   @defaultObjectOpt:
     maxCount: null
-    opacity: 'pulse' #{'pulse',<interval>}
-    pulseFrecuencyInterval: [0.2,1.5]
-    sizeInterval: [0.1,0.8]
-    sizeUnits: 'em'
+    opacityConfig: 'pulse' #{'pulse',<interval>}
+    pulseFrecuencyInterval: [0.1,0.3]
+    sizeInterval: [3,12] # In pixels
     rotateInterval: [0,360]
+  @pulseObjects: [
+    'assets/img/universe/estrella4puntas.png'
+    'assets/img/universe/estrella5puntas.png'
+    'assets/img/universe/estrella6puntas.png'
+  ]
+  @staticObjects: [
+    'assets/img/universe/galaxia1.png'
+    'assets/img/universe/galaxia2.png'
+    'assets/img/universe/galaxia3.png'
+    'assets/img/universe/galaxia4.png'
+    'assets/img/universe/galaxia5.png'
+    'assets/img/universe/blackHole.png'
+    'assets/img/universe/eyeNebula.png'
+    'assets/img/universe/rareObject.png'
+  ]
 
 
-  initialize: ->
+  # Options:
+  #
+  initialize: (opt = {})->
+    @opt = opt
+    $(window).resize => @resizeCanvas() if opt.useCanvas
+
+    # Make this a deferred object because it use ImageLoader, which is a deferred
+    $.extend(this,$.Deferred())
+
+    # Preload images
+    @imageLoader = new ImageLoader()
+    @imageLoader.loadImages @constructor.pulseObjects.concat(@constructor.staticObjects)
+
     # Initialize foreground elements
     @solarSystem = new MyUniverse.Views.SolarSystem()
+
     # Initialize background elements
     @objects = []
-    @addObjects [
-      'assets/img/universe/estrella4puntas.svg'
-      'assets/img/universe/estrella5puntas.svg'
-      'assets/img/universe/estrella6puntas.svg'
-    ]
-    # Special objects
+    @addObjects @constructor.pulseObjects
+
     props =
       maxCount: 1
-      opacity: [0.5,0.8]
+      opacityConfig: [0.8,1]
       sizeInterval: [20,30]
-      sizeUnits: 'px'
-    @addObjects [
-      $.extend({src: 'assets/img/universe/galaxia1.png'},props)
-      $.extend({src: 'assets/img/universe/galaxia2.png'},props)
-      $.extend({src: 'assets/img/universe/galaxia3.png'},props)
-      $.extend({src: 'assets/img/universe/galaxia4.png'},props)
-      $.extend({src: 'assets/img/universe/galaxia5.png'},props)
-    ]
+    for o in @constructor.staticObjects
+      @addObjects [$.extend({src: o},props)]
 
+  # You must use this.done(callback) to ensure the render has finished
   render: ->
-#    @$el.html(@template())
-    @shuffleObjects()
-    @$el.append(@solarSystem.render().el)
+    @imageLoader.done =>
+      @$el.html('')
+      @$el.append(@solarSystem.render().el)
+
+      @prepareObjects()
+      if @opt.useCanvas
+        @canvasPaintObjects()
+      else
+        @domPaintObjects()
+      @resolve()
     @
 
   addObjects: (objects)->
@@ -47,35 +72,80 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       objData = {src: o} if $.type(o) is 'string'
       @objects.push $.extend({},@constructor.defaultObjectOpt,objData)
 
-  shuffleObjects: ->
+  prepareObjects: ->
+    @preparedObjects = []
     i = 0
     while i < @constructor.totalObjects
-      o = @objects.sample()
-      if o.maxCount?
-        o.count ?= 0 # Private property
-        continue if ++o.count > o.maxCount
-      size = "#{o.sizeInterval.sampleInterval()}#{o.sizeUnits}"
+      originalObject = @objects.sample()
+      if originalObject.maxCount?
+        originalObject.count ?= 0 # Private property
+        continue if ++originalObject.count > originalObject.maxCount
+      o = $.extend({},originalObject)
+      o.size = o.sizeInterval.sampleInterval()
+      o.top = Math.random()   # Percentage
+      o.left = Math.random()  # Percentage
+      o.angle = o.rotateInterval.sampleInterval()
+      o.pulsePeriod = 1000 / o.pulseFrecuencyInterval.sampleInterval() # In milliseconds
+      if o.opacityConfig == 'pulse'
+        o.opacity = Math.random()
+      else
+        o.opacity = o.opacityConfig.sampleInterval()
+      o.pulseTimeOffset = Math.random() * o.pulsePeriod
 
+      @preparedObjects.push(o)
+      ++i
+
+  domPaintObjects: ->
+    for o in @preparedObjects
       $img = $('<img/>')
         .attr(src: o.src)
         .css(
-          top: "#{Math.random() * 100}%"
-          left: "#{Math.random() * 100}%"
-          width: size
-          height: size
-          transform: "rotate(#{o.rotateInterval.sampleInterval()}deg)"
+          top: "#{o.top * 100}%"
+          left: "#{o.left * 100}%"
+          width: o.size
+          height: o.size
+          transform: "rotate(#{o.angle}deg)"
         )
         .addClass('object')
 
-      if o.opacity == 'pulse'
-        $img.css animationDuration: "#{1 / (o.pulseFrecuencyInterval.sampleInterval())}s"
+      if o.opacityConfig == 'pulse'
+        $img.css animationDuration: "#{o.pulsePeriod}ms"
       else
         $img.css
           animation: 'none'
-          opacity: o.opacity.sampleInterval()
+          opacity: o.opacity
 
-      $img.appendTo(@$el)
-      ++i
+      @$el.append($img)
     null
 
+  ######## Canvas stuff #########
+
+  canvasPaintObjects: ->
+    @cnv = document.createElement('canvas')
+    @ctx = @cnv.getContext('2d')
+    @$el.append(@cnv)
+    @startTime = (new Date()).getTime()
+    @resizeCanvas() # Resize for the first time
+    @paintCanvas()
+
+  resizeCanvas: ->
+    return unless @cnv
+    @cnv.width = @$el.width()
+    @cnv.height = @$el.height()
+    @paintCanvas(false)
+
+  paintCanvas: (animate = true)->
+    @ctx.clearRect(0, 0, @cnv.width, @cnv.height)
+    time = (new Date()).getTime() - @startTime
+    for o in @preparedObjects
+      @ctx.save()
+      if o.opacityConfig == 'pulse' # The opacity is animated with an oscilant function
+        @ctx.globalAlpha = 0.5 * Math.sin((time + o.pulseTimeOffset) * 2 * Math.PI / o.pulsePeriod) + 0.5
+      else
+        @ctx.globalAlpha = o.opacity
+      @ctx.translate(o.left * @cnv.width, o.top * @cnv.height)
+      @ctx.rotate(o.angle * Math.PI / 360)
+      @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
+      @ctx.restore()
+    requestAnimFrame(=> @paintCanvas()) if animate
 

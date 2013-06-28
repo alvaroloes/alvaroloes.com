@@ -1,7 +1,7 @@
 @import 'nib'
 @import '../utils/config'
 
-size = 300em
+size = 600em
 .solarSystem
   position: absolute
   top: 50%
@@ -12,9 +12,10 @@ size = 300em
   width: size
   height: size
   border: 1px solid orange
+  transition: transform 5s ease-in-out
+  transform: scale(0.01)
   &:active
-    transition: transform 1s ease-in-out
-    transform: scale(0.01)
+    transform: scale(1)
   .sun
     position: absolute
     top: 50%
@@ -23,7 +24,7 @@ size = 300em
     height: size * 0.2
     margin-left: -(@width/2)
     margin-top: -(@height/2)
-    background-image: url(/assets/img/solarSystem/sun.svg)
+    background-image: url(/assets/img/solarSystem/sun.png)
     background-repeat: no-repeat
     background-size: contain
   .planet
