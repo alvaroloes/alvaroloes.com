@@ -1,7 +1,7 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
 #  template: JST['templates/universe']
   className: 'universe'
-  @totalObjects: 300
+  @totalObjects: 500
   @defaultObjectOpt:
     maxCount: null
     opacityConfig: 'pulse' #{'pulse',<interval>}
@@ -26,7 +26,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
 
   # Options:
-  #
+  # useCanvas: Whether use canvas to render stars or not (DOM)
   initialize: (opt = {})->
     @opt = opt
     $(window).resize => @resizeCanvas() if opt.useCanvas

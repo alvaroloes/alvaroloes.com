@@ -37,11 +37,11 @@ var connectMincer = new ConnectMincer({
   ]
 });
 
-//Use nib library in stylus
+//Use nib library in stylus and other custom functions
 connectMincer.environment.getEngines('.styl').registerConfigurator(function (style) {
   style.use(nib());
+  style.use(require('./modules/stylus-extensions').functions);
 });
-
 
 app.use(connectMincer.assets());
 

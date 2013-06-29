@@ -1,0 +1,40 @@
+@import 'config'
+
+personalOrbitPeriod       = 1 * baseOrbitPeriod
+reflexiveOrbitPeriod      = 2 * baseOrbitPeriod
+laborOrbitPeriod          = 4 * baseOrbitPeriod
+technologicalOrbitPeriod  = 5 * baseOrbitPeriod
+
+offsets = rand()*360 rand()*360 rand()*360 rand()*360
+
+@keyframes personalOrbit
+  0%
+    transform: rotate(360deg + offsets[0]),
+               translate(planetSpace,0)
+  100%
+    transform: rotate(0deg + offsets[0]),
+               translate(planetSpace,0)
+
+@keyframes reflexiveOrbit
+  0%
+    transform: rotate(360deg + offsets[1]),
+               translate(2 * planetSpace,0)
+  100%
+    transform: rotate(0deg + offsets[1]),
+               translate(2 * planetSpace,0)
+
+@keyframes laborOrbit
+  0%
+    transform: rotate(0deg + offsets[2]),
+               translate(3.5 * planetSpace,0)
+  100%
+    transform: rotate(360deg + offsets[2]),
+               translate(3.5 * planetSpace,0)
+
+@keyframes technologicalOrbit
+  0%
+    transform: rotate(360deg + offsets[3]),
+               translate(4.5 * planetSpace,0)
+  100%
+    transform: rotate(0deg + offsets[3]),
+               translate(4.5 * planetSpace,0)
