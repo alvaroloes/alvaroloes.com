@@ -6,36 +6,39 @@
   position: absolute
   top: 50%
   left: 50%
-  margin-top: -(solarSystemSize/2)
-  margin-left: -(solarSystemSize/2)
-  z-index: 1000
   width: solarSystemSize
   height: solarSystemSize
+  margin-left: -(@width/2)
+  margin-top: -(@height/2)
+  z-index: 1000
   border: 5px solid orange
   transition: transform 5s ease-in-out
-  transform: scale(0.3)
   &:active
-    transform: scale(2)
-  .sun, .planet
+    transform: scale(8)
+
+  .sun, .planet, .planetTrail
     position: absolute
     top: 50%
     left: 50%
+
   .sun
-    width: solarSystemSize * sunSizeScale
-    height: solarSystemSize * sunSizeScale
+    width: sunSize
+    height: sunSize
     margin-left: -(@width/2)
     margin-top: -(@height/2)
     background-image: url(/assets/img/solarSystem/sun.png)
     background-repeat: no-repeat
     background-size: contain
+
   .planet
-    width: solarSystemSize * planetSizeScale
-    height: solarSystemSize * planetSizeScale
+    z-index: 100
+    width: planetSize
+    height: planetSize
     margin-left: -(@width/2)
     margin-top: -(@height/2)
     &.personal
       animation: personalOrbit personalOrbitPeriod linear 0s infinite
-      background: #ddd
+      background: personalColor
     &.reflexive
       animation: reflexiveOrbit reflexiveOrbitPeriod linear 0s infinite
       background: #dfd
@@ -45,3 +48,13 @@
     &.technological
       animation: technologicalOrbit technologicalOrbitPeriod linear 0s infinite
       background: #049cdb
+
+  .planetTrail
+    &.personal
+      makeTrail(personalOrbitRadius, personalColor)
+    &.reflexive
+      makeTrail(reflexiveOrbitRadius, reflexiveColor)
+    &.labor
+      makeTrail(laborOrbitRadius, laborColor)
+    &.technological
+      makeTrail(technologicalOrbitRadius, technologicalColor)

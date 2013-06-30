@@ -1,7 +1,41 @@
-flex-version = box
+flex-version = box //For nib mixins and functions
 
-solarSystemSize = 200em
-sunSizeScale = 0.1
-planetSizeScale = 0.02
-planetSpace = solarSystemSize / 10
-baseOrbitPeriod = 30s
+// Sizes
+solarSystemSize = 40em
+sunSize         = solarSystemSize / 10
+planetSize      = solarSystemSize / 50
+
+// Orbits periods
+baseOrbitPeriod           = 30s
+personalOrbitPeriod       = 1.5 * baseOrbitPeriod
+reflexiveOrbitPeriod      = 2.0 * baseOrbitPeriod
+laborOrbitPeriod          = 4.1 * baseOrbitPeriod
+technologicalOrbitPeriod  = 5.9 * baseOrbitPeriod
+
+//Orbits radius an trails sizes
+baseOrbitRadius           = solarSystemSize / 10
+personalOrbitRadius       = 1.2 * baseOrbitRadius
+reflexiveOrbitRadius      = 2.2 * baseOrbitRadius
+laborOrbitRadius          = 3.5 * baseOrbitRadius
+technologicalOrbitRadius  = 4.5 * baseOrbitRadius
+trailWidth = planetSize * 3
+
+// Colors
+personalColor       = #fbda93
+reflexiveColor      = #d3ebbe
+laborColor          = #e1e5ea
+technologicalColor  = #e1dfe1
+
+// Usefull mixin to insert trails styles for each planet
+makeTrail(orbitRadius, color)
+  width: orbitRadius * 2 + trailWidth
+  height: orbitRadius * 2 + trailWidth
+  margin-left: -(@width/2)
+  margin-top: -(@height/2)
+  background-image: radial-gradient(circle closest-side,
+                                    rgba(color,0) (orbitRadius - trailWidth/2),
+                                    rgba(color,0.03),
+                                    rgba(color,0.05),
+                                    rgba(color,0.05),
+                                    rgba(color,0.03),
+                                    rgba(color,0) (orbitRadius + trailWidth/2))
