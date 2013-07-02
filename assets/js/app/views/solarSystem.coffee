@@ -2,7 +2,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   template: JST['templates/solarSystem']
   className: 'solarSystem'
 
-
   initialize: ->
     @sun = new MyUniverse.Views.Sun()
     @planets =
@@ -16,5 +15,8 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
         .append(@sun.render().el)
     @$el.append(planet.render().el) for name, planet of @planets
     @
+
+  goTo: (celestialObject = 'sun')->
+    @$el.attr('goto',celestialObject)
 
 

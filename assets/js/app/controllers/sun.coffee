@@ -7,3 +7,4 @@ class MyUniverse.Controllers.Sun extends MyUniverse.Controllers.Controller
   index: ->
     @init ->
       console.log 'A trip to the sun'
+      MyUniverse.views.universe.solarSystem.goTo('sun')
