@@ -53,6 +53,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @$el.attr('goto',celestialObject)
 
   togglePlanetsAnimation: (animate)->
-    @$el[unless animate then 'addClass' else 'removeClass']('stopPlanets')
+    @$el.find('.solarSystem')[unless animate then 'addClass' else 'removeClass']('stopPlanets')
 
 
