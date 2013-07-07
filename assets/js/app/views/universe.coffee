@@ -34,12 +34,12 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     # Make this a deferred object because it use ImageLoader, which is a deferred
     $.extend(this,$.Deferred())
 
+    # Initialize foreground elements
+    @solarSystem = new MyUniverse.Views.SolarSystem()
+
     # Preload images
     @imageLoader = new ImageLoader()
     @imageLoader.loadImages @constructor.pulseObjects.concat(@constructor.staticObjects)
-
-    # Initialize foreground elements
-    @solarSystem = new MyUniverse.Views.SolarSystem()
 
     # Initialize background elements
     @objects = []
@@ -54,18 +54,20 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   # You must use this.done(callback) to ensure the render has finished
   render: ->
-    @imageLoader.done =>
+    $.when(@imageLoader, @solarSystem.imageLoader).done =>
+      # DOM stuff
       @$el.html('')
-      # Although it's less efficient, "solarSystem" require its root element is appended
-      # to the DOM before calling render.
-      @$el.append(@solarSystem.el)
-      @solarSystem.render()
+      @$el.append(@solarSystem.render().el)
 
+      # Canvas stuff
       @prepareObjects()
-      if @opt.useCanvas
-        @canvasPaintObjects()
-      else
-        @domPaintObjects()
+      @canvasPaintObjects()
+
+#      if @opt.useCanvas
+#        @canvasPaintObjects()
+#      else
+#        @domPaintObjects()
+
       @resolve()
     @
 
@@ -98,28 +100,28 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @preparedObjects.push(o)
       ++i
 
-  domPaintObjects: ->
-    for o in @preparedObjects
-      $img = $('<img/>')
-        .attr(src: o.src)
-        .css(
-          top: "#{o.top * 100}%"
-          left: "#{o.left * 100}%"
-          width: o.size
-          height: o.size
-          transform: "rotate(#{o.angle}deg)"
-        )
-        .addClass('object')
-
-      if o.opacityConfig == 'pulse'
-        $img.css animationDuration: "#{o.pulsePeriod}ms"
-      else
-        $img.css
-          animation: 'none'
-          opacity: o.opacity
-
-      @$el.append($img)
-    null
+#  domPaintObjects: ->
+#    for o in @preparedObjects
+#      $img = $('<img/>')
+#        .attr(src: o.src)
+#        .css(
+#          top: "#{o.top * 100}%"
+#          left: "#{o.left * 100}%"
+#          width: o.size
+#          height: o.size
+#          transform: "rotate(#{o.angle}deg)"
+#        )
+#        .addClass('object')
+#
+#      if o.opacityConfig == 'pulse'
+#        $img.css animationDuration: "#{o.pulsePeriod}ms"
+#      else
+#        $img.css
+#          animation: 'none'
+#          opacity: o.opacity
+#
+#      @$el.append($img)
+#    null
 
   ######## Canvas stuff #########
 
@@ -150,5 +152,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @ctx.rotate(o.angle * Math.PI / 360)
       @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
       @ctx.restore()
+    @solarSystem.paint(@cnv, @ctx)
     requestAnimFrame(=> @paintCanvas()) if animate
 

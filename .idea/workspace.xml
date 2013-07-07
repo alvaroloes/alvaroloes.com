@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="Finished new version of trails. Works with some problems">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" afterPath="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/universe.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="miweb.iws" />
@@ -29,7 +32,7 @@
     <file path="/compile-assets.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371596989238" ignored="false" />
     <file path="/index.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096313654" ignored="false" />
     <file path="/deploy.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371600971625" ignored="false" />
-    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373231628805" ignored="false" />
+    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373231911983" ignored="false" />
     <file path="/main.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372188075227" ignored="false" />
     <file path="/a.feature" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372002594028" ignored="false" />
     <file path="/fragment.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372082987094" ignored="false" />
@@ -38,7 +41,7 @@
     <file path="/index.js.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372094914643" ignored="false" />
     <file path="/app.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372093452976" ignored="false" />
     <file path="/applicationView.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372094362150" ignored="false" />
-    <file path="/universe.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372378499653" ignored="false" />
+    <file path="/universe.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373234037230" ignored="false" />
     <file path="/universe.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372099831562" ignored="false" />
     <file path="/applicationController.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096331662" ignored="false" />
     <file path="/planetarySystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372094386392" ignored="false" />
@@ -46,7 +49,7 @@
     <file path="/sun.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372722990147" ignored="false" />
     <file path="/universe.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373042413797" ignored="false" />
     <file path="/extensions.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372368061203" ignored="false" />
-    <file path="/solarSystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373224403500" ignored="false" />
+    <file path="/solarSystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373234171226" ignored="false" />
     <file path="/solarSystem.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373223979098" ignored="false" />
     <file path="/sun.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372964314129" ignored="false" />
     <file path="/personal.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372190075990" ignored="false" />
@@ -88,7 +91,7 @@
     <favorites_list name="miweb" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46613547">
+    <splitter split-orientation="horizontal" split-proportion="0.6486056">
       <split-first>
         <leaf>
           <file leaf-file-name="controller.coffee" pinned="false" current="false" current-in-tab="false">
@@ -100,10 +103,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="solarSystem.coffee" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="universe.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="151" column="42" selection-start="4563" selection-end="4634" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="solarSystem.coffee" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="34" column="12" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.86734694">
+                <state line="11" column="20" selection-start="244" selection-end="250" vertical-scroll-proportion="0.2652733">
                   <folding />
                 </state>
               </provider>
@@ -112,16 +124,7 @@
           <file leaf-file-name="solarSystem.jst.jade" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="28" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="universe.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="59" column="41" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.0">
+                <state line="0" column="9" selection-start="9" selection-end="24" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -149,10 +152,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="solarSystem.styl" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="solarSystem.styl" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.9438776">
+                <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.026455026">
                   <folding />
                 </state>
               </provider>
@@ -207,7 +210,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="allCanvas" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -219,8 +222,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/assets/css/main.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/css/utils/animations.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/views/universe.styl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/css/utils/animations.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/utils/vendor.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/utils/config.styl" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -236,13 +239,13 @@
         <option value="$PROJECT_DIR$/assets/js/templates/sun.jst.jade" />
         <option value="$PROJECT_DIR$/assets/css/main.styl" />
         <option value="$PROJECT_DIR$/assets/css/views/sun.styl" />
-        <option value="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
         <option value="$PROJECT_DIR$/assets/css/views/universe.styl" />
         <option value="$PROJECT_DIR$/assets/css/utils/vendor.styl" />
         <option value="$PROJECT_DIR$/assets/css/utils/config.styl" />
-        <option value="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
-        <option value="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
         <option value="$PROJECT_DIR$/assets/css/views/solarSystem.styl" />
+        <option value="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
+        <option value="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
+        <option value="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
       </list>
     </option>
   </component>
@@ -580,6 +583,32 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="solarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -651,12 +680,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -826,7 +855,6 @@
     <frame x="64" y="-4" width="1303" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -841,6 +869,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39506173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -943,13 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="41" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/main.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="18" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0">
@@ -999,13 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/utils/config.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="30" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
@@ -1013,16 +1028,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="12" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.86734694">
+        <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.026455026">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.9438776">
+        <state line="0" column="9" selection-start="9" selection-end="24" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="42" selection-start="4563" selection-end="4634" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="20" selection-start="244" selection-end="250" vertical-scroll-proportion="0.2652733">
           <folding />
         </state>
       </provider>
