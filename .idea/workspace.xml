@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/utils/config.styl" afterPath="$PROJECT_DIR$/assets/css/utils/config.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" afterPath="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/views/solarSystem.styl" afterPath="$PROJECT_DIR$/assets/css/views/solarSystem.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/utils/vendor.styl" afterPath="$PROJECT_DIR$/assets/css/utils/vendor.styl" />
+    <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="Finished new version of trails. Works with some problems">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="miweb.iws" />
@@ -34,7 +29,7 @@
     <file path="/compile-assets.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371596989238" ignored="false" />
     <file path="/index.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096313654" ignored="false" />
     <file path="/deploy.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371600971625" ignored="false" />
-    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373210690283" ignored="false" />
+    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373231628805" ignored="false" />
     <file path="/main.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372188075227" ignored="false" />
     <file path="/a.feature" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372002594028" ignored="false" />
     <file path="/fragment.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372082987094" ignored="false" />
@@ -105,7 +100,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="solarSystem.coffee" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="solarSystem.coffee" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="34" column="12" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.86734694">
@@ -154,10 +149,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="solarSystem.styl" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="solarSystem.styl" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="44" column="28" selection-start="1096" selection-end="1096" vertical-scroll-proportion="1.1224489">
+                <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.9438776">
                   <folding />
                 </state>
               </provider>
@@ -820,12 +815,16 @@
       <created>1373210694834</created>
       <updated>1373210694834</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Finished new version of trails. Works with some problems">
+      <created>1373231592100</created>
+      <updated>1373231592100</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1303" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -889,7 +888,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Another new version of trails ¿Will this work?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished new version of trails. Works with some problems" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -914,6 +913,7 @@
     <MESSAGE value="Orbits now have trails" />
     <MESSAGE value="Adjusted solar system sizes and detected a bug in chrome with hardware acceleration enabled" />
     <MESSAGE value="Another new version of trails ¿Will this work?" />
+    <MESSAGE value="Finished new version of trails. Works with some problems" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1013,16 +1013,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="28" selection-start="1096" selection-end="1096" vertical-scroll-proportion="1.1224489">
+        <state line="34" column="12" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.86734694">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="12" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.86734694">
+        <state line="37" column="51" selection-start="888" selection-end="888" vertical-scroll-proportion="0.9438776">
           <folding />
         </state>
       </provider>
