@@ -1,65 +1,99 @@
 @import 'nib'
 @import '../utils/config'
+@import '../utils/vendor'
 @import '../utils/animations'
 
-.solarSystem
-  position: absolute
-  top: 50%
-  left: 50%
-  width: solarSystemSize
-  height: solarSystemSize
-  margin-left: -(@width/2)
-  margin-top: -(@height/2)
-  z-index: 10
-  //border: 5px solid orange
-  //background: rgba(255,255,255,0.2)
-  transition: transform 10s ease-in-out
-  transform: scale(0.001)
-  //&[goto=sun]
-  //  //transform: scale(1)
-  &:active
-    transform: scale(1)
-
-  .sun, .planet, .planetTrail
+.solarSystemWrap
+  &,.solarSystem
     position: absolute
     top: 50%
     left: 50%
-
-  .sun
-    width: sunSize
-    height: sunSize
+    width: 10em
+    height: 10em
     margin-left: -(@width/2)
     margin-top: -(@height/2)
-    background-image: url(/assets/img/solarSystem/sun.png)
-    background-repeat: no-repeat
-    background-size: contain
-
-  .planet
     z-index: 100
-    width: planetSize
-    height: planetSize
-    margin-left: -(@width/2)
-    margin-top: -(@height/2)
-    border-radius: planetSize
-    &.personal
-      animation: personalOrbit personalOrbitPeriod linear 0s infinite
-      background: personalColor
-    &.reflexive
-      animation: reflexiveOrbit reflexiveOrbitPeriod linear 0s infinite
-      background: #dfd
-    &.labor
-      animation: laborOrbit laborOrbitPeriod linear 0s infinite
-      background: #c09853
-    &.technological
-      animation: technologicalOrbit technologicalOrbitPeriod linear 0s infinite
-      background: #049cdb
 
-  .planetTrail
-    &.personal
-      makeTrail(personalOrbitRadius, personalColor)
-    &.reflexive
-      makeTrail(reflexiveOrbitRadius, reflexiveColor)
-    &.labor
-      makeTrail(laborOrbitRadius, laborColor)
-    &.technological
-      makeTrail(technologicalOrbitRadius, technologicalColor)
+  factor = 2.35
+  .solarSystem
+    transform: scale(0.2)
+  .trails
+    background-size: (personalOrbitRadius * 0.2 * factor) (personalOrbitRadius * 0.2 * factor)
+  &:active
+    .solarSystem
+      transform: scale(0.01)
+    .trails
+      background-size: (personalOrbitRadius * 0.01 * factor) (personalOrbitRadius * 0.01 * factor)
+
+  .trails
+    transition: background-size 5s linear
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-repeat: no-repeat
+    background-position: center
+    color = personalColor
+    background-image: radial-gradient(center closest-side,
+                                      rgba(color,0) 73%,
+                                      rgba(color,0.3),
+                                      rgba(color,0.5),
+                                      rgba(color,0.5),
+                                      rgba(color,0.3),
+                                      rgba(color,0) 98%)
+
+  .solarSystem
+    transition: transform 5s linear
+    &.stopPlanets
+      .planet
+        animation-play-state: paused
+
+    .sun, .planet, .planetTrail
+      position: absolute
+      top: 50%
+      left: 50%
+
+    .sun
+      width: sunSize
+      height: sunSize
+      margin-left: -(@width/2)
+      margin-top: -(@height/2)
+      background-image: url(/assets/img/solarSystem/sun.png)
+      background-repeat: no-repeat
+      background-size: contain
+
+    .planet
+      transform-style: flat
+      z-index: 100
+      width: planetSize
+      height: planetSize
+      margin-left: -(@width/2)
+      margin-top: -(@height/2)
+      border-radius: planetSize
+      &.personal
+        animation: personalOrbit personalOrbitPeriod linear 0s infinite
+        background: personalColor
+      &.reflexive
+        animation: reflexiveOrbit reflexiveOrbitPeriod linear 0s infinite
+        background: #dfd
+      &.labor
+        animation: laborOrbit laborOrbitPeriod linear 0s infinite
+        background: #c09853
+      &.technological
+        animation: technologicalOrbit technologicalOrbitPeriod linear 0s infinite
+        background: #049cdb
+
+    .planetTrail
+      &.personal
+        makeTrail(personalOrbitRadius, personalColor)
+      &.reflexive
+        makeTrail(reflexiveOrbitRadius, reflexiveColor)
+      &.labor
+        makeTrail(laborOrbitRadius, laborColor)
+      &.technological
+        makeTrail(technologicalOrbitRadius, technologicalColor)
+
+    //.planetTrailChunk
+    //  position: absolute
+    //  overflow: hidden

@@ -56,7 +56,10 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   render: ->
     @imageLoader.done =>
       @$el.html('')
-      @$el.append(@solarSystem.render().el)
+      # Although it's less efficient, "solarSystem" require its root element is appended
+      # to the DOM before calling render.
+      @$el.append(@solarSystem.el)
+      @solarSystem.render()
 
       @prepareObjects()
       if @opt.useCanvas

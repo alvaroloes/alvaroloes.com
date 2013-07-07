@@ -1,0 +1,5 @@
+@import 'nib'
+
+radial-gradient(args...)
+  for v in vendor-prefixes
+    add-property('background-image',s('-%s-radial-gradient(%s)',v,s(join(',',arguments)))) unless v == 'official'
