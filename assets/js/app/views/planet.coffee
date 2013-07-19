@@ -7,3 +7,4 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   render: (next = $.noop) ->
     next()
 
+  paint: (ctx,cnv)->

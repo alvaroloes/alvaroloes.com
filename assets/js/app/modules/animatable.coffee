@@ -140,7 +140,7 @@ class Transition
       @preparedProperties = {}
       for prop,val of @properties
         # Delete this animationg property if it doesn't exist in object properties
-        unless ( currentVal = objectProps[prop] )
+        unless ( currentVal = objectProps[prop] )?
           delete @properties[prop]
           continue
         @preparedProperties[prop] =
@@ -176,7 +176,7 @@ class Animation
   # start immediately. By default is true
   constructor: (options)->
     $.extend @,
-      transitions: {}
+      transitions: []
       count: 1
       alternateDirection: false
     , options

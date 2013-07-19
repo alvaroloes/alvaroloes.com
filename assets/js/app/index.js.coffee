@@ -1,3 +1,4 @@
+#= require_tree ./config
 #= require_self
 #= require ./controllers/controller
 #= require ./views/view

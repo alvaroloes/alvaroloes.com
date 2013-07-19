@@ -54,7 +54,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   # You must use this.done(callback) to ensure the render has finished
   render: ->
-    $.when(@imageLoader, @solarSystem.imageLoader).done =>
+    $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
       # DOM stuff
       @$el.html('')
       @$el.append(@solarSystem.render().el)
@@ -152,6 +152,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @ctx.rotate(o.angle * Math.PI / 360)
       @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
       @ctx.restore()
-    @solarSystem.paint(@cnv, @ctx)
+    @solarSystem.paint(@ctx,@cnv)
     requestAnimFrame(=> @paintCanvas()) if animate
 
