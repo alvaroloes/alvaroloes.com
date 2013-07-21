@@ -24,6 +24,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     'assets/img/universe/rareObject.png'
   ]
 
+  events:
+    'mousedown canvas': 'clickCanvas'
+
 
   # Options:
   # useCanvas: Whether use canvas to render stars or not (DOM)
@@ -51,6 +54,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       sizeInterval: [20,30]
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
+
+  clickCanvas: (e)->
+    @solarSystem.clickCanvas(e)
 
   # You must use this.done(callback) to ensure the render has finished
   render: ->

@@ -21,6 +21,7 @@ class global.Animatable
   # Make a transition between property values. Options:
   # - properties: An object whose keys are the properties to animate and the values are its final values.
   # - duration: The time the animation will last
+  # - delay: The time the animation will wait before start
   # - easing: The easing function which will define the progression of the animation. Can be any function
   # that accepts a number as input (which represents time ratio) and returns a number (the output ratio).
   # You can use here any method of the Easing class. By default is Easing.easeInOut
@@ -115,17 +116,23 @@ class Transition
     $.extend @,
       properties: {}
       duration: 1000
+      delay: 0
       easing: Easing.easeInOut
     , options
 
     @startTime = null
+    @delayStartTime = null
     @preparedProperties = null
     @reversed = false
+    @reverse = false
 
   animate: (objectProps)->
+    return if @delayed()
+
     @init(objectProps) unless @started()
     # Animate each property
     elapsedTime = Date.now() - @startTime
+    return if elapsedTime < 0
     for prop, propLimits of @preparedProperties
       inputRatio = elapsedTime / @duration
       inputRatio = 1 if inputRatio > 1
@@ -133,6 +140,10 @@ class Transition
       objectProps[prop] = propLimits.ini + outputRatio * (propLimits.fin - propLimits.ini)
 
     undefined
+
+  delayed: ->
+    @delayStartTime ?= Date.now()
+    Date.now() - @delayStartTime < @delay
 
   init: (objectProps)->
     @startTime = Date.now()
@@ -153,13 +164,15 @@ class Transition
           fin: propLimits.ini
     @reversed = @reverse
 
-  finished: -> Date.now() > @startTime + @duration
+  finished: -> Date.now() > (@startTime || @delayStartTime) + @duration + @delay
 
   started: -> !!@startTime
 
   toggleReverse: (@reverse)-> @reset()
 
-  reset: -> @startTime = null
+  reset: ->
+    @startTime = null
+    @delayStartTime = null
 
 
 ######################### ANIMATION CLASS ########################
