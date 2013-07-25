@@ -53,16 +53,19 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   goTo: (celestialObject = 'sun')->
     windowHeight = $(window).height()
     switch celestialObject
-      when 'sun'
-        @transition
-          properties: solarSystemScale: windowHeight / @sunSize
-          duration: 5000
-          queue: false
       when 'birdsEye'
         @transition
           properties: solarSystemScale: windowHeight / @solarSystemSize
           duration: 5000
           queue: false
+      when 'sun'
+        @transition
+          properties: solarSystemScale: windowHeight / @sunSize
+          duration: 5000
+          queue: false
+
+  setMovement: (move)->
+    @setPauseState(!move)
 
   togglePlanetsAnimation: (animate)->
     @$el.find('.solarSystem')[unless animate then 'addClass' else 'removeClass']('stopPlanets')

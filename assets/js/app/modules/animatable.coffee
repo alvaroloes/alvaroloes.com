@@ -14,9 +14,9 @@ class global.Animatable
   #
   constructor: (opt = {})->
     @animatable =
-      props   : opt.animatablePropertiesHolder
-      instant : []
-      queued  : []
+      props     : opt.animatablePropertiesHolder
+      instant   : []
+      queued    : []
 
   # Make a transition between property values. Options:
   # - properties: An object whose keys are the properties to animate and the values are its final values.
@@ -53,6 +53,7 @@ class global.Animatable
     animation
 
   animate: ->
+    return if @paused()
     # Animate all transitions/animations in instant array
     if @animatable.props
       props = @[@animatable.props]
@@ -73,6 +74,15 @@ class global.Animatable
     if anim?
       anim.animate(props)
       @animatable.queued.shift() if anim.finished()
+
+  setPauseState: (pause)->
+    @pauseState = pause
+    anim.setPauseState(pause) for anim in @animatable.instant
+    @animatable.queued[0]?.setPauseState(pause)
+
+  paused: -> @pauseState
+
+
 
 
 
@@ -127,7 +137,7 @@ class Transition
     @reverse = false
 
   animate: (objectProps)->
-    return if @delayed()
+    return if @delayed() or @paused()
 
     @init(objectProps) unless @started()
     # Animate each property
@@ -164,9 +174,21 @@ class Transition
           fin: propLimits.ini
     @reversed = @reverse
 
-  finished: -> Date.now() > (@startTime || @delayStartTime) + @duration + @delay
+  finished: ->
+    return false if @paused()
+    Date.now() > (@startTime || @delayStartTime) + @duration + @delay
 
   started: -> !!@startTime
+
+  setPauseState: (pause)->
+    return unless @started()
+    if pause
+      @pausedAt = Date.now() if not @paused()
+    else if @pausedAt
+      @startTime += Date.now() - @pausedAt
+      @pausedAt = null
+
+  paused: -> !!@pausedAt
 
   toggleReverse: (@reverse)-> @reset()
 
