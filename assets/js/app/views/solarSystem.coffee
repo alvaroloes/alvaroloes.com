@@ -9,6 +9,11 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @solarSystemSize = Config.solarSystemSize
     @solarSystemScale = 1
 
+    @focusedPlanet = null
+    @centerOffset = 0
+    @centerOffsetAngle = 0
+    @centeringFinished = false
+
     # Create subviews
     @sun = new MyUniverse.Views.Sun()
     @planets =
@@ -43,30 +48,72 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     ctx.translate(cnv.width/2, cnv.height/2)
     ctx.scale(@solarSystemScale,@solarSystemScale)
+
+    planet.updateProperties() for name,planet of @planets
+
+    if @focusedPlanet and @centeringFinished
+      @centerOffsetAngle  = @focusedPlanet.rotationAngle
+
+    ctx.rotate(@centerOffsetAngle)
+    ctx.translate(@centerOffset,0)
+    ctx.rotate(-@centerOffsetAngle)
+
     ctx.drawImage(@imageLoader.images[@constructor.sunImg],
                   -@sunSize/2, -@sunSize/2,
                   @sunSize, @sunSize)
+
     planet.paint(ctx, cnv) for name,planet of @planets
 
     ctx.restore()
 
   goTo: (celestialObject = 'sun')->
     windowHeight = $(window).height()
+    wasCenteredOnSun = !@focusedPlanet
+    @centeringFinished = false
+    @focusedPlanet = null
+    finalRadius = 0
+    finalAngle = 0
+
     switch celestialObject
       when 'birdsEye'
-        @transition
-          properties: solarSystemScale: windowHeight / @solarSystemSize
-          duration: 5000
-          queue: false
+        objectHeight = @solarSystemSize
+        @centeringFinished = true
       when 'sun'
-        @transition
-          properties: solarSystemScale: windowHeight / @sunSize
-          duration: 5000
-          queue: false
+        objectHeight = @sunSize
+        @centeringFinished = true
+      else
+        # Focus on selected planet
+        @focusedPlanet = @planets[celestialObject]
+        finalRadius = -@focusedPlanet.orbitRadius
+        finalAngle = => @focusedPlanet.rotationAngle
+        objectHeight = @focusedPlanet.planetSize
+        if wasCenteredOnSun
+          @centeringFinished = true
+        else
+          @transition
+            properties:
+              centerOffsetAngle: finalAngle
+            duration: 2000
+            onEnd: => @centeringFinished = true
+
+#    if celestialObject != 'birdsEye'
+#      @transition
+#        properties:
+#          solarSystemScale: windowHeight / @sunSize
+#          centerOffset: 0
+#        duration: 3000
+#        onEnd: => @centeringFinished = true
+
+
+    @transition
+      properties:
+        solarSystemScale: windowHeight / objectHeight
+        centerOffset: finalRadius
+      duration: 3000
+
 
   setMovement: (move)->
+    planet.setPauseState(!move) for name,planet of @planets
     @setPauseState(!move)
 
-  togglePlanetsAnimation: (animate)->
-    @$el.find('.solarSystem')[unless animate then 'addClass' else 'removeClass']('stopPlanets')
 

@@ -6,7 +6,8 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
 
     @planetSize = Config.planetSize
     @trailWidth = Config.trailWidth
-    @rotationAngle = Math.random() * 2 * Math.PI
+    @initialRotationAngle = Math.random() * 2 * Math.PI
+    @rotationAngle = @initialRotationAngle
     @imageLoader = new ImageLoader()
     @imageLoader.loadImages [@planetImg]
 
@@ -15,7 +16,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
       transitions: [
         @transition
           properties:
-            rotationAngle: @rotationAngle + 2 * Math.PI
+            rotationAngle: @initialRotationAngle + 2 * Math.PI
           duration: @orbitPeriod
           easing: Easing.linear
         , false
@@ -25,8 +26,10 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   render: (next = $.noop) ->
     next()
 
-  paint: (ctx,cnv)->
+  updateProperties: ->
     @animate()
+
+  paint: (ctx,cnv)->
     ctx.save()
     # Paint the trail
     ctx.beginPath()
@@ -42,6 +45,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
 
     ctx.rotate(@rotationAngle)
     ctx.translate(@orbitRadius, 0)
+
     ctx.drawImage(@imageLoader.images[@planetImg],
       -@planetSize/2, -@planetSize/2,
       @planetSize, @planetSize)

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/modules/animatable.coffee" afterPath="$PROJECT_DIR$/assets/js/app/modules/animatable.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/planet.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/planet.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -31,7 +32,7 @@
     <file path="/compile-assets.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371596989238" ignored="false" />
     <file path="/index.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096313654" ignored="false" />
     <file path="/deploy.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371600971625" ignored="false" />
-    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374773110615" ignored="false" />
+    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1375015298352" ignored="false" />
     <file path="/main.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372188075227" ignored="false" />
     <file path="/a.feature" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372002594028" ignored="false" />
     <file path="/fragment.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372082987094" ignored="false" />
@@ -48,12 +49,12 @@
     <file path="/sun.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372722990147" ignored="false" />
     <file path="/universe.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373042413797" ignored="false" />
     <file path="/extensions.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372368061203" ignored="false" />
-    <file path="/solarSystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374779962664" ignored="false" />
+    <file path="/solarSystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1375021477822" ignored="false" />
     <file path="/solarSystem.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373223979098" ignored="false" />
     <file path="/sun.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372964314129" ignored="false" />
     <file path="/personal.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372190075990" ignored="false" />
-    <file path="/planet.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374250728144" ignored="false" />
-    <file path="/personal.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374426356170" ignored="false" />
+    <file path="/planet.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1375018052500" ignored="false" />
+    <file path="/personal.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374943330149" ignored="false" />
     <file path="/vendor.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373220892786" ignored="false" />
     <file path="/imageLoader.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372362302527" ignored="false" />
     <file path="/reflexive.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374426681988" ignored="false" />
@@ -67,8 +68,8 @@
     <file path="/stylus-extensions.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372531844584" ignored="false" />
     <file path="/solarSystem.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1373205318436" ignored="false" />
     <file path="/sun.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372970108620" ignored="false" />
-    <file path="/animatable.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374780566534" ignored="false" />
-    <file path="/config.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374423640685" ignored="false" />
+    <file path="/animatable.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1375017150504" ignored="false" />
+    <file path="/config.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374943892614" ignored="false" />
     <file path="/a.dummy" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1374428047920" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,19 +104,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="solarSystem.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="solarSystem.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="13" selection-start="1832" selection-end="1843" vertical-scroll-proportion="0.0">
+            <state line="88" column="48" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.29173693">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animatable.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="animatable.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/app/modules/animatable.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="24" selection-start="3181" selection-end="3181" vertical-scroll-proportion="1.0">
+            <state line="154" column="14" selection-start="5486" selection-end="5486" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="planet.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/app/views/planet.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="18" selection-start="730" selection-end="746" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="personal.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="9" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reflexive.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="9" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,7 +152,7 @@
       <file leaf-file-name="config.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/app/config/config.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="71" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
+            <state line="1" column="29" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -166,25 +194,25 @@
         <option value="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
         <option value="$PROJECT_DIR$/assets/js/app/index.js.coffee" />
         <option value="$PROJECT_DIR$/assets/css/utils/config.styl" />
-        <option value="$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/controllers/sun.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
         <option value="$PROJECT_DIR$/assets/css/views/solarSystem.styl" />
-        <option value="$PROJECT_DIR$/assets/js/app/config/config.coffee" />
-        <option value="$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/labor.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/technological.coffee" />
+        <option value="$PROJECT_DIR$/assets/js/app/config/config.coffee" />
+        <option value="$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee" />
+        <option value="$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee" />
+        <option value="$PROJECT_DIR$/assets/js/app/modules/animatable.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planet.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
-        <option value="$PROJECT_DIR$/assets/js/app/modules/animatable.coffee" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1303" />
-    <option name="height" value="773" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -261,7 +289,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -364,7 +391,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -410,17 +467,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="editor.preferences.appearance" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -604,11 +662,15 @@
       <created>1374435503533</created>
       <updated>1374435503533</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Animatable now support pause transitions">
+      <created>1374780646649</created>
+      <updated>1374780646649</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1303" height="773" extended-state="6" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -619,7 +681,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3271605" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3279483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -673,7 +735,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Canvas reconversion is finisished!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Animatable now support pause transitions" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -703,6 +765,7 @@
     <MESSAGE value="Animatable stuf finished" />
     <MESSAGE value="Personal planet is in orbit!" />
     <MESSAGE value="Canvas reconversion is finisished!!!!" />
+    <MESSAGE value="Animatable now support pause transitions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -750,19 +813,9 @@
         <state line="3" column="58" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planet.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/css/utils/config.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="25" selection-start="992" selection-end="992" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="54" selection-start="191" selection-end="191" vertical-scroll-proportion="0.07234727" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="41" selection-start="344" selection-end="344" vertical-scroll-proportion="0.19292605" />
+        <state line="27" column="9" selection-start="886" selection-end="1054" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
@@ -772,30 +825,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/utils/config.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="9" selection-start="886" selection-end="1054" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/app/config/config.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="71" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
+        <state line="1" column="29" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="1832" selection-end="1843" vertical-scroll-proportion="0.0">
+        <state line="9" column="9" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="9" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planet.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="18" selection-start="730" selection-end="746" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/app/modules/animatable.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="24" selection-start="3181" selection-end="3181" vertical-scroll-proportion="1.0">
+        <state line="154" column="14" selection-start="5486" selection-end="5486" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="48" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.29173693">
           <folding />
         </state>
       </provider>

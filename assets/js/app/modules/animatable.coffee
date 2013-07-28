@@ -75,10 +75,9 @@ class global.Animatable
       anim.animate(props)
       @animatable.queued.shift() if anim.finished()
 
-  setPauseState: (pause)->
-    @pauseState = pause
-    anim.setPauseState(pause) for anim in @animatable.instant
-    @animatable.queued[0]?.setPauseState(pause)
+  setPauseState: (@pauseState)->
+    anim.setPauseState(@pauseState) for anim in @animatable.instant
+    @animatable.queued[0]?.setPauseState(@pauseState)
 
   paused: -> @pauseState
 
@@ -122,6 +121,7 @@ class Transition
   # You can use here any method of the Easing class. By default is Easing.easeInOut
   # - queue: True if the animation should begin after other animations ends. False if you want it to
   # start immediately. By default is true
+  # - onEnd: Function to be called when transition ends. Defaults to null
   constructor: (options)->
     $.extend @,
       properties: {}
@@ -147,8 +147,15 @@ class Transition
       inputRatio = elapsedTime / @duration
       inputRatio = 1 if inputRatio > 1
       outputRatio = @easing(inputRatio)
-      objectProps[prop] = propLimits.ini + outputRatio * (propLimits.fin - propLimits.ini)
+      ini = if $.isFunction(propLimits.ini) then propLimits.ini() else propLimits.ini
+#      fin = if $.isFunction(propLimits.fin) then propLimits.fin() else propLimits.fin
+      if $.isFunction(propLimits.fin)
+        fin = propLimits.fin()
+      else
+        fin = propLimits.fin
+      objectProps[prop] = ini + outputRatio * (fin - ini)
 
+    @onEnd?() if @finished()
     undefined
 
   delayed: ->
@@ -222,6 +229,7 @@ class Animation
     @prepareNewCycle()
 
   animate: (objectProps)->
+    return if @paused()
     unless @startTime
       @startTime = Date.now()
 
@@ -258,12 +266,17 @@ class Animation
     undefined
 
   finished: ->
-    @count != 'infinite' and @cycle >= @count
+    @count != 'infinite' and @cycle > @count
 
   started: ->
     !!@startTime
 
-  reset: (fullReset = false)->
+  setPauseState: (@pauseState)->
+    @transitions[@transitionIndex]?.setPauseState(@pauseState)
+
+  paused: -> @pauseState
+
+  reset: ->
     for t in @transitions
       t.reset()
       t.toggleReverse(@transitionStep < 0)
