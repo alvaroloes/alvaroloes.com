@@ -1,4 +1,7 @@
 class window.Config
+  # Planet shadow image rotation (pointing to the brighter face and assuming 0 deg is the positive X axis)
+  @planetShadowAngle: 3 * Math.PI / 2
+
   # General sizes (in pixels)
   @solarSystemSize : 10
   @sunSize         : @solarSystemSize / 10

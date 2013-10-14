@@ -4,19 +4,24 @@
 #= require ./views/view
 #= require_tree .
 
-window.MyUniverse =
+window.MyUniverse = new ( Backbone.View.extend
+  # Classes namespaces
   Controllers: {}
   Models: {}
   Collection: {}
   Views: {}
-  # Instances
+  # Instances namespaces
   views: {}
 
-$ ->
-  # Instatiate controllers
-  new MyUniverse.Controllers.Sun()
+  el: document.body
+  events:
+    'click a': (e)->
+      e.preventDefault()
+      Backbone.history.navigate e.target.pathname, trigger: true
 
-  # Instantiate views
+  start: ->
+    new MyUniverse.Controllers.Sun()
+    Backbone.history.start({pushState: true})
+)
 
-
-  Backbone.history.start({pushState: true})
+$ -> MyUniverse.start()

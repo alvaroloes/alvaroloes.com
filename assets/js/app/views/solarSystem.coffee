@@ -3,9 +3,13 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   className: 'solarSystemWrap'
 
   @sunImg: 'assets/img/solarSystem/sun.png'
+  @sunHaloImg: 'assets/img/solarSystem/sunHalo.png'
 
   initialize: ->
     @sunSize = Config.sunSize
+    @sunHaloSize = Config.sunSize*1.25
+    @sunHaloAngle = 0
+    @sunHaloAlpha = 1
     @solarSystemSize = Config.solarSystemSize
     @solarSystemScale = 1
 
@@ -24,7 +28,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     # Preload images
     @imageLoader = new ImageLoader()
-    @imageLoader.loadImages [@constructor.sunImg]
+    @imageLoader.loadImages [@constructor.sunImg, @constructor.sunHaloImg]
 
     promises = [@imageLoader]
     promises.push planet.imageLoader for name,planet of @planets
@@ -32,6 +36,47 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     # Make solar system animatable
     Animatable.makeAnimatable(@)
+    @animation
+      transitions: [
+        properties:
+          sunHaloSize: @sunHaloSize*1.1
+        duration: 4000
+      ]
+      count: 'infinite'
+      alternateDirection: true
+      queue: false
+    @animation
+      transitions: [
+        properties:
+          sunHaloAngle: 2*Math.PI
+        duration: 100000
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
+    @animation
+      transitions: [
+          properties: sunHaloAlpha: 0.5
+          duration: 5000
+        ,
+          properties: sunHaloAlpha: 0.8
+          duration: 2000
+        ,
+          properties: sunHaloAlpha: 1
+          duration: 1000
+        ,
+          properties: sunHaloAlpha: 0.5
+          duration: 1000
+        ,
+          properties: sunHaloAlpha: 0
+          duration: 3000
+      ]
+      count: 'infinite'
+      alternateDirection: true
+      queue: false
+
+
+
 
   clickCanvas: (e)->
     where = if e.which == 2 then 'birdsEye' else null
@@ -39,6 +84,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
   # Render DOM stuff
   render: ->
+    this.$el.html(@template())
     @
 
   # Paint canvas stuff
@@ -58,6 +104,14 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     ctx.translate(@centerOffset,0)
     ctx.rotate(-@centerOffsetAngle)
 
+    ctx.save()
+    ctx.rotate(@sunHaloAngle)
+    ctx.globalAlpha = @sunHaloAlpha
+    ctx.drawImage(@imageLoader.images[@constructor.sunHaloImg],
+                  -@sunHaloSize/2, -@sunHaloSize/2,
+                  @sunHaloSize, @sunHaloSize)
+    ctx.restore()
+
     ctx.drawImage(@imageLoader.images[@constructor.sunImg],
                   -@sunSize/2, -@sunSize/2,
                   @sunSize, @sunSize)
@@ -73,6 +127,10 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @focusedPlanet = null
     finalRadius = 0
     finalAngle = 0
+
+    #Wake up all planet paints
+#    for name,planet of @planets
+#      planet.stopPaint = false
 
     switch celestialObject
       when 'birdsEye'
@@ -94,22 +152,19 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
             properties:
               centerOffsetAngle: finalAngle
             duration: 2000
+            queue: false
             onEnd: => @centeringFinished = true
-
-#    if celestialObject != 'birdsEye'
-#      @transition
-#        properties:
-#          solarSystemScale: windowHeight / @sunSize
-#          centerOffset: 0
-#        duration: 3000
-#        onEnd: => @centeringFinished = true
-
 
     @transition
       properties:
-        solarSystemScale: windowHeight / objectHeight
+        solarSystemScale: windowHeight / ( objectHeight - 0.3 * objectHeight )
         centerOffset: finalRadius
       duration: 3000
+#      onEnd: =>
+#        for name,planet of @planets when name != celestialObject
+#          planet.stopPaint = true
+#        null
+
 
 
   setMovement: (move)->

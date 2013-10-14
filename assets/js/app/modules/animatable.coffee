@@ -40,8 +40,8 @@ class global.Animatable
   # - transitions: An array of Transition objects. "queue" key will be ignored
   # - duration: The duration of the whole animation. The duration of each transition will be tansfromed as percentage.
   # If null is passed, the whole duration will be the sum of each transition duration. By default is null
-  # - count: The number of cicles of the animation. By default is 1
-  # - direction: The direction of the animation. It can be 'normal', 'reverse' or 'alternate'. By default is 'normal'
+  # - count: The number of cicles of the animation. It can be 'infinite'. By default is 1
+  # - alternateDirection: If true the direction of the animation will change in each cycle. By default is false
   # - queue: True if the animation should begin after other animations ends. False if you want it to
   # start immediately. By default is true
   animation: (options)->
@@ -209,7 +209,7 @@ class Transition
 class Animation
 
   # Options
-  # - transitions: An array of Transition objects. "queue" key will be ignored
+  # - transitions: An array of objects with the same keys you would pass to create a Transition. "queue" key will be ignored
   # - duration: The duration of the whole animation. The duration of each transition will be tansfromed as percentage.
   # If null is passed, the whole duration will be the sum of each transition duration. By default is null
   # - count: The number of cicles of the animation. It can be 'infinite'. By default is 1
@@ -217,11 +217,18 @@ class Animation
   # - queue: True if the animation should begin after other animations ends. False if you want it to
   # start immediately. By default is true
   constructor: (options)->
+    transitions = []
+    for tranProps in options.transitions
+      transitions.push new Transition(tranProps)
+
+    delete options.transitions
+
     $.extend @,
-      transitions: []
+      transitions: transitions
       count: 1
       alternateDirection: false
     , options
+
 
     @startTime = null
     @cycle = 0

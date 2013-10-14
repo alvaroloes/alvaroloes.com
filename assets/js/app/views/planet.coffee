@@ -1,5 +1,6 @@
 class MyUniverse.Views.Planet extends MyUniverse.Views.View
 
+  planetShadow: 'assets/img/solarSystem/planets/planet_shadow.png'
   initialize: ->
     @className = "planet #{@className}"
     @$el.addClass(@className)
@@ -8,18 +9,18 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @trailWidth = Config.trailWidth
     @initialRotationAngle = Math.random() * 2 * Math.PI
     @rotationAngle = @initialRotationAngle
+    @selfRotationAngle = 0
+    @stopPaint = false
     @imageLoader = new ImageLoader()
-    @imageLoader.loadImages [@planetImg]
+    @imageLoader.loadImages [@planetImg, @planetShadow]
 
     Animatable.makeAnimatable(@)
     @animation
       transitions: [
-        @transition
-          properties:
-            rotationAngle: @initialRotationAngle + 2 * Math.PI
-          duration: @orbitPeriod
-          easing: Easing.linear
-        , false
+        properties:
+          rotationAngle: @initialRotationAngle + 2 * Math.PI
+        duration: @orbitPeriod
+        easing: Easing.linear
       ]
       count: 'infinite'
 
@@ -30,6 +31,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @animate()
 
   paint: (ctx,cnv)->
+    return if @stopPaint
     ctx.save()
     # Paint the trail
     ctx.beginPath()
@@ -46,8 +48,14 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     ctx.rotate(@rotationAngle)
     ctx.translate(@orbitRadius, 0)
 
-    ctx.drawImage(@imageLoader.images[@planetImg],
-      -@planetSize/2, -@planetSize/2,
-      @planetSize, @planetSize)
+    ctx.save()
+    ctx.rotate(@selfRotationAngle)
+    # Draw the planet
+    posXY = -@planetSize/2;
+    ctx.drawImage(@imageLoader.images[@planetImg], posXY, posXY, @planetSize, @planetSize)
+    ctx.restore()
+    # Draw its shadow
+    ctx.rotate(2 * Math.PI - Config.planetShadowAngle + Math.PI)
+    ctx.drawImage(@imageLoader.images[@planetShadow], posXY, posXY, @planetSize, @planetSize)
 
     ctx.restore()
