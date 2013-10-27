@@ -27,12 +27,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   events:
     'mousedown canvas': 'clickCanvas'
 
-
-  # Options:
-  # useCanvas: Whether use canvas to render stars or not (DOM)
   initialize: (opt = {})->
     @opt = opt
-    $(window).resize => @resizeCanvas() if opt.useCanvas
+    $(window).resize => @resizeCanvas()
 
     # Make this a deferred object because it use ImageLoader, which is a deferred
     $.extend(this,$.Deferred())
@@ -68,11 +65,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       # Canvas stuff
       @prepareObjects()
       @canvasPaintObjects()
-
-#      if @opt.useCanvas
-#        @canvasPaintObjects()
-#      else
-#        @domPaintObjects()
 
       @resolve()
     @

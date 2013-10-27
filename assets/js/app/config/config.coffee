@@ -7,6 +7,13 @@ class window.Config
   @sunSize         : @solarSystemSize / 10
   @planetSize      : @solarSystemSize / 50
 
+  # Rotation periods
+  @baseSelfRotationPeriod           : 10000
+  @personalSelfRotationPeriod       : 1.2 * @baseSelfRotationPeriod
+  @reflexiveSelfRotationPeriod      : 1.5 * @baseSelfRotationPeriod
+  @laborSelfRotationPeriod          : 2 * @baseSelfRotationPeriod
+  @technologicalSelfRotationPeriod  : 0.5 * @baseSelfRotationPeriod
+
   # Orbits periods (in milliseconds)
   @baseOrbitPeriod           : 20000
   @personalOrbitPeriod       : 1.5 * @baseOrbitPeriod

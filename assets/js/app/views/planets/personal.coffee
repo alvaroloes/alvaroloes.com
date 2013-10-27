@@ -6,6 +6,8 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
   initialize: ->
     @orbitRadius = Config.personalOrbitRadius
     @orbitPeriod = Config.personalOrbitPeriod
+    @selfRotationPeriod = Config.personalSelfRotationPeriod
+    @selfRotationDirection = -1
     @personalColor = Config.personalColor
     super
 

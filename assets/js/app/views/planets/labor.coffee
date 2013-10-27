@@ -6,6 +6,8 @@ class MyUniverse.Views.Labor extends MyUniverse.Views.Planet
   initialize: ->
     @orbitRadius = Config.laborOrbitRadius
     @orbitPeriod = Config.laborOrbitPeriod
+    @selfRotationPeriod = Config.laborSelfRotationPeriod
+    @selfRotationDirection = -1
     @personalColor = Config.laborColor
     super
 

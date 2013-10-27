@@ -6,6 +6,8 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
   initialize: ->
     @orbitRadius = Config.reflexiveOrbitRadius
     @orbitPeriod = Config.reflexiveOrbitPeriod
+    @selfRotationPeriod = Config.laborSelfRotationPeriod
+    @selfRotationDirection = -1
     @personalColor = Config.reflexiveColor
     super
 

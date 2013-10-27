@@ -6,6 +6,8 @@ class MyUniverse.Views.Technological extends MyUniverse.Views.Planet
   initialize: ->
     @orbitRadius = Config.technologicalOrbitRadius
     @orbitPeriod = Config.technologicalOrbitPeriod
+    @selfRotationPeriod = Config.technologicalSelfRotationPeriod
+    @selfRotationDirection = -1
     @personalColor = Config.technologicalColor
     super
 

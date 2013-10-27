@@ -23,6 +23,16 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
         easing: Easing.linear
       ]
       count: 'infinite'
+      queue: false
+    @animation
+      transitions: [
+        properties:
+          selfRotationAngle: 2 * Math.PI * @selfRotationDirection
+        duration: @selfRotationPeriod
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
 
   render: (next = $.noop) ->
     next()
@@ -33,6 +43,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   paint: (ctx,cnv)->
     return if @stopPaint
     ctx.save()
+
     # Paint the trail
     ctx.beginPath()
     grad = ctx.createRadialGradient(0, 0, @orbitRadius - @trailWidth / 2, 0, 0, @orbitRadius + @trailWidth / 2)

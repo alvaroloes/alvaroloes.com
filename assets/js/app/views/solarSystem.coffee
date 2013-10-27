@@ -75,9 +75,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       alternateDirection: true
       queue: false
 
-
-
-
   clickCanvas: (e)->
     where = if e.which == 2 then 'birdsEye' else null
     @goTo(where)
