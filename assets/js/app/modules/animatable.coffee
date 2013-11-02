@@ -114,11 +114,20 @@ class Easing
 class Transition
 
   # Options:
-  # - properties: An object whose keys are the properties to animate and the values are its final values.
+  # - properties: An object whose keys are the properties to animate and the values can be:
+  #     · A number indicating the final value of the property
+  #     · A function that returns the final value of the property, useful when the final value changes during
+  #     the transition
+  #     · An object with these keys:
+  #        > 'value': the final value or the function that returns it
+  #        > 'transform': a function that receives four parameters: the property being transited, the value to assign,
+  #        the time ratio and the output ratio the returned value will be the real one assigned to the property.
+  #        You can use this function to make final transformations, like controlling cyclic property values for example.
   # - duration: The time the animation will last
   # - easing: The easing function which will define the progression of the animation. Can be any function
   # that accepts a number as input (which represents time ratio) and returns a number (the output ratio).
   # You can use here any method of the Easing class. By default is Easing.easeInOut
+  # - initialTimeOffset: The initial time ratio offset
   # - queue: True if the animation should begin after other animations ends. False if you want it to
   # start immediately. By default is true
   # - onEnd: Function to be called when transition ends. Defaults to null
@@ -128,6 +137,7 @@ class Transition
       duration: 1000
       delay: 0
       easing: Easing.easeInOut
+      initialTimeOffset: 0
     , options
 
     @startTime = null
@@ -148,12 +158,8 @@ class Transition
       inputRatio = 1 if inputRatio > 1
       outputRatio = @easing(inputRatio)
       ini = if $.isFunction(propLimits.ini) then propLimits.ini() else propLimits.ini
-#      fin = if $.isFunction(propLimits.fin) then propLimits.fin() else propLimits.fin
-      if $.isFunction(propLimits.fin)
-        fin = propLimits.fin()
-      else
-        fin = propLimits.fin
-      objectProps[prop] = ini + outputRatio * (fin - ini)
+      fin = if $.isFunction(propLimits.fin) then propLimits.fin() else propLimits.fin
+      objectProps[prop] = propLimits.transform(prop, ini + outputRatio * (fin - ini), inputRatio, outputRatio )
 
     @onEnd?() if @finished()
     undefined
@@ -163,22 +169,26 @@ class Transition
     Date.now() - @delayStartTime < @delay
 
   init: (objectProps)->
-    @startTime = Date.now()
+    @startTime = Date.now() + @initialTimeOffset * @duration
+    @initialTimeOffset = 0
     unless @preparedProperties
       @preparedProperties = {}
       for prop,val of @properties
-        # Delete this animationg property if it doesn't exist in object properties
+        # Delete this animation property if it doesn't exist in object properties
         unless ( currentVal = objectProps[prop] )?
           delete @properties[prop]
           continue
+        if $.isPlainObject(val)
+          transform = val.transform
+          val = val.value
         @preparedProperties[prop] =
           ini: currentVal
           fin: val
+          transform: transform ? (prop, value) -> value
+
     if @reverse != @reversed
       for prop, propLimits of @preparedProperties
-        @preparedProperties[prop] =
-          ini: propLimits.fin
-          fin: propLimits.ini
+        [propLimits.ini, propLimits.fin] = [propLimits.fin, propLimits.ini]
     @reversed = @reverse
 
   finished: ->

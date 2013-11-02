@@ -31,9 +31,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @opt = opt
     $(window).resize => @resizeCanvas()
 
-    # Make this a deferred object because it use ImageLoader, which is a deferred
-    $.extend(this,$.Deferred())
-
     # Initialize foreground elements
     @solarSystem = new MyUniverse.Views.SolarSystem()
 
@@ -55,19 +52,21 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   clickCanvas: (e)->
     @solarSystem.clickCanvas(e)
 
-  # You must use this.done(callback) to ensure the render has finished
   render: ->
-    $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
-      # DOM stuff
-      @$el.html('')
-      @$el.append(@solarSystem.render().el)
+    @$el.html('')
+    @$el.append(@solarSystem.render().el)
+    @
 
-      # Canvas stuff
+  # This method returns a deferred object, so you must use paint().done(callback) to ensure
+  # the first paint has finished (meaning that all images has been loaded from server and painted)
+  paint: ->
+    promise = $.Deferred()
+    $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
       @prepareObjects()
       @canvasPaintObjects()
+      promise.resolve()
+    promise
 
-      @resolve()
-    @
 
   addObjects: (objects)->
     for o in objects
@@ -88,38 +87,25 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       o.top = Math.random()   # Percentage
       o.left = Math.random()  # Percentage
       o.angle = o.rotateInterval.sampleInterval()
-      o.pulsePeriod = 1000 / o.pulseFrecuencyInterval.sampleInterval() # In milliseconds
+
       if o.opacityConfig == 'pulse'
-        o.opacity = Math.random()
+        Animatable.makeAnimatable(o)
+        o.opacity = 0
+        o.animation
+          transitions: [
+            properties:
+              opacity: 1
+            duration: 1000 / o.pulseFrecuencyInterval.sampleInterval()
+            initialTimeOffset: Math.random()
+          ]
+          count: 'infinite'
+          alternateDirection: true
+          queue: false
       else
         o.opacity = o.opacityConfig.sampleInterval()
-      o.pulseTimeOffset = Math.random() * o.pulsePeriod
 
       @preparedObjects.push(o)
       ++i
-
-#  domPaintObjects: ->
-#    for o in @preparedObjects
-#      $img = $('<img/>')
-#        .attr(src: o.src)
-#        .css(
-#          top: "#{o.top * 100}%"
-#          left: "#{o.left * 100}%"
-#          width: o.size
-#          height: o.size
-#          transform: "rotate(#{o.angle}deg)"
-#        )
-#        .addClass('object')
-#
-#      if o.opacityConfig == 'pulse'
-#        $img.css animationDuration: "#{o.pulsePeriod}ms"
-#      else
-#        $img.css
-#          animation: 'none'
-#          opacity: o.opacity
-#
-#      @$el.append($img)
-#    null
 
   ######## Canvas stuff #########
 
@@ -139,13 +125,11 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   paintCanvas: (animate = true)->
     @ctx.clearRect(0, 0, @cnv.width, @cnv.height)
-    time = (new Date()).getTime() - @startTime
+#    time = (new Date()).getTime() - @startTime
     for o in @preparedObjects
       @ctx.save()
-      if o.opacityConfig == 'pulse' # The opacity is animated with an oscilant function
-        @ctx.globalAlpha = 0.5 * Math.sin((time + o.pulseTimeOffset) * 2 * Math.PI / o.pulsePeriod) + 0.5
-      else
-        @ctx.globalAlpha = o.opacity
+      o.animate() if o.opacityConfig == 'pulse'
+      @ctx.globalAlpha = o.opacity
       @ctx.translate(o.left * @cnv.width, o.top * @cnv.height)
       @ctx.rotate(o.angle * Math.PI / 360)
       @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
