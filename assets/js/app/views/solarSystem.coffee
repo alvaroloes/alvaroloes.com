@@ -88,12 +88,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   paint: (ctx, cnv)->
     @animate()
     ctx.save()
-
+    # Set the (0,0) in the center and adjust the size of the solar sitem
     ctx.translate(cnv.width/2, cnv.height/2)
     ctx.scale(@solarSystemScale,@solarSystemScale)
 
+    # Update all planet properties for animation
     planet.updateProperties() for name,planet of @planets
 
+    # Center the solar system in a planet if needed, taking into account if the animation
+    # has finished
     if @focusedPlanet and @centeringFinished
       @centerOffsetAngle  = @focusedPlanet.rotationAngle
 
@@ -101,6 +104,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     ctx.translate(@centerOffset,0)
     ctx.rotate(-@centerOffsetAngle)
 
+    # Paint the sun halo
     ctx.save()
     ctx.rotate(@sunHaloAngle)
     ctx.globalAlpha = @sunHaloAlpha
@@ -109,10 +113,12 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
                   @sunHaloSize, @sunHaloSize)
     ctx.restore()
 
+    # Paint the sun
     ctx.drawImage(@imageLoader.images[@constructor.sunImg],
                   -@sunSize/2, -@sunSize/2,
                   @sunSize, @sunSize)
 
+    # Paint all planets
     planet.paint(ctx, cnv) for name,planet of @planets
 
     ctx.restore()
@@ -124,10 +130,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @focusedPlanet = null
     finalRadius = 0
     finalAngle = 0
-
-    #Wake up all planet paints
-#    for name,planet of @planets
-#      planet.stopPaint = false
 
     switch celestialObject
       when 'birdsEye'
@@ -157,10 +159,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
         solarSystemScale: windowHeight / ( objectHeight - 0.3 * objectHeight )
         centerOffset: finalRadius
       duration: 3000
-#      onEnd: =>
-#        for name,planet of @planets when name != celestialObject
-#          planet.stopPaint = true
-#        null
 
 
 

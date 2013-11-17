@@ -61,6 +61,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
+    @lastPaintTime = Date.now()
     $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
       @prepareObjects()
       @canvasPaintObjects()
@@ -125,7 +126,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   paintCanvas: (animate = true)->
     @ctx.clearRect(0, 0, @cnv.width, @cnv.height)
-#    time = (new Date()).getTime() - @startTime
     for o in @preparedObjects
       @ctx.save()
       o.animate() if o.opacityConfig == 'pulse'
@@ -135,5 +135,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
       @ctx.restore()
     @solarSystem.paint(@ctx,@cnv)
+
     requestAnimFrame(=> @paintCanvas()) if animate
+
 
