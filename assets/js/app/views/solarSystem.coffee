@@ -75,10 +75,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       alternateDirection: true
       queue: false
 
-  clickCanvas: (e)->
-    where = if e.which == 2 then 'birdsEye' else null
-    @goTo(where)
-
   # Render DOM stuff
   render: ->
     this.$el.html(@template())
@@ -123,7 +119,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     ctx.restore()
 
-  goTo: (celestialObject = 'sun')->
+  goTo: (celestialObject = 'birdsEye')->
     windowHeight = $(window).height()
     wasCenteredOnSun = !@focusedPlanet
     @centeringFinished = false

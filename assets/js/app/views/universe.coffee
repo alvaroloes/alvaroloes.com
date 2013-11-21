@@ -24,8 +24,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     'assets/img/universe/rareObject.png'
   ]
 
-  events:
-    'mousedown canvas': 'clickCanvas'
+#  events:
+#    'mousedown canvas': 'clickCanvas'
 
   initialize: (opt = {})->
     @opt = opt
@@ -49,12 +49,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
 
-  clickCanvas: (e)->
-    @solarSystem.clickCanvas(e)
-
   render: ->
-    @$el.html('')
-    @$el.append(@solarSystem.render().el)
+    @$el.html(@solarSystem.render().el)
     @
 
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
@@ -96,7 +92,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
           transitions: [
             properties:
               opacity: 1
-            duration: 1000 / o.pulseFrecuencyInterval.sampleInterval()
+            duration: (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
             initialTimeOffset: Math.random()
           ]
           count: 'infinite'
