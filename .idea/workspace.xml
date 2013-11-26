@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" afterPath="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="miweb.iws" />
@@ -29,7 +30,7 @@
     <file path="/compile-assets.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371596989238" ignored="false" />
     <file path="/index.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096313654" ignored="false" />
     <file path="/deploy.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371600971625" ignored="false" />
-    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385500645228" ignored="false" />
+    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385501405427" ignored="false" />
     <file path="/main.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372188075227" ignored="false" />
     <file path="/a.feature" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372002594028" ignored="false" />
     <file path="/fragment.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372082987094" ignored="false" />
@@ -39,7 +40,7 @@
     <file path="/app.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372093452976" ignored="false" />
     <file path="/applicationView.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372094362150" ignored="false" />
     <file path="/universe.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385308667577" ignored="false" />
-    <file path="/universe.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372099831562" ignored="false" />
+    <file path="/universe.jst.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385501376325" ignored="false" />
     <file path="/applicationController.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096331662" ignored="false" />
     <file path="/planetarySystem.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372094386392" ignored="false" />
     <file path="/controller.coffee" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1383399884335" ignored="false" />
@@ -163,7 +164,7 @@
       <file leaf-file-name="universe.jst.jade" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/templates/universe.jst.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="223" selection-end="223" vertical-scroll-proportion="0.52811736">
+            <state line="11" column="38" selection-start="222" selection-end="222" vertical-scroll-proportion="0.48410758">
               <folding />
             </state>
           </provider>
@@ -198,7 +199,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="nuevaRama" />
       </map>
     </option>
   </component>
@@ -211,15 +212,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/assets/css/main.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/utils/animations.styl" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/assets/css/utils/vendor.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/assets/css/utils/vendor.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/views/universe.styl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/assets/css/utils/config.styl" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/assets/js/app/views/planet.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/labor.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/reflexive.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/technological.coffee" />
@@ -235,6 +235,7 @@
         <option value="$PROJECT_DIR$/.idea/misc.xml" />
         <option value="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
         <option value="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" />
+        <option value="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" />
       </list>
     </option>
   </component>
@@ -335,16 +336,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="115" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="909" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="904" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="909" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="110" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="106" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -572,7 +573,11 @@
       <created>1385500649617</created>
       <updated>1385500649617</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="commit en posible bug&#10;">
+      <created>1385501412036</created>
+      <updated>1385501412036</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -644,7 +649,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes 4&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit en posible bug&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -658,7 +663,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="First commit" />
     <MESSAGE value="Basic layout" />
     <MESSAGE value="Backbone app created" />
     <MESSAGE value="Random universe background created" />
@@ -683,6 +687,7 @@
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Minor changes 3" />
     <MESSAGE value="Minor changes 4&#10;" />
+    <MESSAGE value="commit en posible bug&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -783,7 +788,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/universe.jst.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="223" selection-end="223" vertical-scroll-proportion="0.52811736">
+        <state line="11" column="38" selection-start="222" selection-end="222" vertical-scroll-proportion="0.48410758">
           <folding />
         </state>
       </provider>
