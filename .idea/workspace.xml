@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="Minor changes">
+    <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="miweb.iws" />
@@ -29,7 +29,7 @@
     <file path="/compile-assets.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371596989238" ignored="false" />
     <file path="/index.jade" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372096313654" ignored="false" />
     <file path="/deploy.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1371600971625" ignored="false" />
-    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385499969610" ignored="false" />
+    <file path="/Dummy.txt" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1385500217907" ignored="false" />
     <file path="/main.styl" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372188075227" ignored="false" />
     <file path="/a.feature" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372002594028" ignored="false" />
     <file path="/fragment.js" changelist="b884922f-d926-4373-862a-0307a35d6339" time="1372082987094" ignored="false" />
@@ -163,7 +163,7 @@
       <file leaf-file-name="universe.jst.jade" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/templates/universe.jst.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="3" selection-start="57" selection-end="57" vertical-scroll-proportion="0.057877813">
+            <state line="3" column="20" selection-start="78" selection-end="78" vertical-scroll-proportion="0.08681672">
               <folding />
             </state>
           </provider>
@@ -734,7 +734,11 @@
       <created>1385499905932</created>
       <updated>1385499905932</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Minor changes 3">
+      <created>1385500221332</created>
+      <updated>1385500221332</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -806,7 +810,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes 3" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -843,6 +847,7 @@
     <MESSAGE value="Universe view now use the animation library" />
     <MESSAGE value="Beginning with the sun section" />
     <MESSAGE value="Minor changes" />
+    <MESSAGE value="Minor changes 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -936,7 +941,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/universe.jst.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="57" selection-end="57" vertical-scroll-proportion="0.057877813">
+        <state line="3" column="20" selection-start="78" selection-end="78" vertical-scroll-proportion="0.08681672">
           <folding />
         </state>
       </provider>
