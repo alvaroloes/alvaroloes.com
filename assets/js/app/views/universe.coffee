@@ -1,4 +1,5 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
+  template: JST['templates/universe']
 #  template: JST['templates/universe']
   className: 'universe'
   @totalObjects: 350
@@ -50,7 +51,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @addObjects [$.extend({src: o},props)]
 
   render: ->
-    @$el.html(@solarSystem.render().el)
+    this.$el.html(@template())
+    @$el.append(@solarSystem.render().el)
     @
 
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
