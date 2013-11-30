@@ -20,7 +20,7 @@ window.MyUniverse = new ( Backbone.View.extend
       Backbone.history.navigate e.target.pathname, trigger: true
 
   start: ->
-    new MyUniverse.Controllers.SolarSystem()
+    new MyUniverse.Controllers.Universe()
     Backbone.history.start({pushState: true})
 )
 

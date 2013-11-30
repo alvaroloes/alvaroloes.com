@@ -1,4 +1,4 @@
-class MyUniverse.Controllers.SolarSystem extends MyUniverse.Controllers.Controller
+class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
   routes:
     '': 'index'
     'sun': 'sun'

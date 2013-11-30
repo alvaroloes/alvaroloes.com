@@ -1,6 +1,7 @@
 class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   template: JST['templates/solarSystem']
-  className: 'solarSystemWrap'
+  tagName: 'section'
+  className: 'solarSystem'
 
   @sunImg: 'assets/img/solarSystem/sun.png'
   @sunHaloImg: 'assets/img/solarSystem/sunHalo.png'
