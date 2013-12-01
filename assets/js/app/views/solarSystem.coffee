@@ -1,6 +1,5 @@
 class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   template: JST['templates/solarSystem']
-  tagName: 'section'
   className: 'solarSystem'
 
   @sunImg: 'assets/img/solarSystem/sun.png'
@@ -18,6 +17,8 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @centerOffset = 0
     @centerOffsetAngle = 0
     @centeringFinished = false
+
+    @sections = {}
 
     # Create subviews
     @sun = new MyUniverse.Views.Sun()
@@ -78,7 +79,13 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
   # Render DOM stuff
   render: ->
-    this.$el.html(@template())
+    @sections = {}
+    @$el.html(@template())
+    @sections.sun = @$el.children("section.sun")
+    # Render all planets
+    for name,planet of @planets
+      @sections[name] = planet.render().$el
+      @$el.append(@sections[name])
     @
 
   # Paint canvas stuff
@@ -128,6 +135,8 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     finalRadius = 0
     finalAngle = 0
 
+    section.removeClass("show") for name, section of @sections
+
     switch celestialObject
       when 'birdsEye'
         objectHeight = @solarSystemSize
@@ -135,12 +144,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       when 'sun'
         objectHeight = @sunSize
         @centeringFinished = true
+        sectionToShow = @sections.sun
       else
         # Focus on selected planet
         @focusedPlanet = @planets[celestialObject]
         finalRadius = -@focusedPlanet.orbitRadius
         finalAngle = => @focusedPlanet.rotationAngle
         objectHeight = @focusedPlanet.planetSize
+        sectionToShow = @sections[celestialObject]
+
         if wasCenteredOnSun
           @centeringFinished = true
         else
@@ -151,11 +163,19 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
             queue: false
             onEnd: => @centeringFinished = true
 
+
+
     @transition
       properties:
-        solarSystemScale: windowHeight / ( objectHeight - 0.3 * objectHeight )
+        solarSystemScale: windowHeight / objectHeight
         centerOffset: finalRadius
       duration: 3000
+      onEnd: =>
+        section.removeClass("preshow") for name, section of @sections
+        return unless sectionToShow?
+        sectionToShow.addClass("preshow")
+        reflow()
+        sectionToShow.addClass("show")
 
 
 

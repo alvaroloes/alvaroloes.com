@@ -8,7 +8,7 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
     @orbitPeriod = Config.personalOrbitPeriod
     @selfRotationPeriod = Config.personalSelfRotationPeriod
     @selfRotationDirection = -1
-    @personalColor = Config.personalColor
+    @planetColor = Config.personalColor
     super
 
   render: ->

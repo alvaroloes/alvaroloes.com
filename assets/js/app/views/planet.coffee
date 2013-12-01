@@ -1,5 +1,5 @@
 class MyUniverse.Views.Planet extends MyUniverse.Views.View
-
+  tagName: "section"
   planetShadow: 'assets/img/solarSystem/planets/planet_shadow.png'
   initialize: ->
     @className = "planet #{@className}"
@@ -47,10 +47,10 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     # Paint the trail
     ctx.beginPath()
     grad = ctx.createRadialGradient(0, 0, @orbitRadius - @trailWidth / 2, 0, 0, @orbitRadius + @trailWidth / 2)
-    grad.addColorStop(0,@personalColor(0))
-    grad.addColorStop(0.4,@personalColor(0.15))
-    grad.addColorStop(0.6,@personalColor(0.15))
-    grad.addColorStop(1,@personalColor(0))
+    grad.addColorStop(0,@planetColor(0))
+    grad.addColorStop(0.4,@planetColor(0.15))
+    grad.addColorStop(0.6,@planetColor(0.15))
+    grad.addColorStop(1,@planetColor(0))
     ctx.arc(0, 0, @orbitRadius, 0, 2*Math.PI, false)
     ctx.lineWidth = @trailWidth
     ctx.strokeStyle = grad

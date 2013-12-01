@@ -8,7 +8,7 @@ class MyUniverse.Views.Technological extends MyUniverse.Views.Planet
     @orbitPeriod = Config.technologicalOrbitPeriod
     @selfRotationPeriod = Config.technologicalSelfRotationPeriod
     @selfRotationDirection = -1
-    @personalColor = Config.technologicalColor
+    @planetColor = Config.technologicalColor
     super
 
   render: ->

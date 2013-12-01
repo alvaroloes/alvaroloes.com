@@ -1,0 +1,2 @@
+window.reflow = ->
+  $(window).height()
