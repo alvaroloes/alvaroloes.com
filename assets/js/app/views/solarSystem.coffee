@@ -81,7 +81,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   render: ->
     @sections = {}
     @$el.html(@template())
-    @sections.sun = @$el.children("section.sun")
+
+    @sections.sun = @sun.render().$el
+    @$el.append(@sections.sun)
     # Render all planets
     for name,planet of @planets
       @sections[name] = planet.render().$el
@@ -162,8 +164,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
             duration: 2000
             queue: false
             onEnd: => @centeringFinished = true
-
-
 
     @transition
       properties:

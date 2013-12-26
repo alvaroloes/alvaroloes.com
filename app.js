@@ -8,13 +8,15 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , ConnectMincer = require('connect-mincer')
-  , nib = require('nib');
+  , nib = require('nib')
+  , i18next = require('i18next');
 
 global.APP_ROOT = __dirname;
 
 var app = express();
 
 // all environments
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -24,6 +26,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+
 
 var connectMincer = new ConnectMincer({
   root: __dirname,
@@ -52,6 +55,18 @@ if('development' == app.get('env')){
 
 app.use(express.static(path.join(__dirname, 'public'),{maxAge: 36000000}));
 app.use(app.router);
+
+i18next.init({
+  fallbackLng: 'es',
+  resGetPath: 'public/locales/__lng__/__ns__.json',
+  debug: true
+});
+app.use(i18next.handle); // To allow check current language settings
+i18next.registerAppHelper(app); // To use the translate function in templates
+////To serve the clientside script and needed routes for resources and missing keys:
+i18next.serveClientScript(app)
+      .serveDynamicResources(app)
+      .serveMissingKeyRoute(app);
 
 app.get('/*', routes.index);
 

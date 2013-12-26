@@ -24,4 +24,12 @@ window.MyUniverse = new ( Backbone.View.extend
     Backbone.history.start({pushState: true})
 )
 
-$ -> MyUniverse.start()
+$ ->
+  i18n.init({
+    lng: 'es',
+    fallbackLng: 'es'
+    resGetPath: '/locales/__lng__/__ns__.json'
+  }, ->
+    window.t = i18n.t
+    MyUniverse.start()
+  );
