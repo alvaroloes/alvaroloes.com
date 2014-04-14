@@ -1,7 +1,9 @@
 class MyUniverse.Views.Universe extends MyUniverse.Views.View
   template: JST['templates/universe']
-#  template: JST['templates/universe']
   className: 'universe'
+
+  backgroundLastRenderTime: 0
+  # Static variables
   @totalObjects: 350
   @defaultObjectOpt:
     maxCount: null
@@ -24,9 +26,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     'assets/img/universe/eyeNebula.png'
     'assets/img/universe/rareObject.png'
   ]
-
-#  events:
-#    'mousedown canvas': 'clickCanvas'
+  @backgroundFrameTime: 1000 / 15 # 15 frames per second
+  # End static variables
 
   initialize: (opt = {})->
     @opt = opt
@@ -50,6 +51,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
 
+    null
+
   render: ->
     this.$el.html(@template())
     @$el.append(@solarSystem.render().el)
@@ -60,8 +63,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   paint: ->
     promise = $.Deferred()
     @lastPaintTime = Date.now()
+    @prepareObjects()
     $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
-      @prepareObjects()
       @canvasPaintObjects()
       promise.resolve()
     promise
@@ -72,6 +75,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       objData = o
       objData = {src: o} if $.type(o) is 'string'
       @objects.push $.extend({},@constructor.defaultObjectOpt,objData)
+    null
 
   prepareObjects: ->
     @preparedObjects = []
@@ -105,35 +109,56 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
       @preparedObjects.push(o)
       ++i
+    null
 
   ######## Canvas stuff #########
 
   canvasPaintObjects: ->
+    @bgCnv = document.createElement('canvas')
+    @bgCtx = @bgCnv.getContext('2d')
     @cnv = document.createElement('canvas')
     @ctx = @cnv.getContext('2d')
+    @$el.append(@bgCnv)
     @$el.append(@cnv)
-    @startTime = (new Date()).getTime()
     @resizeCanvas() # Resize for the first time
     @paintCanvas()
 
   resizeCanvas: ->
     return unless @cnv
-    @cnv.width = @$el.width()
-    @cnv.height = @$el.height()
+    @cnv.width = @bgCnv.width = @$el.width()
+    @cnv.height = @bgCnv.height = @$el.height()
     @paintCanvas(false)
 
   paintCanvas: (animate = true)->
-    @ctx.clearRect(0, 0, @cnv.width, @cnv.height)
-    for o in @preparedObjects
-      @ctx.save()
-      o.animate() if o.opacityConfig == 'pulse'
-      @ctx.globalAlpha = o.opacity
-      @ctx.translate(o.left * @cnv.width, o.top * @cnv.height)
-      @ctx.rotate(o.angle * Math.PI / 360)
-      @ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
-      @ctx.restore()
-    @solarSystem.paint(@ctx,@cnv)
+    @paintBackground()
+    @paintForeground()
 
     requestAnimFrame(=> @paintCanvas()) if animate
+
+  paintBackground: ->
+    return if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
+
+    @clear(@bgCnv, @bgCtx)
+    for o in @preparedObjects
+      @bgCtx.save()
+      o.animate() if o.opacityConfig == 'pulse'
+      @bgCtx.globalAlpha = o.opacity
+      @bgCtx.translate(o.left * @bgCnv.width, o.top * @bgCnv.height)
+      @bgCtx.rotate(o.angle * Math.PI / 360)
+      @bgCtx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
+      @bgCtx.restore()
+
+    @backgroundLastRenderTime = Date.now()
+
+  paintForeground: ->
+    @clear(@cnv, @ctx)
+    @solarSystem.paint(@ctx,@cnv)
+
+
+
+  clear: (cnv, ctx) ->
+    # An ultra-optimized way to clear the canvas (instead of "clearRect")
+    cnv.width = cnv.width
+#    ctx.clearRect(0, 0, cnv.width, cnv.height)
 
 

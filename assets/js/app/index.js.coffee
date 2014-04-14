@@ -17,7 +17,7 @@ window.MyUniverse = new ( Backbone.View.extend
   events:
     'click a': (e)->
       e.preventDefault()
-      Backbone.history.navigate e.target.pathname, trigger: true
+      Backbone.history.navigate e.currentTarget.pathname, trigger: true
 
   start: ->
     new MyUniverse.Controllers.Universe()
@@ -30,6 +30,5 @@ $ ->
     fallbackLng: 'es'
     resGetPath: '/locales/__lng__/__ns__.json'
   }, ->
-    window.t = i18n.t
     MyUniverse.start()
   );

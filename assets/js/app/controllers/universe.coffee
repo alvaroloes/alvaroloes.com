@@ -1,6 +1,6 @@
 class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
   routes:
-    '': 'index'
+    '': 'sun'
     'sun': 'sun'
     'personal': 'personal'
     'reflexive': 'reflexive'
@@ -9,7 +9,7 @@ class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
 
   initialize: ->
 
-  index: ->
+  birdsEye: ->
     @init ->
       MyUniverse.views.universe.solarSystem.goTo('birdsEye')
 

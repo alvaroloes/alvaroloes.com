@@ -7,7 +7,7 @@ class MyUniverse.Views.Sun extends MyUniverse.Views.View
   initialize: ->
 
   render: ->
-    @$el.html(@template())
+    @$el.html(@template(t:i18n.t))
     @
 
 

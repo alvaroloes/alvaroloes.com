@@ -1,4 +1,21 @@
 {
   "pretitle": "Universo de",
-  "title": "Álvaro López Espinosa"
+  "title": "Álvaro López Espinosa",
+  "introduction": "¿A qué planeta quieres viajar?",
+  "personal": {
+    "title": "Personal",
+    "shortBrief": "¿Universo de quién?"
+  },
+  "reflexive": {
+    "title": "Reflexivo",
+    "shortBrief": "Ideas y reflexiones que se niegan a quedarse solo en mi cabeza"
+  },
+  "labor": {
+    "title": "Laboral",
+    "shortBrief": "Aspectos relacionados con mi carrera profesional: currículum, experiencia..."
+  },
+  "tech": {
+    "title": "Tecnológico",
+    "shortBrief": "Pruebas y experimentos que hago en mis ratos libres. ¡Me apasiona crear cosas!"
+  }
 }
