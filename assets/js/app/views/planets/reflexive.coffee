@@ -14,7 +14,6 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
   render: ->
     super =>
       @$el.html(@template())
-      @
 
   paint: (ctx, cnv)->
     super

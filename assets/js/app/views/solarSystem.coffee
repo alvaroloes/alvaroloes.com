@@ -26,7 +26,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       personal: new MyUniverse.Views.Personal()
       reflexive: new MyUniverse.Views.Reflexive()
       labor: new MyUniverse.Views.Labor()
-      technological: new MyUniverse.Views.Technological()
+      tech: new MyUniverse.Views.Tech()
 
     # Preload images
     @imageLoader = new ImageLoader()

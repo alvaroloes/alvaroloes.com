@@ -5,7 +5,7 @@ class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
     'personal': 'personal'
     'reflexive': 'reflexive'
     'labor': 'labor'
-    'technological': 'technological'
+    'tech': 'tech'
 
   initialize: ->
 
@@ -29,7 +29,7 @@ class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
     @init ->
       MyUniverse.views.universe.solarSystem.goTo('labor')
 
-  technological: ->
+  tech: ->
     @init ->
-      MyUniverse.views.universe.solarSystem.goTo('technological')
+      MyUniverse.views.universe.solarSystem.goTo('tech')
 

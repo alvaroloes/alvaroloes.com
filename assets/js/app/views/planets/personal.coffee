@@ -14,7 +14,6 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
   render: ->
     super =>
       @$el.html(@template())
-      @
 
   paint: (ctx, cnv)->
     super
