@@ -1,0 +1,9 @@
+animateListOnClass(klass, elementsDelay, duration, maxItems = 10)
+  & > *
+    opacity: 0
+    transition: opacity duration 0
+  &.{klass} > *
+    for i in (1..maxItems)
+      &:nth-child({i})
+        transition: opacity duration (i - 1) * elementsDelay
+        opacity: 1
