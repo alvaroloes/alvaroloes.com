@@ -1,9 +1,11 @@
 animateListOnClass(klass, elementsDelay, duration, maxItems = 10)
   & > *
     opacity: 0
-    transition: opacity duration 0
+    transform: scale(0.7,0.7)
   &.{klass} > *
-    for i in (1..maxItems)
+    for i in (1...maxItems)
       &:nth-child({i})
-        transition: opacity duration (i - 1) * elementsDelay
+        delay = (i - 1) * elementsDelay
+        transition: opacity duration delay, transform duration cubic-bezier(0.25,0,0.5,2) delay
         opacity: 1
+        transform: scale(1,1)
