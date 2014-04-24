@@ -4,14 +4,10 @@
 
 section.sun
   header
-    text-align: center
-    margin-top: 1em
-    color: black
     background: radial-gradient(ellipse closest-side,
                                 rgba(255,255,255,0.8),
-                                rgba(255,255,255,0.15) 70%,
-                                rgba(255,255,255,0) 90%)
-    padding: 2em 0
+                                rgba(255,255,255,0.5) 60%,
+                                rgba(255,255,255,0) 100%)
     h1
       margin-bottom: 0.5em
   nav
@@ -22,7 +18,7 @@ section.sun
       width: 23em
       text-decoration: none
       div
-        transition: all animationShortest
+        transition: transform animationShortest
         padding: 0.6em 1em
         background-color: bgColorNavSection
         &:hover

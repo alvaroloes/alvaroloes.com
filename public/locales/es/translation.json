@@ -2,9 +2,18 @@
   "pretitle": "Universo de",
   "title": "Álvaro López Espinosa",
   "introduction": "¿A qué planeta quieres viajar?",
+  "planetPretitle": "Planeta",
   "personal": {
     "title": "Personal",
-    "shortBrief": "¿Universo de quién?"
+    "shortBrief": "¿Universo de quién?",
+    "whoAmI": "¿Quién soy?",
+    "whoAmI_text": "Textazo",
+    "myHobbies": "Mis aficiones",
+    "myHobbies_text": "Textito",
+    "myGoals": "Mis objetivos",
+    "myGoals_text": "Textillo",
+    "contact": "Contacto",
+    "contact_text": "Textote"
   },
   "reflexive": {
     "title": "Reflexivo",

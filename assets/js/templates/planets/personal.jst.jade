@@ -1,1 +1,7 @@
-h1 Planeta personal
+header
+  h3= t('planetPretitle')
+  h1= t('personal.title')
+each text, title in articles
+  article
+    h3= title
+    p= text

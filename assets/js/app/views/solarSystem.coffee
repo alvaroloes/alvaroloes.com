@@ -167,7 +167,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     @transition
       properties:
-        solarSystemScale: windowHeight / objectHeight
+        solarSystemScale: ( windowHeight + 200 ) / objectHeight
         centerOffset: finalRadius
       duration: 3000
       onEnd: =>
