@@ -6,6 +6,7 @@ class MyUniverse.Controllers.Universe extends MyUniverse.Controllers.Controller
     'reflexive': 'reflexive'
     'labor': 'labor'
     'tech': 'tech'
+    'solarSystem': 'birdsEye'
 
   initialize: ->
 

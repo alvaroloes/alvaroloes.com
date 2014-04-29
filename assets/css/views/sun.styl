@@ -16,13 +16,14 @@ section.sun
       display: block
       margin: 0 auto 1em auto
       width: 23em
-      text-decoration: none
+      &:hover
+        text-decoration: none
       div
         transition: transform animationShortest
         padding: 0.6em 1em
-        background-color: bgColorNavSection
+        background-color: navSectionBgColor
         &:hover
-          background-color: bgColorNavSectionHover
-          box-shadow: 0 0 30px 5px shadowColorNavSectionHover
+          background-color: navSectionHoverBgColor
+          box-shadow: 0 0 30px 5px navSectionHoverShadowColor
         &:active
           transform: scale(0.95,0.95)

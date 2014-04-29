@@ -1,5 +1,5 @@
 class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
-  template: JST['templates/solarSystem']
+  footerTemplate: JST['templates/footer']
   className: 'solarSystem'
 
   @sunImg: 'assets/img/solarSystem/sun.png'
@@ -80,26 +80,31 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   # Render DOM stuff
   render: ->
     @sections = {}
-    @$el.html(@template())
 
+    # Render sun
     @sections.sun = @sun.render().$el
-    @$el.append(@sections.sun)
+    @$el.html(@sections.sun)
+
     # Render all planets
     for name,planet of @planets
       @sections[name] = planet.render().$el
       @$el.append(@sections[name])
+
+    # Render footer
+    @$el.append(@footerTemplate())
     @
 
   # Paint canvas stuff
   paint: (ctx, cnv)->
     @animate()
+    # Update all planet properties for animation
+    planet.updateProperties() for name,planet of @planets
+
     ctx.save()
-    # Set the (0,0) in the center and adjust the size of the solar sitem
+    # Set the (0,0) in the center and adjust the size of the solar system
     ctx.translate(cnv.width/2, cnv.height/2)
     ctx.scale(@solarSystemScale,@solarSystemScale)
 
-    # Update all planet properties for animation
-    planet.updateProperties() for name,planet of @planets
 
     # Center the solar system in a planet if needed, taking into account if the animation
     # has finished
@@ -129,8 +134,11 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     ctx.restore()
 
+#  paint
+
   goTo: (celestialObject = 'birdsEye')->
     windowHeight = $(window).height()
+    windowHeightInc = 200 # This makes planets overflow the window
     wasCenteredOnSun = !@focusedPlanet
     @centeringFinished = false
     @focusedPlanet = null
@@ -143,6 +151,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       when 'birdsEye'
         objectHeight = @solarSystemSize
         @centeringFinished = true
+        windowHeightInc = 0
       when 'sun'
         objectHeight = @sunSize
         @centeringFinished = true
@@ -167,7 +176,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     @transition
       properties:
-        solarSystemScale: ( windowHeight + 200 ) / objectHeight
+        solarSystemScale: ( windowHeight + windowHeightInc ) / objectHeight
         centerOffset: finalRadius
       duration: 3000
       onEnd: =>
