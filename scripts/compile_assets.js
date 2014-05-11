@@ -1,3 +1,5 @@
+// THIS SCRIPT NEEDS AN UPDATE.
+
 
 var appRoot = process.env.APP_ROOT || process.argv[2] || '../';
 var filters = (process.env.FILTERS || process.argv[3] || "img/**,*").split(',');
@@ -40,9 +42,9 @@ env.cssCompressor = function(context, data, next) {
   }
 };
 
-env.appendPath('assets');
-env.appendPath('assets/js');
 env.appendPath('assets/css');
+env.appendPath('assets/js');
+env.appendPath('assets');
 
 var manifest = new Mincer.Manifest(env, appRoot + '/public/assets');
 manifest.compile(filters, function(err, data) {

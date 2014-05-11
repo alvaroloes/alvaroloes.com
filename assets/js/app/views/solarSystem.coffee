@@ -138,7 +138,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
   goTo: (celestialObject = 'birdsEye')->
     windowHeight = $(window).height()
-    windowHeightInc = 200 # This makes planets overflow the window
+    windowHeightInc = 400 # This makes planets overflow the window
     wasCenteredOnSun = !@focusedPlanet
     @centeringFinished = false
     @focusedPlanet = null

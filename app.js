@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
+  , Mincer = require('mincer')
   , ConnectMincer = require('connect-mincer')
   , nib = require('nib')
   , i18next = require('i18next');
@@ -30,25 +31,25 @@ app.use(express.session());
 
 var connectMincer = new ConnectMincer({
   root: __dirname,
+  mincer: Mincer,
   production: app.get('env') === 'production',
-  mountPoint: '/assets',
   manifestFile: __dirname + '/public/assets/manifest.json',
   paths: [
-    'assets',
     'assets/css',
-    'assets/js'
+    'assets/js',
+    'assets'
   ]
 });
 
 //Use nib library in stylus and other custom functions
-connectMincer.environment.getEngines('.styl').registerConfigurator(function (style) {
+connectMincer.Mincer.StylusEngine.configure(function(style){
   style.use(nib());
-  style.use(require('./modules/stylus-extensions').functions);
+//  style.use(require('./modules/stylus-extensions').functions);
 });
 
 app.use(connectMincer.assets());
 
-if('development' == app.get('env')){
+if( 'production' != app.get('env')){
     app.use('/assets', connectMincer.createServer());
     app.use(express.errorHandler());
 }

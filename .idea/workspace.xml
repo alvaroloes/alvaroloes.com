@@ -2,17 +2,646 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b884922f-d926-4373-862a-0307a35d6339" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/templates/solarSystem.jst.jade" afterPath="$PROJECT_DIR$/assets/js/templates/footer.jst.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/utils/config.styl" afterPath="$PROJECT_DIR$/assets/css/utils/config.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/main.styl" afterPath="$PROJECT_DIR$/assets/css/main.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/views/planet.styl" afterPath="$PROJECT_DIR$/assets/css/views/planet.styl" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/assets/css/all.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/assets/css/reset.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/lib/connect-mincer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/assets/javascripts/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/debug_comments.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/CNAME" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/underscore-min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore/underscore.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/.gitmodules" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/.bin/lodash" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/async/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/async/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/async/component.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/async/lib/async.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/async/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/build.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/build/minify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/build/post-compile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/build/pre-compile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/doc/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/perf/perf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/template/a.jst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/template/b.jst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/template/c.jst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/template/d.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/test-build.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/test/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/benchmark.js/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/benchmark.js/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/benchmark.js/benchmark.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/platform.js/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/platform.js/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/platform.js/platform.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/qunit-clib/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/qunit-clib/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/qunit-clib/qunit-clib.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/qunit/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/qunit/qunit/qunit.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/buffer-entry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/entry-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/entry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/extended-header-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/extended-header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/extract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/global-header-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/pack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/lib/parse.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/tar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/block-stream/LICENCE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/block-stream/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/block-stream/block-stream.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/LICENCE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/fstream.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/abstract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/collect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/dir-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/dir-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/file-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/file-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/get-type.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/link-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/link-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/proxy-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/proxy-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/socket-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/fstream/lib/writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/graceful-fs/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/graceful-fs/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/graceful-fs/graceful-fs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/inherits/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/inherits/inherits.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/mkdirp/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/mkdirp/README.markdown" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/mkdirp/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/rimraf/AUTHORS" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/rimraf/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/rimraf/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/tar/vendor/rimraf/rimraf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/underscore/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/underscore/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/vendor/underscore/underscore.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/.bin/lodash" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/build.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/build/minify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/build/post-compile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/build/pre-compile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/build/util.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.backbone.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.backbone.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.legacy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.legacy.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.mobile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.mobile.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/LICENCE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/buffer-entry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/entry-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/entry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/extended-header-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/extended-header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/extract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/global-header-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/pack.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/lib/parse.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/tar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/block-stream/LICENCE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/block-stream/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/block-stream/block-stream.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/fstream.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/abstract.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/collect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/dir-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/dir-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/file-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/file-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/get-type.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/link-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/link-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/proxy-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/proxy-writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/socket-reader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/fstream/lib/writer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/graceful-fs/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/graceful-fs/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/graceful-fs/graceful-fs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/inherits/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/inherits/inherits.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/mkdirp/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/mkdirp/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/mkdirp/readme.markdown" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/rimraf/AUTHORS" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/rimraf/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/rimraf/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/vendor/tar/vendor/rimraf/rimraf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/.jshintignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/.jshintrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/.ndocrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/HISTORY.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/lib/types.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/lib/types/hash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/lib/types/set.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/lib/types/sorted_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/test/hash-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/types/test/sorted_list-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/.npmignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/CNAME" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/raw/underscore.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/underscore-min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/underscore/underscore.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/demo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/eco.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/ejs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/images/header.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/boo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/foobar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f10.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f100.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f101.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f102.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f103.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f104.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f105.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f106.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f107.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f108.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f109.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f11.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f110.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f111.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f112.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f113.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f114.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f115.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f116.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f117.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f118.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f119.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f12.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f120.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f121.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f122.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f123.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f124.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f125.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f126.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f127.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f128.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f129.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f13.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f130.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f131.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f132.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f133.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f134.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f135.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f136.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f137.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f138.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f139.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f14.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f140.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f141.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f142.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f143.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f144.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f145.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f146.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f147.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f148.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f149.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f15.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f150.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f151.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f152.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f153.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f154.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f155.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f156.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f157.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f158.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f159.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f16.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f160.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f161.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f162.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f163.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f164.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f165.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f166.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f167.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f168.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f169.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f17.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f170.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f171.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f172.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f173.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f174.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f175.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f176.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f177.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f178.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f179.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f18.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f180.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f181.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f182.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f183.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f184.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f185.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f186.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f187.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f188.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f189.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f19.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f190.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f191.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f192.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f193.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f194.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f195.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f196.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f197.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f198.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f199.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f20.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f200.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f201.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f202.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f203.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f204.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f205.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f206.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f207.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f208.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f209.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f21.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f210.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f211.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f212.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f213.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f214.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f215.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f216.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f217.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f218.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f219.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f22.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f220.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f221.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f222.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f223.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f224.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f225.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f226.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f227.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f228.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f229.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f23.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f230.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f231.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f232.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f233.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f234.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f235.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f236.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f237.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f238.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f239.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f24.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f240.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f241.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f242.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f243.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f244.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f245.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f246.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f247.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f248.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f249.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f25.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f250.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f26.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f27.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f28.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f29.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f30.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f31.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f32.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f33.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f34.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f35.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f36.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f37.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f38.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f39.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f40.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f41.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f42.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f43.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f44.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f45.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f46.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f47.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f48.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f49.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f50.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f51.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f52.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f53.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f54.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f55.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f56.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f57.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f58.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f59.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f6.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f60.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f61.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f62.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f63.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f64.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f65.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f66.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f67.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f68.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f69.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f7.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f70.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f71.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f72.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f73.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f74.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f75.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f76.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f77.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f78.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f79.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f8.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f80.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f81.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f82.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f83.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f84.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f85.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f86.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f87.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f88.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f89.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f9.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f90.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f91.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f92.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f93.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f94.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f95.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f96.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f97.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f98.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/hundreds-of-files/tree/f99.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/image.js.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/lzy_engine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/moo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/my-tree/a.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/my-tree/b/c.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/my-tree/b/d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/str_engine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/figure-eco.jst.eco" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/figure-ejs.jst.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/figure-lzy.jst.lzy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/figure-str.jst.str" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/inception.jst.ejs.eco" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/issue-16.jst.hamlc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/templates/jade-lang.jst.jade" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/test.js.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/variable-eco.js.eco" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/variable-ejs.js.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/variable-lzy.js.lzy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/javascripts/variable-str.js.str" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/stylesheets/app.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/app/assets/stylesheets/foo.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/javascripts/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/javascripts/inner/foobar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/javascripts/jquery.collapser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/javascripts/test-inner.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/stylesheets/css-with-eco.css.eco" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/stylesheets/less-vendor.css.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/stylesheets/simple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/fixtures/vendor/assets/stylesheets/stylus-vendor.styl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/test/template.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.jshintrc" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/.jshintrc" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/.jshintrc" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/.jshintrc" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.npmignore" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/.npmignore" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Gemfile.lock" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Gemfile" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/HISTORY.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/HISTORY.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/HISTORY.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/HISTORY.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/HISTORY.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/HISTORY.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/LICENSE.txt" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/LICENSE.txt" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/Makefile" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/README.markdown" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/README.markdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/README.md" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Rakefile" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/Rakefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/accordion.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/accordion.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/alerts.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/alerts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/aliases.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/aliases.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/assets/stylesheets/app.css.ejs" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/assets/stylesheets/app.css.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/connect/app.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/examples/connect/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/app.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/asset.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/asset.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/asset_attributes.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/asset_attributes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/lib/async.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/lib/async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/base.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/base.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-alert.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-alert.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-button.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-button.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-carousel.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-carousel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-collapse.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-collapse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-dropdown.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-dropdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-modal.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-modal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-popover.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-popover.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-scrollspy.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-scrollspy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-tab.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-tab.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-tooltip.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-tooltip.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-transition.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-transition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-typeahead.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/js/bootstrap-typeahead.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/bootstrap.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/bootstrap.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/breadcrumbs.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/breadcrumbs.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/bundled.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/bundled.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/button-groups.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/button-groups.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/buttons.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/buttons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/carousel.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/carousel.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/charset_normalizer.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/charset_normalizer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/close.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/close.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/code.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/code.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/coffee_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/coffee_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/common.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/common.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/compile_assets.js" afterPath="$PROJECT_DIR$/scripts/compile_assets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/component-animations.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/component-animations.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/context.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/context.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/copy-test.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/copy-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tests/css-tests.css" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tests/css-tests.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tests/css-tests.html" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tests/css-tests.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/directive_processor.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/directive_processor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/dropdowns.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/dropdowns.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/eco_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/eco_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/ejs_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/ejs_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/helpers/engines.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/helpers/engines.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/environment.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/environment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/environment.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/environment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/extensions.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/extensions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/forms.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/forms.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/lib/fs-tools.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/lib/fs-tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/grid.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/grid.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/haml_coffee_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/haml_coffee_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/helper.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/helper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/hero-unit.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/hero-unit.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/index.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/index.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/index.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jade_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jade_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jst_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jst_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/labels-badges.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/labels-badges.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/layouts.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/layouts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/less_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/less_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.compat.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.compat.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.compat.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.compat.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.underscore.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/dist/lodash.underscore.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.underscore.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/dist/lodash.underscore.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/logger.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/logger.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/manifest.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/manifest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/mixins.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/mixins.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/modals.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/modals.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/move-test.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/test/move-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/navbar.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/navbar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/navs.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/navs.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/normalized_array.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/normalized_array.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/async/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/fs-tools/node_modules/lodash/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/node_modules/lodash/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/mimoza/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/mimoza/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/shellwords/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/shellwords/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/underscore/package.json" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/underscore/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/pager.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/pager.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/pagination.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/pagination.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/paths.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/paths.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/popovers.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/popovers.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/connect/bin/precompile_assets.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/examples/connect/bin/precompile_assets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/bin/precompile_assets.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/examples/express/bin/precompile_assets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/processed.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/processed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/helpers/processing.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/helpers/processing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processor.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/progress-bars.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/progress-bars.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/reset.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/reset.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-1200px-min.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-1200px-min.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-767px-max.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-767px-max.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-768px-979px.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-768px-979px.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-navbar.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-navbar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-utilities.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive-utilities.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/responsive.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/safety_colons.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/processors/safety_colons.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/sass_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/sass_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/scaffolding.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/scaffolding.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/server.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/server.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" afterPath="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/views/solarSystem.styl" afterPath="$PROJECT_DIR$/assets/css/views/solarSystem.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/views/sun.styl" afterPath="$PROJECT_DIR$/assets/css/views/sun.styl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/locales/es/translation.json" afterPath="$PROJECT_DIR$/public/locales/es/translation.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/app/controllers/universe.coffee" afterPath="$PROJECT_DIR$/assets/js/app/controllers/universe.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" afterPath="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/views/universe.styl" afterPath="$PROJECT_DIR$/assets/css/views/universe.styl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/sprites.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/sprites.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/static.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/assets/static.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/test/strings.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/test/strings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/test/strings_standalone.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/test/strings_standalone.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/stylus_engine.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/stylus_engine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tables.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/template.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_aliases.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_aliases.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_environment.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_environment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_normalized_array.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_normalized_array.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_trail.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/test/test_trail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/thumbnails.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/thumbnails.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tooltip.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/tooltip.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/trail.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/hike/lib/hike/trail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/type.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/type.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/lib/underscore.string.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/lib/underscore.string.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/dist/underscore.string.min.js" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/node_modules/argparse/node_modules/underscore.string/dist/underscore.string.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/utilities.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/utilities.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/variables.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/variables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/wells.less" afterPath="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/examples/vendor/bootstrap/less/wells.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="miweb.iws" />
@@ -80,34 +709,34 @@
     <favorites_list name="miweb" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5706393">
+    <splitter split-orientation="horizontal" split-proportion="0.44356748">
       <split-first>
         <leaf>
           <file leaf-file-name="solarSystem.coffee" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="2916" max-vertical-offset="3618">
-                  <caret line="176" column="15" selection-start-line="176" selection-start-column="15" selection-end-line="176" selection-end-column="15" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="2412" max-vertical-offset="3618">
+                  <caret line="140" column="23" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="footer.jst.jade" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="footer.jst.jade" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/templates/footer.jst.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2304" vertical-offset="0" max-vertical-offset="625">
-                  <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+                  <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="universe.coffee" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="universe.coffee" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3060">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.1813602" vertical-offset="0" max-vertical-offset="3060">
+                  <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="10" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -116,7 +745,7 @@
           <file leaf-file-name="universe.coffee" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/app/controllers/universe.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+                <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="756">
                   <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
                   <folding />
                 </state>
@@ -126,7 +755,7 @@
           <file leaf-file-name="sun.jst.jade" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/templates/sun.jst.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="486">
+                <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="486">
                   <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="16" />
                   <folding />
                 </state>
@@ -136,18 +765,8 @@
           <file leaf-file-name="personal.jst.jade" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/js/templates/planets/personal.jst.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="216">
+                <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="216">
                   <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1476">
-                  <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -157,31 +776,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="sun.styl" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="sun.styl" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/css/views/sun.styl">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5588235" vertical-offset="0" max-vertical-offset="612">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
                   <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="universe.styl" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/css/views/universe.styl">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
-                  <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.styl" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/css/main.styl">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-                  <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -191,37 +790,27 @@
             <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="828">
-                  <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+                  <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="planet.styl" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/css/views/planet.styl">
+          <file leaf-file-name="main.styl" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/assets/css/main.styl">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
-                  <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+                  <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="config.styl" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/assets/css/utils/config.styl">
+          <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
-                  <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="translation.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/locales/es/translation.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="630">
-                  <caret line="15" column="744" selection-start-line="15" selection-start-column="744" selection-end-line="15" selection-end-column="744" />
+                <state vertical-scroll-proportion="0.4699739" vertical-offset="0" max-vertical-offset="450">
+                  <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -265,7 +854,6 @@
         <option value="$PROJECT_DIR$/assets/js/app/index.js.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/controllers/controller.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/universe.coffee" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/technological.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/config/config.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/tech.coffee" />
@@ -275,7 +863,6 @@
         <option value="$PROJECT_DIR$/assets/js/app/views/view.coffee" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/sun.coffee" />
         <option value="$PROJECT_DIR$/assets/css/utils/animations.styl" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/sun.jst.jade" />
         <option value="$PROJECT_DIR$/assets/js/app/views/planets/personal.coffee" />
         <option value="$PROJECT_DIR$/assets/js/templates/planets/personal.jst.jade" />
@@ -284,12 +871,16 @@
         <option value="$PROJECT_DIR$/assets/js/app/controllers/universe.coffee" />
         <option value="$PROJECT_DIR$/assets/js/templates/universe.jst.jade" />
         <option value="$PROJECT_DIR$/assets/css/utils/config.styl" />
-        <option value="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
         <option value="$PROJECT_DIR$/assets/css/views/solarSystem.styl" />
-        <option value="$PROJECT_DIR$/assets/css/main.styl" />
         <option value="$PROJECT_DIR$/assets/css/views/universe.styl" />
         <option value="$PROJECT_DIR$/assets/css/views/sun.styl" />
         <option value="$PROJECT_DIR$/assets/js/templates/footer.jst.jade" />
+        <option value="$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee" />
+        <option value="$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer.js" />
+        <option value="$PROJECT_DIR$/assets/css/main.styl" />
+        <option value="$PROJECT_DIR$/scripts/compile_assets.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -402,11 +993,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="miweb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -427,140 +1028,6 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="planets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="planets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -590,51 +1057,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="miweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -926,7 +1349,11 @@
       <created>1398375896083</created>
       <updated>1398375896083</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Added footer and personal markup. Still lack of proper planet title style and personal real texts">
+      <created>1398808750367</created>
+      <updated>1398808750367</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -934,22 +1361,22 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297546" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297546" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39263803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.28255722" sideWeight="0.6728395" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32923076" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3297546" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39263803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -972,7 +1399,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Adjusted solar system sizes and detected a bug in chrome with hardware acceleration enabled" />
     <MESSAGE value="Another new version of trails ¿Will this work?" />
     <MESSAGE value="Finished new version of trails. Works with some problems" />
     <MESSAGE value="The beginning of the solar system painted with canvas" />
@@ -997,7 +1423,8 @@
     <MESSAGE value="Sun section finished with transitions" />
     <MESSAGE value="Sun section improved animations" />
     <MESSAGE value="Beginning with personal section" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beginning with personal section" />
+    <MESSAGE value="Added footer and personal markup. Still lack of proper planet title style and personal real texts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added footer and personal markup. Still lack of proper planet title style and personal real texts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1009,73 +1436,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/sun.jst.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/planets/sun.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/sun.jst.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/utils/config.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/views/universe.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/views/sun.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/es/translation.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1192,13 +1552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39130434" vertical-offset="0" max-vertical-offset="598">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/app/config/config.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8186398" vertical-offset="305" max-vertical-offset="756">
@@ -1234,14 +1587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1476">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/utils/animations.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23606557" vertical-offset="0" max-vertical-offset="610">
@@ -1253,14 +1598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26003212" vertical-offset="0" max-vertical-offset="623">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/locales/es/translation.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="15" column="744" selection-start-line="15" selection-start-column="744" selection-end-line="15" selection-end-column="744" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1276,7 +1613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8064" vertical-offset="0" max-vertical-offset="648">
           <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1292,7 +1628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="19452" max-vertical-offset="39240">
           <caret line="1092" column="35" selection-start-line="1092" selection-start-column="35" selection-end-line="1092" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,15 +1635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="516" max-vertical-offset="1422">
           <caret line="40" column="2" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3060">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1316,7 +1642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="625">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1344,22 +1669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2916" max-vertical-offset="3618">
-          <caret line="176" column="15" selection-start-line="176" selection-start-column="15" selection-end-line="176" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/main.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="1350">
-          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/views/universe.styl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
@@ -1368,17 +1677,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="828">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.144" vertical-offset="0" max-vertical-offset="625">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/views/sun.styl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5588235" vertical-offset="0" max-vertical-offset="612">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding />
         </state>
@@ -1386,8 +1695,130 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/footer.jst.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2304" vertical-offset="0" max-vertical-offset="625">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/locales/es/translation.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0" vertical-offset="45" max-vertical-offset="630">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/stylus_engine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.6296296" vertical-offset="827" max-vertical-offset="2376">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/stylus-extensions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1728" vertical-offset="0" max-vertical-offset="625">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/solarSystem.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2412" max-vertical-offset="3618">
+          <caret line="140" column="23" selection-start-line="140" selection-start-column="23" selection-end-line="140" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/stylus/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0864" vertical-offset="0" max-vertical-offset="625">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/stylus/lib/stylus.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2096" vertical-offset="756" max-vertical-offset="1962">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/views/solarSystem.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="828">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jade_engine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7352941" vertical-offset="1062" max-vertical-offset="1674">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer/engines/jst_engine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1470588" vertical-offset="702" max-vertical-offset="1314">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/connect-mincer/node_modules/mincer/lib/mincer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5980392" vertical-offset="1092" max-vertical-offset="5742">
+          <caret line="81" column="62" selection-start-line="81" selection-start-column="62" selection-end-line="81" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/compile_assets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29411766" vertical-offset="0" max-vertical-offset="1026">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68010074" vertical-offset="324" max-vertical-offset="1494">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/main.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4699739" vertical-offset="0" max-vertical-offset="450">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app/views/universe.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1813602" vertical-offset="0" max-vertical-offset="3060">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="10" selection-end-column="37" />
           <folding />
         </state>
       </provider>
