@@ -57,14 +57,15 @@ if( 'production' != app.get('env')){
 app.use(express.static(path.join(__dirname, 'public'),{maxAge: 36000000}));
 app.use(app.router);
 
-i18next.init({
-  fallbackLng: 'es',
-  resGetPath: 'public/locales/__lng__/__ns__.json',
-  debug: true
-});
-app.use(i18next.handle); // To allow check current language settings
-i18next.registerAppHelper(app); // To use the translate function in templates
-////To serve the clientside script and needed routes for resources and missing keys:
+//i18next.init({
+//  fallbackLng: 'es',
+//  resGetPath: 'public/locales/__lng__/__ns__.json',
+//  debug: true
+//});
+//app.use(i18next.handle); // To allow check current language settings
+//i18next.registerAppHelper(app); // To use the translate function in templates
+
+//To serve the clientside script and needed routes for resources and missing keys:
 i18next.serveClientScript(app)
       .serveDynamicResources(app)
       .serveMissingKeyRoute(app);

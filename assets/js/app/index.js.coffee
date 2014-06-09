@@ -25,10 +25,18 @@ window.MyUniverse = new ( Backbone.View.extend
 )
 
 $ ->
-  i18n.init({
-    lng: 'es',
+  i18n.addPostProcessor "markdown", (value, key, options) ->
+    parts = key.split('_')
+    if parts[parts.length - 1] == 'md'
+      marked value
+    else
+      value
+
+  i18n.init
+    lng: 'es'
     fallbackLng: 'es'
     resGetPath: '/locales/__lng__/__ns__.json'
-  }, ->
+    returnObjectTrees: true
+    postProcess: 'markdown'
+  , ->
     MyUniverse.start()
-  );
