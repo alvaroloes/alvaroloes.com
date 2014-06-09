@@ -6,14 +6,24 @@
   "personal": {
     "title": "Personal",
     "shortBrief": "¿Universo de quién?",
-    "whoAmI": "¿Quién soy?",
-    "whoAmI_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget purus mollis purus rutrum bibendum a eu arcu. Nunc dapibus sed lorem vitae hendrerit. Morbi quis molestie est. Mauris mauris augue, posuere sit amet magna convallis, luctus pretium eros. Nunc commodo lacus ut lorem scelerisque consequat. Nunc non dui non erat rutrum tristique. Phasellus condimentum, sapien nec iaculis ultrices, ante tortor mattis felis, et facilisis magna lacus id ligula. Donec fermentum ut felis vel egestas. Curabitur a mi felis. Praesent sit amet augue nibh. Suspendisse potenti. Proin a mi imperdiet, tristique massa quis, malesuada orci. Etiam non elit lacus. Phasellus lacinia malesuada hendrerit. Duis porttitor euismod diam.",
-    "myHobbies": "Mis aficiones",
-    "myHobbies_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget purus mollis purus rutrum bibendum a eu arcu. Nunc dapibus sed lorem vitae hendrerit. Morbi quis molestie est. Mauris mauris augue, posuere sit amet magna convallis, luctus pretium eros. Nunc commodo lacus ut lorem scelerisque consequat. Nunc non dui non erat rutrum tristique. Phasellus condimentum, sapien nec iaculis ultrices, ante tortor mattis felis, et facilisis magna lacus id ligula. Donec fermentum ut felis vel egestas. Curabitur a mi felis. Praesent sit amet augue nibh. Suspendisse potenti. Proin a mi imperdiet, tristique massa quis, malesuada orci. Etiam non elit lacus. Phasellus lacinia malesuada hendrerit. Duis porttitor euismod diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget purus mollis purus rutrum bibendum a eu arcu. Nunc dapibus sed lorem vitae hendrerit. Morbi quis molestie est. Mauris mauris augue, posuere sit amet magna convallis, luctus pretium eros. Nunc commodo lacus ut lorem scelerisque consequat. Nunc non dui non erat rutrum tristique. Phasellus condimentum, sapien nec iaculis ultrices, ante tortor mattis felis, et facilisis magna lacus id ligula. Donec fermentum ut felis vel egestas. Curabitur a mi felis. Praesent sit amet augue nibh. Suspendisse potenti. Proin a mi imperdiet, tristique massa quis, malesuada orci. Etiam non elit lacus. Phasellus lacinia malesuada hendrerit. Duis porttitor euismod diam.",
-    "myGoals": "Mis objetivos",
-    "myGoals_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget purus mollis purus rutrum bibendum a eu arcu. Nunc dapibus sed lorem vitae hendrerit. Morbi quis molestie est. Mauris mauris augue, posuere sit amet magna convallis, luctus pretium eros. Nunc commodo lacus ut lorem scelerisque consequat. Nunc non dui non erat rutrum tristique. Phasellus condimentum, sapien nec iaculis ultrices, ante tortor mattis felis, et facilisis magna lacus id ligula. Donec fermentum ut felis vel egestas. Curabitur a mi felis. Praesent sit amet augue nibh. Suspendisse potenti. Proin a mi imperdiet, tristique massa quis, malesuada orci. Etiam non elit lacus. Phasellus lacinia malesuada hendrerit. Duis porttitor euismod diam.",
-    "contact": "Contacto",
-    "contact_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget purus mollis purus rutrum bibendum a eu arcu. Nunc dapibus sed lorem vitae hendrerit. Morbi quis molestie est. Mauris mauris augue, posuere sit amet magna convallis, luctus pretium eros. Nunc commodo lacus ut lorem scelerisque consequat. Nunc non dui non erat rutrum tristique. Phasellus condimentum, sapien nec iaculis ultrices, ante tortor mattis felis, et facilisis magna lacus id ligula. Donec fermentum ut felis vel egestas. Curabitur a mi felis. Praesent sit amet augue nibh. Suspendisse potenti. Proin a mi imperdiet, tristique massa quis, malesuada orci. Etiam non elit lacus. Phasellus lacinia malesuada hendrerit. Duis porttitor euismod diam."
+    "articles": [
+      {
+        "title": "¿Quién soy?",
+        "text": "Soy Álvaro Lopez Espinosa. Mi pasión es tan simple como \"crear cosas\", ya sean físicas o virtuales.\nSiempre que puedo trato de hacer realidad las ideas que se me ocuren y por ello encuentro en el ámbito virtual una ventaja: es mucho más flexible y la creatividad tiene menos limitaciones."
+      },
+      {
+        "title": "Mis aficiones",
+        "text": "Aunque esté relacionado con mi trabajo, uno de mis hobbies es la programación, entendida como medio de expresión creativa. Me encanta aprender nuevas tecnologías y lenguajes de programación. En cuanto tengo un poco de tiempo, trato de realizar cualquier tipo de <a href=\"/tech\">experimentos</a>.\nSoy muy activo y me encantan la mayoría de los deportes. Actualmente practico Taekwondo con asiduidad y, siempre que puedo, baloncesto y ping pong.\nAunque me gusta la ciencia en general, lo que realmente me apasiona es la Astronomía, en donde es posible observar el encuentro entre la imensidad y la insignificancia.\nMe atrae la meditación y la reflexión y siempre estoy tratando de mejorar en cualquier ámbito: físico, mental y espiritual"
+      },
+      {
+        "title": "Mis objetivos e ideales",
+        "text": "Aunque pueda sonar manido, mi objetivo en la vida es tan antiguo, tan sencillo de expresar y tan complejo de acometer como la búsqueda de la verdad. Sé que es algo imposible de conseguir, pero es la guía que trato de seguir. Y digo que es imposible porque ni siquiera existe aún un concenso claro sobre <a href=\"http://es.wikipedia.org/wiki/Verdad\">lo que es la verdad</a>\nTengo otros ideales no menos inalcanzables, como el triunfo de la bondad y la inteligencia sobre la maldad y la hipocresía, o alcanzar una sociedad en la que la confianza en el prójimo, el bien común y \"hacer lo correcto\" esté por encima del mero interés personal."
+      },
+      {
+        "title": "Contacto",
+        "text": "asdf"
+      }
+    ]
   },
   "reflexive": {
     "title": "Reflexivo",

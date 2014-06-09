@@ -1,7 +1,7 @@
 header
   h3= t('planetPretitle')
   h1= t('personal.title')
-each text, title in articles
+each art in articles
   article
-    h3= title
-    p= text
+    h3= art.title
+    p= art.text

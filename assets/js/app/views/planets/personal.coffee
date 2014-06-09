@@ -11,18 +11,18 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
     @selfRotationDirection = -1
     @planetColor = Config.personalColor
 
-    t = i18n.t;
-    @articles[t("personal.whoAmI")] = t('personal.whoAmI_text')
-    @articles[t("personal.myHobbies")] = t('personal.myHobbies_text')
-    @articles[t("personal.myGoals")] = t('personal.myGoals_text')
-    @articles[t("personal.contact")] = t('personal.contact_text')
+#    t = i18n.t;
+#    @articles[t("personal.whoAmI")] = t('personal.whoAmI_text')
+#    @articles[t("personal.myHobbies")] = t('personal.myHobbies_text')
+#    @articles[t("personal.myGoals")] = t('personal.myGoals_text')
+#    @articles[t("personal.contact")] = t('personal.contact_text')
     super
 
   render: ->
     super =>
       @$el.html(@template
         t:i18n.t
-        articles: @articles
+        articles: i18n.t("personal.articles")
       )
 
   paint: (ctx, cnv)->
