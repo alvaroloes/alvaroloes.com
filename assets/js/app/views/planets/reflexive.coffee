@@ -13,8 +13,18 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
 
   render: ->
     super =>
-      @$el.html(@template(t: i18n.t))
+      @$el.html(@template
+        t: i18n.t
+        subsections: i18n.t('reflexive.subsections')
+      )
+      @$el.on('transitionend', (e)=> @onSectionVisible(e))
 
-  paint: (ctx, cnv)->
-    super
+  onSectionVisible: (e)->
+    return if e.target != @el
+    event = e.originalEvent;
+    if event.propertyName == 'opacity'
+      if @$el.css('opacity') > 0
+        @$el.children('nav').addClass('showNav')
+      else
+        @$el.children('nav').removeClass('showNav')
 

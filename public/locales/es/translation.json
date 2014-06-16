@@ -1,11 +1,12 @@
 {
   "pretitle": "Universo de",
   "title": "Álvaro López Espinosa",
-  "introduction": "¿A qué planeta quieres viajar?",
+  "choose_planet": "¿A qué planeta quieres viajar?",
+  "choose_satellite": "¿A qué satélite quieres ir?",
   "planetPretitle": "Planeta",
   "personal": {
     "title": "Personal",
-    "shortBrief": "¿Universo de quién?",
+    "brief": "¿Universo de quién?",
     "articles": [
       {
         "title": "¿Quién soy?",
@@ -13,24 +14,28 @@
       },
       {
         "title": "Mis aficiones",
-        "text_md": "Aunque esté relacionado con mi trabajo, uno de mis hobbies es la programación, entendida como medio de expresión creativa. Me encanta aprender nuevas tecnologías y lenguajes de programación. En cuanto tengo un poco de tiempo, trato de realizar cualquier tipo de [experimentos](/tech).\n\nSoy muy activo y me encantan la mayoría de los deportes. Actualmente practico Taekwondo con asiduidad y, siempre que puedo, baloncesto y ping pong.\n\nAunque me gusta la ciencia en general, lo que realmente me apasiona es la Astronomía, en donde es posible observar el encuentro entre la imensidad y la insignificancia.\n\nMe atrae la meditación y la reflexión y siempre estoy tratando de mejorar en cualquier ámbito: físico, mental y espiritual"
+        "text_md": "Aunque esté relacionado con mi trabajo, uno de mis hobbies es la programación, entendida como medio de expresión creativa. Me encanta aprender nuevas tecnologías y lenguajes de programación. En cuanto tengo un poco de tiempo, trato de realizar cualquier tipo de [experimento](/tech).\n\nSoy muy activo y me encantan la mayoría de los deportes. Actualmente practico Taekwondo con asiduidad y, siempre que puedo, baloncesto y ping pong.\n\nAunque me gusta la ciencia en general, lo que realmente me apasiona es la Astronomía, en donde es posible observar el encuentro entre la imensidad y la insignificancia.\n\nMe atrae la meditación y la reflexión y siempre estoy tratando de mejorar en cualquier ámbito: físico, mental y espiritual."
       },
       {
         "title": "Mis objetivos e ideales",
-        "text_md": "Aunque pueda sonar manido, mi objetivo en la vida es tan antiguo, tan sencillo de expresar y tan complejo de acometer como la búsqueda de la verdad. Sé que es algo imposible de conseguir, pero es la guía que trato de seguir. Y digo que es imposible porque ni siquiera existe aún un concenso claro sobre [lo que es la verdad](http://es.wikipedia.org/wiki/Verdad).\n\nTengo otros ideales no menos inalcanzables, como el triunfo de la bondad y la inteligencia sobre la maldad y la hipocresía, o alcanzar una sociedad en la que la confianza en el prójimo, el bien común y *hacer lo correcto* esté por encima del mero interés personal."
+        "text_md": "Mi objetivo en la vida es tan antiguo, tan sencillo de expresar y tan complejo de acometer que puede sonar hasta irrisorio: la búsqueda de la verdad. Sé que es algo imposible de conseguir, pero es la guía que trato de seguir. Y digo que es imposible porque ni siquiera existe aún un concenso claro sobre [lo que es la verdad](http://es.wikipedia.org/wiki/Verdad).\n\nTengo otros ideales no menos inalcanzables, como el triunfo de la bondad y la inteligencia sobre la maldad y la hipocresía, o alcanzar una sociedad en la que la confianza en el prójimo, el bien común y *hacer lo correcto* esté por encima del mero interés personal."
       }
     ]
   },
   "reflexive": {
     "title": "Reflexivo",
-    "shortBrief": "Ideas y reflexiones que se niegan a quedarse solo en mi cabeza"
+    "brief": "Ideas y reflexiones que se niegan a quedarse solo en mi cabeza",
+    "favorite_quotes": "Citas favoritas",
+    "favorite_quotes_brief": "Colección de citas que considero que tienen gran sabiduría",
+    "articles": "Artículos",
+    "articles_brief": "Especie de blog en el que reflexiono sobre ideas variopintas"
   },
   "labor": {
     "title": "Laboral",
-    "shortBrief": "Aspectos relacionados con mi carrera profesional: currículum, experiencia..."
+    "brief": "Aspectos relacionados con mi carrera profesional: currículum, experiencia..."
   },
   "tech": {
     "title": "Tecnológico",
-    "shortBrief": "Pruebas y experimentos que hago en mis ratos libres. ¡Me apasiona crear cosas!"
+    "brief": "Pruebas y experimentos que hago en mis ratos libres. ¡Me apasiona crear cosas!"
   }
 }

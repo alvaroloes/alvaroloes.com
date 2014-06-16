@@ -1,0 +1,22 @@
+@import 'nib'
+@import 'utils/config'
+@import 'utils/animations'
+
+nav.navMenu
+  animateListOnClass(showNav, animationShortest, animationMedium)
+  a
+    display: block
+    margin: 0 auto 1em auto
+    width: 23em
+    font-weight: normal
+    &:hover
+      text-decoration: none
+    div
+      transition: transform animationShortest
+      padding: 0.6em 1em
+      background-color: navSectionBgColor
+      &:hover
+        background-color: navSectionHoverBgColor
+        box-shadow: 0 0 30px 5px navSectionHoverShadowColor
+      &:active
+        transform: scale(0.95,0.95)
