@@ -15,6 +15,3 @@ class MyUniverse.Views.Labor extends MyUniverse.Views.Planet
     super =>
       @$el.html(@template(t: i18n.t))
 
-  paint: (ctx, cnv)->
-    super
-

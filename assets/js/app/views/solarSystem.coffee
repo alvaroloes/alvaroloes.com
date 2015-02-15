@@ -130,9 +130,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
                   @sunSize, @sunSize)
 
     # Paint all planets
-    planet.paint(ctx, cnv) for name,planet of @planets
+#    planet.paint(ctx, cnv) for name,planet of @planets
+
+    @planets.personal.paint(ctx, cnv);
+    @planets.reflexive.paint(ctx, cnv);
+    @planets.labor.paint(ctx, cnv);
+    @planets.tech.paint(ctx, cnv);
 
     ctx.restore()
+    null
 
 #  paint
 

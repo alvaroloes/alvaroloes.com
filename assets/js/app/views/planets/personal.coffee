@@ -19,6 +19,3 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
         articles: i18n.t("personal.articles")
       )
 
-  paint: (ctx, cnv)->
-    super
-

@@ -71,3 +71,4 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     ctx.drawImage(@imageLoader.images[@planetShadow], posXY, posXY, @planetSize, @planetSize)
 
     ctx.restore()
+    null

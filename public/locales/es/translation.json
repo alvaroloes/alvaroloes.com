@@ -37,5 +37,7 @@
   "tech": {
     "title": "Tecnológico",
     "brief": "Pruebas y experimentos que hago en mis ratos libres. ¡Me apasiona crear cosas!"
-  }
+  },
+  "under_construction_title": "Planeta aún en formación",
+  "under_construction_text": "(Oye, que la tierra tardó unos cuantos millones de años en formarse y nadie tuvo prisa)"
 }

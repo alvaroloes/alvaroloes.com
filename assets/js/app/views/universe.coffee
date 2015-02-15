@@ -4,7 +4,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   backgroundLastRenderTime: 0
   # Static variables
-  @totalObjects: 350
+  @totalObjects: 200
   @defaultObjectOpt:
     maxCount: null
     opacityConfig: 'pulse' #{'pulse',<interval>}
