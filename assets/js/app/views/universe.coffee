@@ -26,7 +26,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     'assets/img/universe/eyeNebula.png'
     'assets/img/universe/rareObject.png'
   ]
-  @backgroundFrameTime: 1000 / 15 # 15 frames per second
+  @backgroundFrameTime: 1000 / 15 # 1000 / (n frames per second)
   # End static variables
 
   initialize: (opt = {})->
@@ -114,19 +114,19 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   ######## Canvas stuff #########
 
   canvasPaintObjects: ->
-    @bgCnv = document.createElement('canvas')
-    @bgCtx = @bgCnv.getContext('2d')
-    @cnv = document.createElement('canvas')
-    @ctx = @cnv.getContext('2d')
-    @$el.append(@bgCnv)
-    @$el.append(@cnv)
+    bgCnv = document.createElement('canvas')
+    @bgCtx = bgCnv.getContext('2d')
+    cnv = document.createElement('canvas')
+    @ctx = cnv.getContext('2d')
+    @$el.append(bgCnv)
+    @$el.append(cnv)
     @resizeCanvas() # Resize for the first time
     @paintCanvas()
 
   resizeCanvas: ->
-    return unless @cnv
-    @cnv.width = @bgCnv.width = @$el.width()
-    @cnv.height = @bgCnv.height = @$el.height()
+    return unless @ctx
+    @ctx.canvas.width = @bgCtx.canvas.width = @$el.width()
+    @ctx.canvas.height = @bgCtx.canvas.height = @$el.height()
     @paintCanvas(false)
 
   paintCanvas: (animate = true)->
@@ -136,14 +136,18 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     requestAnimFrame(=> @paintCanvas()) if animate
 
   paintBackground: ->
-    return if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
+    if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
+      o.setPauseState(true) for o in @preparedObjects when o.opacityConfig == 'pulse'
+      return
 
-    @clear(@bgCnv, @bgCtx)
+    @clear(@bgCtx)
     for o in @preparedObjects
       @bgCtx.save()
-      o.animate() if o.opacityConfig == 'pulse'
+      if o.opacityConfig == 'pulse'
+        o.setPauseState(false)
+        o.animate()
       @bgCtx.globalAlpha = o.opacity
-      @bgCtx.translate(o.left * @bgCnv.width, o.top * @bgCnv.height)
+      @bgCtx.translate(o.left * @bgCtx.canvas.width, o.top * @bgCtx.canvas.height)
       @bgCtx.rotate(o.angle * Math.PI / 360)
       @bgCtx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
       @bgCtx.restore()
@@ -151,14 +155,12 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @backgroundLastRenderTime = Date.now()
 
   paintForeground: ->
-    @clear(@cnv, @ctx)
-    @solarSystem.paint(@ctx,@cnv)
+    @clear(@ctx)
+    @solarSystem.paint(@ctx)
 
-
-
-  clear: (cnv, ctx) ->
+  clear: (ctx) ->
     # An ultra-optimized way to clear the canvas (instead of "clearRect")
-    cnv.width = cnv.width
-#    ctx.clearRect(0, 0, cnv.width, cnv.height)
+    ctx.canvas.width = ctx.canvas.width
+#    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
 

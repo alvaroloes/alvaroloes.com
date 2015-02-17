@@ -95,14 +95,14 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @
 
   # Paint canvas stuff
-  paint: (ctx, cnv)->
+  paint: (ctx)->
     @animate()
     # Update all planet properties for animation
     planet.updateProperties() for name,planet of @planets
 
     ctx.save()
     # Set the (0,0) in the center and adjust the size of the solar system
-    ctx.translate(cnv.width/2, cnv.height/2)
+    ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2)
     ctx.scale(@solarSystemScale,@solarSystemScale)
 
 
@@ -130,17 +130,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
                   @sunSize, @sunSize)
 
     # Paint all planets
-#    planet.paint(ctx, cnv) for name,planet of @planets
+#    planet.paint(ctx) for name,planet of @planets
 
-    @planets.personal.paint(ctx, cnv);
-    @planets.reflexive.paint(ctx, cnv);
-    @planets.labor.paint(ctx, cnv);
-    @planets.tech.paint(ctx, cnv);
+    @planets.personal.paint(ctx);
+    @planets.reflexive.paint(ctx);
+    @planets.labor.paint(ctx);
+    @planets.tech.paint(ctx);
 
     ctx.restore()
     null
-
-#  paint
 
   goTo: (celestialObject = 'birdsEye')->
     windowHeight = $(window).height()

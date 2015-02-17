@@ -41,7 +41,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   updateProperties: ->
     @animate()
 
-  paint: (ctx,cnv)->
+  paint: (ctx)->
     return if @stopPaint
     ctx.save()
 
