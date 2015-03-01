@@ -2,8 +2,8 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   footerTemplate: JST['templates/footer']
   className: 'solarSystem'
 
-  @sunImg: 'assets/img/solarSystem/sun.png'
-  @sunHaloImg: 'assets/img/solarSystem/sunHalo.png'
+  @sunImg: 'assets/img/solarSystem/sun_medium.png'
+  @sunHaloImg: 'assets/img/solarSystem/sunHalo_medium.png'
 
   initialize: ->
     @sunSize = Config.sunSize
@@ -109,7 +109,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     # Center the solar system in a planet if needed, taking into account if the animation
     # has finished
     if @focusedPlanet and @centeringFinished
-      @centerOffsetAngle  = @focusedPlanet.rotationAngle
+      @centerOffsetAngle = @focusedPlanet.rotationAngle
 
     ctx.rotate(@centerOffsetAngle)
     ctx.translate(@centerOffset,0)
@@ -130,8 +130,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
                   @sunSize, @sunSize)
 
     # Paint all planets
-#    planet.paint(ctx) for name,planet of @planets
-
     @planets.personal.paint(ctx);
     @planets.reflexive.paint(ctx);
     @planets.labor.paint(ctx);

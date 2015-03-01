@@ -136,16 +136,12 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     requestAnimFrame(=> @paintCanvas()) if animate
 
   paintBackground: ->
-    if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
-      o.setPauseState(true) for o in @preparedObjects when o.opacityConfig == 'pulse'
-      return
+    return if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
 
     @clear(@bgCtx)
     for o in @preparedObjects
       @bgCtx.save()
-      if o.opacityConfig == 'pulse'
-        o.setPauseState(false)
-        o.animate()
+      o.animate() if o.opacityConfig == 'pulse'
       @bgCtx.globalAlpha = o.opacity
       @bgCtx.translate(o.left * @bgCtx.canvas.width, o.top * @bgCtx.canvas.height)
       @bgCtx.rotate(o.angle * Math.PI / 360)
