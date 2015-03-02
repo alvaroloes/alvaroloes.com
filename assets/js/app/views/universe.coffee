@@ -107,7 +107,7 @@ class WebGLUniverse
       angle = o.rotateInterval.sampleInterval()
 
       texture = THREE.ImageUtils.loadTexture o.src
-      material = new THREE.SpriteMaterial( map: texture, color: 0xffffff, fog: false )
+      material = new THREE.SpriteMaterial(map: texture)
       sprite = new THREE.Sprite( material )
       sprite.position.x = width * left - (width/2)
       sprite.position.y = height * top - (height/2)
@@ -115,13 +115,11 @@ class WebGLUniverse
       sprite.matrixAutoUpdate = false
       
       if o.opacityConfig == 'pulse'
-        Animatable.makeAnimatable(material.color)
-        material.color.animation
+        Animatable.makeAnimatable(material)
+        material.animation
           transitions: [
             properties:
-              r: 0
-              g: 0
-              b: 0
+              opacity:0
             duration: (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
             initialTimeOffset: Math.random()
           ]
@@ -129,15 +127,16 @@ class WebGLUniverse
           alternateDirection: true
           queue: false
       else
-        material.color.multiplyScalar(o.opacityConfig.sampleInterval())
+        material.opacity = o.opacityConfig.sampleInterval()
 
       sprite.updateMatrix()
       @scene.add( sprite )
       ++i
+      
+    @solarSystem.webGLPrepareScene(@scene,1)
     null
-    
-    # Call solarSystem.createObjects
-    
+
+
   paint: ->
     @$domParent.append(@renderer.domElement)
     @resize() # For the first time
@@ -152,11 +151,10 @@ class WebGLUniverse
     @camera.bottom =  height / - 2
     @camera.updateProjectionMatrix()
     @renderer.setSize(width, height)
-#    @paintCanvas(false)
     
   paintCanvas: (animate = true)->
     for o in @scene.children
-      o.material.color.animate?()
+      o.material.animate?()
     @renderer.render(@scene, @camera)
     requestAnimFrame(=> @paintCanvas()) if animate
   
