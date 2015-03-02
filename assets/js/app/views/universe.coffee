@@ -2,15 +2,15 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   template: JST['templates/universe']
   className: 'universe'
 
-  backgroundLastRenderTime: 0
   # Static variables
-  @totalObjects: 200
+  @totalObjects: 500
   @defaultObjectOpt:
     maxCount: null
     opacityConfig: 'pulse' #{'pulse',<interval>}
     pulseFrecuencyInterval: [0.1,0.3]
     sizeInterval: [3,12] # In pixels
     rotateInterval: [0,360]
+    
   @pulseObjects: [
     'assets/img/universe/estrella4puntas.png'
     'assets/img/universe/estrella5puntas.png'
@@ -26,12 +26,10 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     'assets/img/universe/eyeNebula.png'
     'assets/img/universe/rareObject.png'
   ]
-  @backgroundFrameTime: 1000 / 15 # 1000 / (n frames per second)
   # End static variables
 
   initialize: (opt = {})->
     @opt = opt
-    $(window).resize => @resizeCanvas()
 
     # Initialize foreground elements
     @solarSystem = new MyUniverse.Views.SolarSystem()
@@ -50,7 +48,21 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       sizeInterval: [20,30]
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
+      
+    # Set the paint strategy
+    if opt.force2d
+      @sceneStrategy = new Canvas2DUniverse(@$el, @imageLoader, @solarSystem)
+    else
+      @sceneStrategy = new WebGLUniverse(@$el, @imageLoader, @solarSystem)
 
+    $(window).resize => @sceneStrategy.resize()
+    null
+
+  addObjects: (objects)->
+    for o in objects
+      objData = o
+      objData = {src: o} if $.type(o) is 'string'
+      @objects.push $.extend({},@constructor.defaultObjectOpt,objData)
     null
 
   render: ->
@@ -62,26 +74,103 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
-    @lastPaintTime = Date.now()
-    @prepareObjects()
+    @sceneStrategy.prepareScene(@objects, @constructor.totalObjects)
     $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
-      @canvasPaintObjects()
+      @sceneStrategy.paint()
       promise.resolve()
-    promise
+    promise    
 
+class WebGLUniverse
+  constructor: (@$domParent, @imageLoader, @solarSystem)->
+    @scene = new THREE.Scene()
+#    @camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+    @camera = new THREE.OrthographicCamera(window.innerWidth / - 2,
+      window.innerWidth / 2,
+      window.innerHeight / 2,  
+      window.innerHeight / - 2, 0.1, 1000 )
+    @camera.position.z = 10
+    @renderer = new THREE.WebGLRenderer()
+    
+  prepareScene:(objects, totalObjects)->
+    width = window.innerWidth + 50
+    height = window.innerHeight + 50
+    i = 0
+    while i < totalObjects
+      o = objects.sample()
+      if o.maxCount?
+        o.count ?= 0 # Private property
+        continue if ++o.count > o.maxCount
+      
+      size = o.sizeInterval.sampleInterval()
+      top = Math.random()   # Percentage
+      left = Math.random()  # Percentage
+      angle = o.rotateInterval.sampleInterval()
 
-  addObjects: (objects)->
-    for o in objects
-      objData = o
-      objData = {src: o} if $.type(o) is 'string'
-      @objects.push $.extend({},@constructor.defaultObjectOpt,objData)
+      texture = THREE.ImageUtils.loadTexture o.src
+      material = new THREE.SpriteMaterial( map: texture, color: 0xffffff, fog: false )
+      sprite = new THREE.Sprite( material )
+      sprite.position.x = width * left - (width/2)
+      sprite.position.y = height * top - (height/2)
+      sprite.scale.x = sprite.scale.y = sprite.scale.z = size
+      sprite.matrixAutoUpdate = false
+      
+      if o.opacityConfig == 'pulse'
+        Animatable.makeAnimatable(material.color)
+        material.color.animation
+          transitions: [
+            properties:
+              r: 0
+              g: 0
+              b: 0
+            duration: (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
+            initialTimeOffset: Math.random()
+          ]
+          count: 'infinite'
+          alternateDirection: true
+          queue: false
+      else
+        material.color.multiplyScalar(o.opacityConfig.sampleInterval())
+
+      sprite.updateMatrix()
+      @scene.add( sprite )
+      ++i
     null
+    
+    # Call solarSystem.createObjects
+    
+  paint: ->
+    @$domParent.append(@renderer.domElement)
+    @resize() # For the first time
+    @paintCanvas()
 
-  prepareObjects: ->
+  resize: ->
+    width = @$domParent.width()
+    height = @$domParent.height()
+    @camera.left = width / - 2
+    @camera.right = width / 2
+    @camera.top = height / 2
+    @camera.bottom =  height / - 2
+    @camera.updateProjectionMatrix()
+    @renderer.setSize(width, height)
+#    @paintCanvas(false)
+    
+  paintCanvas: (animate = true)->
+    for o in @scene.children
+      o.material.color.animate?()
+    @renderer.render(@scene, @camera)
+    requestAnimFrame(=> @paintCanvas()) if animate
+  
+class Canvas2DUniverse
+  backgroundLastRenderTime: 0
+  @backgroundFrameTime: 1000 / 15 # 1000 / (n frames per second)
+
+  constructor: (@$domParent, @imageLoader, @solarSystem)->
+  
+  prepareScene: (objects, totalObjects)->
     @preparedObjects = []
     i = 0
-    while i < @constructor.totalObjects
-      originalObject = @objects.sample()
+    while i < totalObjects
+      originalObject = objects.sample()
       if originalObject.maxCount?
         originalObject.count ?= 0 # Private property
         continue if ++originalObject.count > originalObject.maxCount
@@ -110,29 +199,27 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @preparedObjects.push(o)
       ++i
     null
-
-  ######## Canvas stuff #########
-
-  canvasPaintObjects: ->
+  
+  paint: ->
     bgCnv = document.createElement('canvas')
     @bgCtx = bgCnv.getContext('2d')
     cnv = document.createElement('canvas')
     @ctx = cnv.getContext('2d')
-    @$el.append(bgCnv)
-    @$el.append(cnv)
-    @resizeCanvas() # Resize for the first time
+    @$domParent.append(bgCnv)
+    @$domParent.append(cnv)
+    @resize() # Resize for the first time
+    @backgroundLastRenderTime = Date.now()
     @paintCanvas()
 
-  resizeCanvas: ->
+  resize: ->
     return unless @ctx
-    @ctx.canvas.width = @bgCtx.canvas.width = @$el.width()
-    @ctx.canvas.height = @bgCtx.canvas.height = @$el.height()
+    @ctx.canvas.width = @bgCtx.canvas.width = @$domParent.width()
+    @ctx.canvas.height = @bgCtx.canvas.height = @$domParent.height()
     @paintCanvas(false)
 
   paintCanvas: (animate = true)->
     @paintBackground()
     @paintForeground()
-
     requestAnimFrame(=> @paintCanvas()) if animate
 
   paintBackground: ->
@@ -158,5 +245,3 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     # An ultra-optimized way to clear the canvas (instead of "clearRect")
     ctx.canvas.width = ctx.canvas.width
 #    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-
-
