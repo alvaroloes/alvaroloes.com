@@ -6,7 +6,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   @totalObjects: 500
   @defaultObjectOpt:
     maxCount: null
-    opacityConfig: 'pulse' #{'pulse',<interval>}
+    opacityConfig: 'pulse' #{'pulse','static'}
+    opacityInterval: [0.2,1]
     pulseFrecuencyInterval: [0.1,0.3]
     sizeInterval: [3,12] # In pixels
     rotateInterval: [0,360]
@@ -44,14 +45,15 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
     props =
       maxCount: 1
-      opacityConfig: [0.8,1]
+      opacityConfig: 'static'
+      opacityInterval: [0.8,1]
       sizeInterval: [20,30]
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
       
     # Set the paint strategy
     if opt.force2d
-      @sceneStrategy = new Canvas2DUniverse(@$el, @imageLoader, @solarSystem)
+      @sceneStrategy = new CanvasUniverse(@$el, @imageLoader, @solarSystem)
     else
       @sceneStrategy = new WebGLUniverse(@$el, @imageLoader, @solarSystem)
 
@@ -74,22 +76,24 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
-    @sceneStrategy.prepareScene(@objects, @constructor.totalObjects)
     $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
+#      @sceneStrategy.prepareScene(@objects, @constructor.totalObjects)
+      @sceneStrategy.prepareOptimizedScene(@objects, @constructor.totalObjects)
       @sceneStrategy.paint()
       promise.resolve()
     promise    
 
 class WebGLUniverse
+  
+  
   constructor: (@$domParent, @imageLoader, @solarSystem)->
+    # Crete a canvas 2D universe only to draw the stars texture
+    @canvasUniverse = new CanvasUniverse(@$domParent, @imageLoader, @solarSystem)
     @scene = new THREE.Scene()
-#    @camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-    @camera = new THREE.OrthographicCamera(window.innerWidth / - 2,
-      window.innerWidth / 2,
-      window.innerHeight / 2,  
-      window.innerHeight / - 2, 0.1, 1000 )
-    @camera.position.z = 10
+    @camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+    @camera.position.z = 400
     @renderer = new THREE.WebGLRenderer()
+    @renderer.setSize(window.innerWidth, window.innerHeight)
     
   prepareScene:(objects, totalObjects)->
     width = window.innerWidth + 50
@@ -135,8 +139,32 @@ class WebGLUniverse
       
     @solarSystem.webGLPrepareScene(@scene,1)
     null
+    
+  prepareOptimizedScene: (objects, totalObjects)->
+    #Create the background texture with the 2D canvas
+    cnv = document.createElement('canvas')
+    cnv.width = 2048
+    cnv.height = 512
+    ctx = cnv.getContext('2d')
+    @canvasUniverse.prepareScene(objects, totalObjects, false)
+    @canvasUniverse.paintBackground(ctx)
+    
+    texture = new THREE.Texture(cnv)
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set( 2, 2);
+    texture.needsUpdate = true
 
-
+    geo = new THREE.PlaneGeometry(cnv.width*2,cnv.height*2,100,100)
+    material = new THREE.MeshBasicMaterial
+      map: texture
+      transparent: true
+    plane = new THREE.Mesh(geo, material)
+    
+    @scene.add(plane)
+    
+    
+    
   paint: ->
     @$domParent.append(@renderer.domElement)
     @resize() # For the first time
@@ -145,10 +173,7 @@ class WebGLUniverse
   resize: ->
     width = @$domParent.width()
     height = @$domParent.height()
-    @camera.left = width / - 2
-    @camera.right = width / 2
-    @camera.top = height / 2
-    @camera.bottom =  height / - 2
+    @camera.aspect = width / height
     @camera.updateProjectionMatrix()
     @renderer.setSize(width, height)
     
@@ -158,13 +183,13 @@ class WebGLUniverse
     @renderer.render(@scene, @camera)
     requestAnimFrame(=> @paintCanvas()) if animate
   
-class Canvas2DUniverse
+class CanvasUniverse
   backgroundLastRenderTime: 0
   @backgroundFrameTime: 1000 / 15 # 1000 / (n frames per second)
 
   constructor: (@$domParent, @imageLoader, @solarSystem)->
   
-  prepareScene: (objects, totalObjects)->
+  prepareScene: (objects, totalObjects, forAnimating = true)->
     @preparedObjects = []
     i = 0
     while i < totalObjects
@@ -178,7 +203,7 @@ class Canvas2DUniverse
       o.left = Math.random()  # Percentage
       o.angle = o.rotateInterval.sampleInterval()
 
-      if o.opacityConfig == 'pulse'
+      if o.opacityConfig == 'pulse' && forAnimating
         Animatable.makeAnimatable(o)
         o.opacity = 0
         o.animation
@@ -192,7 +217,7 @@ class Canvas2DUniverse
           alternateDirection: true
           queue: false
       else
-        o.opacity = o.opacityConfig.sampleInterval()
+        o.opacity = o.opacityInterval.sampleInterval()
 
       @preparedObjects.push(o)
       ++i
@@ -216,28 +241,30 @@ class Canvas2DUniverse
     @paintCanvas(false)
 
   paintCanvas: (animate = true)->
-    @paintBackground()
-    @paintForeground()
+    @paintBackground(@bgCtx)
+    @paintForeground(@ctx)
     requestAnimFrame(=> @paintCanvas()) if animate
 
-  paintBackground: ->
+  paintBackground: (ctx)->
     return if (Date.now() - @backgroundLastRenderTime) < @constructor.backgroundFrameTime
 
-    @clear(@bgCtx)
+    @clear(ctx)
     for o in @preparedObjects
-      @bgCtx.save()
-      o.animate() if o.opacityConfig == 'pulse'
-      @bgCtx.globalAlpha = o.opacity
-      @bgCtx.translate(o.left * @bgCtx.canvas.width, o.top * @bgCtx.canvas.height)
-      @bgCtx.rotate(o.angle * Math.PI / 360)
-      @bgCtx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
-      @bgCtx.restore()
+      ctx.save()
+      o.animate?()
+      ctx.globalAlpha = o.opacity
+      ctx.translate(o.left * ctx.canvas.width, o.top * ctx.canvas.height)
+      ctx.rotate(o.angle * Math.PI / 360)
+      ctx.drawImage(@imageLoader.images[o.src], 0, 0, o.size, o.size)
+#      ctx.fillStyle = '#00ffff';
+#      ctx.fillRect(0,0,o.size, o.size)
+      ctx.restore()
 
     @backgroundLastRenderTime = Date.now()
 
-  paintForeground: ->
-    @clear(@ctx)
-    @solarSystem.paint(@ctx)
+  paintForeground: (ctx)->
+    @clear(ctx)
+    @solarSystem.paint(ctx)
 
   clear: (ctx) ->
     # An ultra-optimized way to clear the canvas (instead of "clearRect")
