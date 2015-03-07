@@ -146,23 +146,108 @@ class WebGLUniverse
     cnv.width = 2048
     cnv.height = 512
     ctx = cnv.getContext('2d')
-    @canvasUniverse.prepareScene(objects, totalObjects, false)
+    @canvasUniverse.prepareScene(objects, totalObjects, false, true)
     @canvasUniverse.paintBackground(ctx)
-    
-    texture = new THREE.Texture(cnv)
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 2, 2);
-    texture.needsUpdate = true
 
-    geo = new THREE.PlaneGeometry(cnv.width*2,cnv.height*2,100,100)
-    material = new THREE.MeshBasicMaterial
-      map: texture
-      transparent: true
+#    texture = new THREE.Texture(cnv)
+#    texture.wrapS = THREE.RepeatWrapping;
+#    texture.wrapT = THREE.RepeatWrapping;
+#    texture.repeat.set( 2, 2);
+#    texture.needsUpdate = true
+#    material = new THREE.MeshBasicMaterial
+#      map: texture
+#      transparent: true
+    geo = new THREE.PlaneGeometry(cnv.width*2,cnv.height*2,1,1)
+    material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
     
     @scene.add(plane)
     
+  getUniverseMaterial: (ctx) ->
+    # Create the texture
+    texture = new THREE.Texture(ctx.canvas)
+    texture.needsUpdate = true
+    
+    # Set up the positions and sizes of the painted obects to pass them as uniforms
+    # to the shaders
+    positions = []
+    sizes = []
+    animationTimes = []
+    for o in @canvasUniverse.preparedObjects
+      positions.push new THREE.Vector2(o.left, o.top)
+      sizes.push new THREE.Vector2(o.size, o.size)
+      animationTimes.push o.opacityAnimationDuration
+
+    # Set all the uniforms
+    uniforms =
+      objectPosition: # Between 0 and 1
+        type: 'v2v',
+        value: positions
+      objectSize:  # Between 0 and 1
+        type: 'v2v',
+        value: sizes
+      objectAnimationTime:  # Between 0 and 1
+        type: 'fv1',
+        value: animationTimes
+      texture:
+        type: 't'
+        value: texture
+      textureWidth:
+        type: 'i'
+        value: ctx.canvas.with
+      textureHeight:
+        type: 'i'
+        value: ctx.canvas.height
+
+    # Set the constants to be passed to shaders
+    defines = {
+      NUM_OBJECTS: positions.length
+    }
+
+    
+    material = new THREE.ShaderMaterial
+      uniforms: uniforms
+      defines: defines
+      transparent: true
+      vertexShader: '''
+        varying vec2 iUV;
+        void main() {
+          iUV = uv;
+          gl_Position = projectionMatrix *
+                        modelViewMatrix *
+                        vec4(position,1.0);
+        }
+        '''
+      fragmentShader: '''
+        varying vec2 iUV;
+        uniform vec2 objectPosition[NUM_OBJECTS];
+        uniform vec2 objectSize[NUM_OBJECTS];
+        uniform float objectAnimationTime[NUM_OBJECTS];
+        uniform sampler2D texture;
+        uniform int textureWidth;
+        uniform int textureHeight;
+
+        bool inside(vec2 squareTopLeft, vec2 squareBottomRight, vec2 pos) {
+          return (pos.x >= squareTopLeft.x && pos.x <= squareBottomRight.x &&
+                  pos.y >= squareTopLeft.y && pos.y <= squareBottomRight.y);
+        }
+
+        void main() {
+          vec4 finalColor;
+          for (int i = 0; i < 300; i++) {
+            vec2 pos = objectPosition[i];
+            vec2 size = objectSize[i];
+// this is too slow
+          }
+          
+          finalColor = texture2D(texture, iUV);
+
+
+
+          gl_FragColor = finalColor;
+        }
+        '''
+    material
     
     
   paint: ->
@@ -189,7 +274,7 @@ class CanvasUniverse
 
   constructor: (@$domParent, @imageLoader, @solarSystem)->
   
-  prepareScene: (objects, totalObjects, forAnimating = true)->
+  prepareScene: (objects, totalObjects, forAnimating = true, ignoreOpacity = false)->
     @preparedObjects = []
     i = 0
     while i < totalObjects
@@ -202,22 +287,24 @@ class CanvasUniverse
       o.top = Math.random()   # Percentage
       o.left = Math.random()  # Percentage
       o.angle = o.rotateInterval.sampleInterval()
-
-      if o.opacityConfig == 'pulse' && forAnimating
-        Animatable.makeAnimatable(o)
-        o.opacity = 0
-        o.animation
-          transitions: [
-            properties:
-              opacity: 1
-            duration: (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
-            initialTimeOffset: Math.random()
-          ]
-          count: 'infinite'
-          alternateDirection: true
-          queue: false
-      else
-        o.opacity = o.opacityInterval.sampleInterval()
+      o.opacityAnimationDuration = (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
+      
+      if !ignoreOpacity
+        if o.opacityConfig == 'pulse' && forAnimating
+          Animatable.makeAnimatable(o)
+          o.opacity = 0
+          o.animation
+            transitions: [
+              properties:
+                opacity: 1
+              duration: o.opacityAnimationDuration
+              initialTimeOffset: Math.random()
+            ]
+            count: 'infinite'
+            alternateDirection: true
+            queue: false
+        else
+          o.opacity = o.opacityInterval.sampleInterval()
 
       @preparedObjects.push(o)
       ++i
