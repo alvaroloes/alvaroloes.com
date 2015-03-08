@@ -116,7 +116,7 @@ class WebGLUniverse
     @canvasUniverse.prepareScene(objects, totalObjects, false, 1)
     @canvasUniverse.paintBackground(ctx)
     
-    geo = new THREE.PlaneGeometry(cnv.width,cnv.height,1,1)
+    geo = new THREE.PlaneBufferGeometry(cnv.width,cnv.height,1,1)
     material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
     @bgScene.add(plane)
@@ -149,7 +149,7 @@ class WebGLUniverse
       for j in [top...bottom] by 1
         for i in [left...right] by 1
           index = i + j*w
-          # textureAlpha = pixelData[index*4+3];
+#          textureAlpha = pixelData[index*4+3];
           continue if index < 0 or index >= totalPixels
           opacityFrequency[index] = objectOpacityFrequency
 

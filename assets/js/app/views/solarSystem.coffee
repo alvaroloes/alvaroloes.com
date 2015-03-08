@@ -95,15 +95,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @
 
   webGLPrepareScene: (@scene, @camera)->
-    @camera.position.z = 600
+    @camera.position.z = 10
+    @camera.position.x = 10
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunImg])
     texture.needsUpdate = true
     material = new THREE.SpriteMaterial(map: texture)
     sprite = new THREE.Sprite( material )
     sprite.matrixAutoUpdate = false
-    sprite.scale.x = sprite.scale.y = 1000
     sprite.updateMatrix()
-    @scene.add(sprite)
+#    @scene.add(sprite)
   
   # Paint canvas 2d stuff
   paint: (ctx)->
