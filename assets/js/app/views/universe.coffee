@@ -90,11 +90,20 @@ class WebGLUniverse
   constructor: (@$domParent, @imageLoader, @solarSystem, @opt)->
     # Crete a canvas 2D universe only to draw the stars texture
     @canvasUniverse = new CanvasUniverse(@$domParent, @imageLoader, @solarSystem)
-    @scene = new THREE.Scene()
-    @camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-    @camera.position.z = 450
-    @renderer = new THREE.WebGLRenderer()
-    @renderer.setSize(window.innerWidth, window.innerHeight)
+    # Background scene, camera an renderer
+    @bgScene = new THREE.Scene()
+    @bgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+    @bgCamera.position.z = 450
+    @bgRenderer = new THREE.WebGLRenderer()
+    @bgRenderer.setSize(window.innerWidth, window.innerHeight)
+    
+    # Foreground scene camera an renderer
+    @fgScene = new THREE.Scene()
+    @fgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+    @fgCamera.position.z = 450
+    @fgRenderer = new THREE.WebGLRenderer(alpha: true)
+    @fgRenderer.setClearColor(0x0, 0)
+    @fgRenderer.setSize(window.innerWidth, window.innerHeight)
         
   prepareScene: (objects, totalObjects)->
     @addDebuggingObjects() if @opt.debug
@@ -110,8 +119,8 @@ class WebGLUniverse
     geo = new THREE.PlaneGeometry(cnv.width,cnv.height,1,1)
     material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
-    @scene.add(plane)
-    @solarSystem.webGLPrepareScene(@scene,1)
+    @bgScene.add(plane)
+    @solarSystem.webGLPrepareScene(@fgScene,@fgCamera)
     
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -136,7 +145,6 @@ class WebGLUniverse
       bottom = Math.round(top + o.size)
       right = Math.round(left + o.size)
       objectOpacityFrequency = o.pulseFrecuencyInterval.sampleInterval() * 255;
-      
       # Traverse the square and set each pixel with the opacity frequency
       for j in [top...bottom] by 1
         for i in [left...right] by 1
@@ -160,6 +168,7 @@ class WebGLUniverse
         type: 't'
         value: opacityFrequencyAlphaMap
 
+    # Finally create the material with the custom shaders
     material = new THREE.ShaderMaterial
       uniforms: @uniforms
       transparent: true
@@ -189,26 +198,29 @@ class WebGLUniverse
     
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 100 );
-    @scene.add( axisHelper )
+    @bgScene.add( axisHelper )
     
   paint: ->
     @startTime = Date.now();
-    @$domParent.append(@renderer.domElement)
+    @$domParent.append(@bgRenderer.domElement)
+    @$domParent.append(@fgRenderer.domElement)
     @resize() # For the first time
     @paintCanvas()
 
   resize: ->
     width = @$domParent.width()
     height = @$domParent.height()
-    @camera.aspect = width / height
-    @camera.updateProjectionMatrix()
-    @renderer.setSize(width, height)
-    
+    @bgCamera.aspect = width / height
+    @bgCamera.updateProjectionMatrix()
+    @bgRenderer.setSize(width, height)
+    @fgCamera.aspect = width / height
+    @fgCamera.updateProjectionMatrix()
+    @fgRenderer.setSize(width, height)
+
   paintCanvas: (animate = true)->
-#    for o in @scene.children
-#      o.material.animate?()
     @uniforms.elapsedTimeMillis.value = Date.now() - @startTime;
-    @renderer.render(@scene, @camera)
+    @bgRenderer.render(@bgScene, @bgCamera)
+    @fgRenderer.render(@fgScene, @fgCamera)
     requestAnimFrame(=> @paintCanvas()) if animate
   
 class CanvasUniverse

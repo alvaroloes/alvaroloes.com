@@ -94,15 +94,16 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @$el.append(@footerTemplate())
     @
 
-  webGLPrepareScene: (scene, zMin)->
-    texture = THREE.ImageUtils.loadTexture @constructor.sunImg
+  webGLPrepareScene: (@scene, @camera)->
+    @camera.position.z = 600
+    texture = new THREE.Texture(@imageLoader.images[@constructor.sunImg])
+    texture.needsUpdate = true
     material = new THREE.SpriteMaterial(map: texture)
     sprite = new THREE.Sprite( material )
     sprite.matrixAutoUpdate = false
-    sprite.position.z = zMin
     sprite.scale.x = sprite.scale.y = 1000
     sprite.updateMatrix()
-#    scene.add(sprite)
+    @scene.add(sprite)
   
   # Paint canvas 2d stuff
   paint: (ctx)->
