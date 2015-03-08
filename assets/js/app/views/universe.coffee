@@ -3,7 +3,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   className: 'universe'
 
   # Static variables
-  @totalObjects: 700
+  @totalObjects: 1000
   @defaultObjectOpt:
     maxCount: null
     opacityConfig: 'pulse' #{'pulse','static'}
@@ -31,6 +31,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   initialize: (opt = {})->
     @opt = opt
+    @opt.debug = true
 
     # Initialize foreground elements
     @solarSystem = new MyUniverse.Views.SolarSystem()
@@ -54,9 +55,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       
     # Set the paint strategy
     if opt.force2d
-      @sceneStrategy = new CanvasUniverse(@$el, @imageLoader, @solarSystem)
+      @sceneStrategy = new CanvasUniverse(@$el, @imageLoader, @solarSystem, @opt)
     else
-      @sceneStrategy = new WebGLUniverse(@$el, @imageLoader, @solarSystem)
+      @sceneStrategy = new WebGLUniverse(@$el, @imageLoader, @solarSystem, @opt)
 
     $(window).resize => @sceneStrategy.resize()
     null
@@ -86,7 +87,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 class WebGLUniverse
   
   
-  constructor: (@$domParent, @imageLoader, @solarSystem)->
+  constructor: (@$domParent, @imageLoader, @solarSystem, @opt)->
     # Crete a canvas 2D universe only to draw the stars texture
     @canvasUniverse = new CanvasUniverse(@$domParent, @imageLoader, @solarSystem)
     @scene = new THREE.Scene()
@@ -96,6 +97,8 @@ class WebGLUniverse
     @renderer.setSize(window.innerWidth, window.innerHeight)
         
   prepareScene: (objects, totalObjects)->
+    @addDebuggingObjects() if @opt.debug
+    
     #Create the background texture with the 2D canvas
     cnv = document.createElement('canvas')
     cnv.width = 2048
@@ -107,7 +110,6 @@ class WebGLUniverse
     geo = new THREE.PlaneGeometry(cnv.width,cnv.height,1,1)
     material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
-    
     @scene.add(plane)
     @solarSystem.webGLPrepareScene(@scene,1)
     
@@ -116,33 +118,37 @@ class WebGLUniverse
     texture = new THREE.Texture(ctx.canvas)
     texture.needsUpdate = true
     
-    # Create a map with the opacity data. 
-    # - The red channel contains the frequency at which pixel opacity changes
-    # - The green channel contains the max pixel opacity this data comes from the
-    # alpha channel of the generated texture
+    # Create a map with the opacity frequency for each pixel
+    
     w = ctx.canvas.width
     h = ctx.canvas.height
     pixelData = ctx.getImageData(0, 0, w, h).data
     totalPixels = w*h
-    opacityData = new Uint8Array(totalPixels*3)
-    opacityData[i] = 0 for i in [0...opacityData.length] by 1
+    opacityFrequency = new Uint8Array(totalPixels)
+    
+    # Initialize the opacity frequencies to 0
+    opacityFrequency[i] = 0 for i in [0...opacityFrequency.length] by 1
+    
     for o in @canvasUniverse.preparedObjects
+      # Calculate the bounding square of each object and get its opacity frequency
       top = Math.round(o.top * h)
       left = Math.round(o.left * w)
       bottom = Math.round(top + o.size)
       right = Math.round(left + o.size)
-      opacityFrecuency = o.pulseFrecuencyInterval.sampleInterval() * 255;
+      objectOpacityFrequency = o.pulseFrecuencyInterval.sampleInterval() * 255;
+      
+      # Traverse the square and set each pixel with the opacity frequency
       for j in [top...bottom] by 1
         for i in [left...right] by 1
           index = i + j*w
-          continue if index >= totalPixels
-          opacityData[index*3] = opacityFrecuency
-          opacityData[index*3+1] = pixelData[index*4+3] # Alpha channel of the texture
+          # textureAlpha = pixelData[index*4+3];
+          continue if index < 0 or index >= totalPixels
+          opacityFrequency[index] = objectOpacityFrequency
 
-    opacityDataMap = new THREE.DataTexture(opacityData, w, h, THREE.RGBFormat)
-    opacityDataMap.needsUpdate = true
+    opacityFrequencyAlphaMap = new THREE.DataTexture(opacityFrequency, w, h, THREE.AlphaFormat)
+    opacityFrequencyAlphaMap.needsUpdate = true
 
-    # Set all the uniforms for the shaders
+    # Set all the uniforms for the material fragment shader
     @uniforms =
       elapsedTimeMillis:
         type: 'f'
@@ -150,9 +156,9 @@ class WebGLUniverse
       texture:
         type: 't'
         value: texture
-      opacityDataMap:
+      opacityFrequencyAlphaMap:
         type: 't'
-        value: opacityDataMap
+        value: opacityFrequencyAlphaMap
 
     material = new THREE.ShaderMaterial
       uniforms: @uniforms
@@ -170,25 +176,20 @@ class WebGLUniverse
         varying vec2 iUV;
         uniform float elapsedTimeMillis;
         uniform sampler2D texture;
-        uniform sampler2D opacityDataMap;
+        uniform sampler2D opacityFrequencyAlphaMap;
 
         void main() {
-          vec4 opacityData = texture2D(opacityDataMap, iUV);
-          float opacityFrecuency = opacityData.x / 1000.;
-          float maxOpacity = opacityData.y;
+          float opacityFrequency = texture2D(opacityFrequencyAlphaMap, iUV).a / 1000.;
           vec4 finalColor = texture2D(texture, iUV);
-
-          float alpha = (1. + cos(opacityFrecuency*elapsedTimeMillis)) / 2.;
-          if (alpha > maxOpacity) {
-            alpha = maxOpacity;
-          }
-
-          finalColor.a = alpha ;
+          finalColor.a *= (1. + cos(opacityFrequency*elapsedTimeMillis)) / 2.;
           gl_FragColor = finalColor;
         }
         '''
     material
     
+  addDebuggingObjects: ->
+    axisHelper = new THREE.AxisHelper( 100 );
+    @scene.add( axisHelper )
     
   paint: ->
     @startTime = Date.now();
