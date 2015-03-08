@@ -102,7 +102,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     sprite.position.z = zMin
     sprite.scale.x = sprite.scale.y = 1000
     sprite.updateMatrix()
-    scene.add(sprite)
+#    scene.add(sprite)
   
   # Paint canvas 2d stuff
   paint: (ctx)->
