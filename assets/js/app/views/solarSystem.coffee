@@ -5,7 +5,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   @sunImg: 'assets/img/solarSystem/sun_medium.png'
   @sunHaloImg: 'assets/img/solarSystem/sunHalo_medium.png'
 
-  initialize: ->
+  initialize: (@opt = {})->
+    @sunRotationSpeed = 0.001  # Radians per milliseconds
+    
     @sunSize = Config.sunSize
     @sunHaloSize = Config.sunSize*1.25
     @sunHaloAngle = 0
@@ -95,16 +97,41 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @
 
   webGLPrepareScene: (@scene, @camera)->
-    @camera.position.z = 10
-    @camera.position.x = 10
-    texture = new THREE.Texture(@imageLoader.images[@constructor.sunImg])
-    texture.needsUpdate = true
-    material = new THREE.SpriteMaterial(map: texture)
-    sprite = new THREE.Sprite( material )
-    sprite.matrixAutoUpdate = false
-    sprite.updateMatrix()
-#    @scene.add(sprite)
-  
+    @addDebuggingObjects()if @opt.debug
+    
+    # Sun
+    geo = new THREE.SphereGeometry(@sunSize * Config.webGLSizeFactor, 64, 64)
+    material = new THREE.MeshBasicMaterial
+      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture.jpg')
+    @sun = new THREE.Mesh(geo, material)
+    @scene.add(@sun)
+    
+    # Ambient light
+    @scene.add(new THREE.AmbientLight( 0x404040))
+    
+    # Sun light
+    sunLight = new THREE.PointLight( 0xffffaa, 3, Config.webGLDistanceFactor * 5 )
+    sunLight.position.set( 0, 0, 0 )
+    @scene.add(sunLight)
+
+    @planets.personal.webGLPrepareScene(@scene, @camera)
+    @camera.position.z = 20
+    @camera.position.x = @planets.personal.planet.position.x
+    @camera.position.y = @planets.personal.planet.position.y
+
+#    @planets.reflexive.webGLPrepareScene(@scene);
+#    @planets.labor.webGLPrepareScene(@scene);
+#    @planets.tech.webGLPrepareScene(@scene);
+    
+  webGLOnFrame: (elapsedTime)->
+#    planet.updateProperties(elapsedTime) for name,planet of @planets
+    @planets.personal.updateProperties(elapsedTime)
+    @sun.rotation.y = elapsedTime * @sunRotationSpeed
+    
+  addDebuggingObjects: ->
+    axisHelper = new THREE.AxisHelper( 500 );
+    @scene.add( axisHelper )
+    
   # Paint canvas 2d stuff
   paint: (ctx)->
     @animate()

@@ -4,6 +4,8 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   initialize: ->
     @className = "planet #{@className}"
     @$el.addClass(@className)
+    
+    @planetRotationSpeed = 0.0001 # Radians per milliseconds
 
     @planetSize = Config.planetSize
     @trailWidth = Config.trailWidth
@@ -33,12 +35,21 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
       ]
       count: 'infinite'
       queue: false
-
+  
+  webGLPrepareScene: (@scene, @camera)->
+    geo = new THREE.SphereGeometry(@planetSize * Config.webGLSizeFactor, 64, 64)
+    material = new THREE.MeshPhongMaterial
+      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/planets/textures/personal.jpg')
+    @planet = new THREE.Mesh(geo, material)
+    @planet.position.x = @orbitRadius * Config.webGLDistanceFactor
+    @scene.add(@planet)
+    
   render: (next = $.noop) ->
     next()
     @
 
-  updateProperties: ->
+  updateProperties:(elapsedTime)->
+    @planet.rotation.y = elapsedTime * @planetRotationSpeed
     @animate()
 
   paint: (ctx)->

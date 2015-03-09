@@ -34,7 +34,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @opt.debug = true
 
     # Initialize foreground elements
-    @solarSystem = new MyUniverse.Views.SolarSystem()
+    @solarSystem = new MyUniverse.Views.SolarSystem(@opt)
 
     # Preload images
     @imageLoader = new ImageLoader()
@@ -106,8 +106,6 @@ class WebGLUniverse
     @fgRenderer.setSize(window.innerWidth, window.innerHeight)
         
   prepareScene: (objects, totalObjects)->
-    @addDebuggingObjects() if @opt.debug
-    
     #Create the background texture with the 2D canvas
     cnv = document.createElement('canvas')
     cnv.width = 2048
@@ -195,11 +193,7 @@ class WebGLUniverse
         }
         '''
     material
-    
-  addDebuggingObjects: ->
-    axisHelper = new THREE.AxisHelper( 100 );
-    @bgScene.add( axisHelper )
-    
+
   paint: ->
     @startTime = Date.now();
     @$domParent.append(@bgRenderer.domElement)
@@ -218,7 +212,9 @@ class WebGLUniverse
     @fgRenderer.setSize(width, height)
 
   paintCanvas: (animate = true)->
-    @uniforms.elapsedTimeMillis.value = Date.now() - @startTime;
+    elapsedTime = Date.now() - @startTime
+    @uniforms.elapsedTimeMillis.value = elapsedTime
+    @solarSystem.webGLOnFrame?(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
     @fgRenderer.render(@fgScene, @fgCamera)
     requestAnimFrame(=> @paintCanvas()) if animate
