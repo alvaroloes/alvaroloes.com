@@ -115,9 +115,10 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @scene.add(sunLight)
 
     @planets.personal.webGLPrepareScene(@scene, @camera)
-    @camera.position.z = 20
-    @camera.position.x = @planets.personal.planet.position.x
-    @camera.position.y = @planets.personal.planet.position.y
+    @camera.position.z = 200
+    @camera.position.x = 100
+    @camera.position.y = 200
+    @camera.lookAt(@sun.position)
 
 #    @planets.reflexive.webGLPrepareScene(@scene);
 #    @planets.labor.webGLPrepareScene(@scene);

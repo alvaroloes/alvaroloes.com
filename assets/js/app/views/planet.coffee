@@ -5,7 +5,8 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @className = "planet #{@className}"
     @$el.addClass(@className)
     
-    @planetRotationSpeed = 0.0001 # Radians per milliseconds
+    @planetRotationSpeed = 0.0005 # Radians per milliseconds
+    @planetTranslationSpeed = -0.0001 # Radians per milliseconds
 
     @planetSize = Config.planetSize
     @trailWidth = Config.trailWidth
@@ -37,12 +38,17 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
       queue: false
   
   webGLPrepareScene: (@scene, @camera)->
+    # Create the pivot to rotate around and perform the planet translation
+    @pivot = new THREE.Object3D()
+    
     geo = new THREE.SphereGeometry(@planetSize * Config.webGLSizeFactor, 64, 64)
     material = new THREE.MeshPhongMaterial
       map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/planets/textures/personal.jpg')
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = @orbitRadius * Config.webGLDistanceFactor
-    @scene.add(@planet)
+    @pivot.add(@planet)
+    
+    @scene.add(@pivot)
     
   render: (next = $.noop) ->
     next()
@@ -50,6 +56,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
 
   updateProperties:(elapsedTime)->
     @planet.rotation.y = elapsedTime * @planetRotationSpeed
+    @pivot.rotation.y = elapsedTime * @planetTranslationSpeed
     @animate()
 
   paint: (ctx)->
