@@ -4,6 +4,8 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
   planetImg: 'assets/img/solarSystem/planets/reflexive.png'
 
   initialize: ->
+    @wgPlanetRotationSpeed = 2*Math.PI / Config.reflexiveSelfRotationPeriod
+    @wgPlanetTranslationSpeed = 2*Math.PI / Config.reflexiveOrbitPeriod
     @orbitRadius = Config.reflexiveOrbitRadius
     @orbitPeriod = Config.reflexiveOrbitPeriod
     @selfRotationPeriod = Config.laborSelfRotationPeriod

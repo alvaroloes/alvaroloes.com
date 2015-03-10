@@ -5,8 +5,10 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @className = "planet #{@className}"
     @$el.addClass(@className)
     
-    @planetRotationSpeed = 0.0005 # Radians per milliseconds
-    @planetTranslationSpeed = -0.0001 # Radians per milliseconds
+    # For WebGl all the speeds must be in radians per milliseconds
+    # This properties will be overridden by the specific planets
+    #    @wgPlanetRotationSpeed = 0.0005 # Radians per milliseconds
+    #    @wgPlanetTranslationSpeed = -0.0001 # Radians per milliseconds
 
     @planetSize = Config.planetSize
     @trailWidth = Config.trailWidth
@@ -41,11 +43,11 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
     
-    geo = new THREE.SphereGeometry(@planetSize * Config.webGLSizeFactor, 64, 64)
+    geo = new THREE.SphereGeometry(@planetSize * Config.wgSizeFactor, 64, 64)
     material = new THREE.MeshPhongMaterial
       map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/planets/textures/personal.jpg')
     @planet = new THREE.Mesh(geo, material)
-    @planet.position.x = @orbitRadius * Config.webGLDistanceFactor
+    @planet.position.x = @orbitRadius * Config.wgDistanceFactor
     @pivot.add(@planet)
     
     @scene.add(@pivot)
@@ -55,8 +57,8 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @
 
   updateProperties:(elapsedTime)->
-    @planet.rotation.y = elapsedTime * @planetRotationSpeed
-    @pivot.rotation.y = elapsedTime * @planetTranslationSpeed
+    @planet.rotation.y = elapsedTime * @wgPlanetRotationSpeed
+    @pivot.rotation.y = @initialRotationAngle + elapsedTime * @wgPlanetTranslationSpeed
     @animate()
 
   paint: (ctx)->

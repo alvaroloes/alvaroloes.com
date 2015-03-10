@@ -34,6 +34,6 @@ class window.Config
   @reflexiveColor      : (a = 1)-> "rgba(211,235,190,#{a})"
   @laborColor          : (a = 1)-> "rgba(225,229,234,#{a})"
   @techColor           : (a = 1)-> "rgba(225,223,225,#{a})"
-    
-  @webGLSizeFactor: 50
-  @webGLDistanceFactor: 200
+
+  @wgSizeFactor: 50
+  @wgDistanceFactor: 200

@@ -102,7 +102,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     # Sun
     geo = new THREE.SphereGeometry(@sunSize * Config.webGLSizeFactor, 64, 64)
     material = new THREE.MeshBasicMaterial
-      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture.jpg')
+      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture3.png')
     @sun = new THREE.Mesh(geo, material)
     @scene.add(@sun)
     
@@ -114,21 +114,66 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     sunLight.position.set( 0, 0, 0 )
     @scene.add(sunLight)
 
-    @planets.personal.webGLPrepareScene(@scene, @camera)
-    @camera.position.z = 200
-    @camera.position.x = 100
-    @camera.position.y = 200
+    planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
+    
+    @camera.position.z = 1000
+    @camera.position.x = 500
+    @camera.position.y = 1000
     @camera.lookAt(@sun.position)
 
-#    @planets.reflexive.webGLPrepareScene(@scene);
-#    @planets.labor.webGLPrepareScene(@scene);
-#    @planets.tech.webGLPrepareScene(@scene);
     
   webGLOnFrame: (elapsedTime)->
-#    planet.updateProperties(elapsedTime) for name,planet of @planets
-    @planets.personal.updateProperties(elapsedTime)
+    planet.updateProperties(elapsedTime) for _,planet of @planets
     @sun.rotation.y = elapsedTime * @sunRotationSpeed
     
+#  getSunMaterial: ->
+#    texture = THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture3.png')
+#
+#    @uniforms =
+#      elapsedTimeMillis:
+#        type: 'f'
+#        value: 0
+#      texture:
+#        type: 't'
+#        value: texture
+#      c:   { type: "f", value: 0 },
+#      p:   { type: "f", value: 5.5 },
+#      glowColor: { type: "c", value: new THREE.Color(0xaaccff) },
+#      viewVector: { type: "v3", value: @camera.position }
+#
+#    material = new THREE.ShaderMaterial
+#      uniforms: @uniforms
+#      vertexShader: '''
+#        varying vec2 iUV;
+#        uniform vec3 viewVector;
+#        uniform float c;
+#        uniform float p;
+#        varying float intensity;
+#        void main() {
+#          iUV = uv;
+#          vec3 vNormal = normalize( normalMatrix * normal );
+#          vec3 vNormel = normalize( normalMatrix * viewVector );
+#          intensity = pow( abs(c - dot(vNormal, vNormel) ), p );
+#          gl_Position = projectionMatrix *
+#                        modelViewMatrix *
+#                        vec4(position,1.0);
+#        }
+#        '''
+#      fragmentShader: '''
+#        varying vec2 iUV;
+#        uniform float elapsedTimeMillis;
+#        uniform sampler2D texture;
+#        uniform vec3 glowColor;
+#        varying float intensity;
+#
+#        void main() {
+#          vec4 finalColor = texture2D(texture, iUV);
+#          vec3 glow = glowColor * intensity;
+#          gl_FragColor = normalize(vec4(glow, 1.) * finalColor);
+#        }
+#        '''
+#    material
+      
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 );
     @scene.add( axisHelper )
