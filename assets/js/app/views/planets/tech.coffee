@@ -2,6 +2,7 @@ class MyUniverse.Views.Tech extends MyUniverse.Views.Planet
   template: JST['templates/planets/tech']
   className: 'tech'
   planetImg: 'assets/img/solarSystem/planets/tech.png'
+  planetTexture: 'assets/img/solarSystem/planets/textures/tech.png'
 
   initialize: ->
     @wgPlanetRotationSpeed = 2*Math.PI / Config.laborSelfRotationPeriod

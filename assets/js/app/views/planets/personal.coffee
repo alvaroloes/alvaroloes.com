@@ -2,6 +2,7 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
   template: JST['templates/planets/personal']
   className: 'personal'
   planetImg: 'assets/img/solarSystem/planets/personal.png'
+  planetTexture: 'assets/img/solarSystem/planets/textures/personal.jpg'
   articles: {}
 
   initialize: ->

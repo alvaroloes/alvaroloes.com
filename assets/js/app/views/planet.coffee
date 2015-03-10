@@ -17,7 +17,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @selfRotationAngle = 0
     @stopPaint = false
     @imageLoader = new ImageLoader()
-    @imageLoader.loadImages [@planetImg, @planetShadow]
+    @imageLoader.loadImages [@planetImg, @planetShadow, @planetTexture]
 
     Animatable.makeAnimatable(@)
     @animation
@@ -43,9 +43,11 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
     
+    texture = new THREE.Texture(@imageLoader.images[@planetTexture])
+    texture.needsUpdate = true
     geo = new THREE.SphereGeometry(@planetSize * Config.wgSizeFactor, 64, 64)
     material = new THREE.MeshPhongMaterial
-      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/planets/textures/personal.jpg')
+      map: texture
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = @orbitRadius * Config.wgDistanceFactor
     @pivot.add(@planet)

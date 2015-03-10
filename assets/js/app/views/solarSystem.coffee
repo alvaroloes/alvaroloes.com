@@ -4,6 +4,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
   @sunImg: 'assets/img/solarSystem/sun_medium.png'
   @sunHaloImg: 'assets/img/solarSystem/sunHalo_medium.png'
+  @sunTexture: 'assets/img/solarSystem/sun_texture3.png'
 
   initialize: (@opt = {})->
     @sunRotationSpeed = 0.001  # Radians per milliseconds
@@ -32,7 +33,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     # Preload images
     @imageLoader = new ImageLoader()
-    @imageLoader.loadImages [@constructor.sunImg, @constructor.sunHaloImg]
+    @imageLoader.loadImages [@constructor.sunImg, @constructor.sunHaloImg, @constructor.sunTexture]
 
     promises = [@imageLoader]
     promises.push planet.imageLoader for name,planet of @planets
@@ -100,9 +101,11 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @addDebuggingObjects()if @opt.debug
     
     # Sun
+    texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
+    texture.needsUpdate = true
     geo = new THREE.SphereGeometry(@sunSize * Config.webGLSizeFactor, 64, 64)
     material = new THREE.MeshBasicMaterial
-      map: THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture3.png')
+      map: texture
     @sun = new THREE.Mesh(geo, material)
     @scene.add(@sun)
     
@@ -116,9 +119,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
-    @camera.position.z = 1000
-    @camera.position.x = 500
-    @camera.position.y = 1000
+    @camera.position.z = 600
+    @camera.position.x = 300
+    @camera.position.y = 600
     @camera.lookAt(@sun.position)
 
     

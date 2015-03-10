@@ -2,6 +2,7 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
   template: JST['templates/planets/reflexive']
   className: 'reflexive'
   planetImg: 'assets/img/solarSystem/planets/reflexive.png'
+  planetTexture: 'assets/img/solarSystem/planets/textures/reflexive.jpg'
 
   initialize: ->
     @wgPlanetRotationSpeed = 2*Math.PI / Config.reflexiveSelfRotationPeriod
