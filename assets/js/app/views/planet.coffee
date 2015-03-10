@@ -40,18 +40,29 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
       queue: false
   
   webGLPrepareScene: (@scene, @camera)->
+    orbitRadius = @orbitRadius * Config.wgDistanceFactor
+    planetSize = @planetSize * Config.wgSizeFactor
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
     
+    # Create the planet and add it to the pivot
     texture = new THREE.Texture(@imageLoader.images[@planetTexture])
     texture.needsUpdate = true
-    geo = new THREE.SphereGeometry(@planetSize * Config.wgSizeFactor, 64, 64)
+    geo = new THREE.SphereGeometry(planetSize, 64, 64)
     material = new THREE.MeshPhongMaterial
       map: texture
     @planet = new THREE.Mesh(geo, material)
-    @planet.position.x = @orbitRadius * Config.wgDistanceFactor
+    @planet.position.x = orbitRadius
     @pivot.add(@planet)
     
+    # Create the planet trail
+    geo = new THREE.TorusGeometry(orbitRadius, planetSize/4, 32, 128)
+    material = new THREE.MeshPhongMaterial
+      color: 0xffffff
+    torus = new THREE.Mesh(geo, material)
+    torus.rotation.x = Math.PI/2
+    
+    @scene.add(torus)
     @scene.add(@pivot)
     
   render: (next = $.noop) ->

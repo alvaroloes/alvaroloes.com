@@ -113,15 +113,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @scene.add(new THREE.AmbientLight( 0x404040))
     
     # Sun light
-    sunLight = new THREE.PointLight( 0xffffaa, 3, Config.webGLDistanceFactor * 5 )
+    sunLight = new THREE.PointLight( 0xffffaa, 3, Config.wgDistanceFactor * 6 )
     sunLight.position.set( 0, 0, 0 )
     @scene.add(sunLight)
 
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
-    @camera.position.z = 600
-    @camera.position.x = 300
-    @camera.position.y = 600
+    @camera.position.z = 500
+    @camera.position.x = 250
+    @camera.position.y = 500
     @camera.lookAt(@sun.position)
 
     
