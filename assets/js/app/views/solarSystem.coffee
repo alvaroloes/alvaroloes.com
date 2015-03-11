@@ -119,14 +119,24 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
-    @camera.position.z = 200
-    @camera.position.x = 0
-    @camera.position.y = 100
-    @camera.lookAt(@sun.position)
+    # Testing:
+    planetPivotPos = @planets.personal.planet.position
+    @camera.position.copy(planetPivotPos)
+    @camera.position.x += 20
+    @camera.position.z += 40
+    @camera.position.y += 20
+
+    @camera.lookAt(@planets.personal.planet.position)
+    @planets.personal.pivot.add(@camera)
 
     
   webGLOnFrame: (elapsedTime)->
     planet.updateProperties(elapsedTime) for _,planet of @planets
+#    planetPos = @planets.personal.webGLGetPlanetRealPosition()
+#    newCameraPos = new THREE.Vector3().copy(planetPos)
+#    newCameraPos.multiplyScalar(0.9)
+#    @camera.position.copy(newCameraPos)
+#    @camera.lookAt(planetPos)
     @sun.rotation.y = elapsedTime * @sunRotationSpeed
     
 #  getSunMaterial: ->
