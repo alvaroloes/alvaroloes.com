@@ -100,7 +100,6 @@ class WebGLUniverse
     # Foreground scene camera an renderer
     @fgScene = new THREE.Scene()
     @fgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 )
-    @fgCamera.position.z = 450
     @fgRenderer = new THREE.WebGLRenderer(alpha: true)
     @fgRenderer.setClearColor(0x0, 0)
     @fgRenderer.setSize(window.innerWidth, window.innerHeight)

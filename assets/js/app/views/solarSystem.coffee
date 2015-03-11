@@ -119,9 +119,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
-    @camera.position.z = 500
-    @camera.position.x = 250
-    @camera.position.y = 500
+    @camera.position.z = 200
+    @camera.position.x = 0
+    @camera.position.y = 100
     @camera.lookAt(@sun.position)
 
     

@@ -56,15 +56,43 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @pivot.add(@planet)
     
     # Create the planet trail
-    geo = new THREE.TorusGeometry(orbitRadius, planetSize/4, 32, 128)
-    material = new THREE.MeshPhongMaterial
-      color: 0xffffff
+    geo = new THREE.TorusGeometry(orbitRadius, planetSize/2, 32, 128)
+    material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
-    
+
     @scene.add(torus)
     @scene.add(@pivot)
-    
+
+  getGlowMaterial: ->
+    @uniforms =
+      color: type: "c", value: new THREE.Color(0xffffff)
+
+    material = new THREE.ShaderMaterial
+      uniforms: @uniforms
+      transparent: true
+      vertexShader: '''
+        varying vec3 iNormal;
+        varying vec3 iVectorToCamera;
+        void main() {
+          iNormal = normalize(vec3(modelMatrix * vec4(normal,0.0)));
+          iVectorToCamera = normalize(cameraPosition - position);
+          gl_Position = projectionMatrix *
+                        modelViewMatrix *
+                        vec4(position,1.0);
+        }
+        '''
+      fragmentShader: '''
+        varying vec3 iNormal;
+        varying vec3 iVectorToCamera;
+        uniform vec3 color;
+        void main() {
+          float alpha = max(0.0, dot(iNormal, iVectorToCamera));
+          gl_FragColor = vec4(color, pow(alpha,4.0));
+        }
+        '''
+    material
+  
   render: (next = $.noop) ->
     next()
     @
