@@ -92,14 +92,14 @@ class WebGLUniverse
     @canvasUniverse = new CanvasUniverse(@$domParent, @imageLoader, @solarSystem)
     # Background scene, camera an renderer
     @bgScene = new THREE.Scene()
-    @bgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 )
+    @bgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 )
     @bgCamera.position.z = 450
     @bgRenderer = new THREE.WebGLRenderer()
     @bgRenderer.setSize(window.innerWidth, window.innerHeight)
     
     # Foreground scene camera an renderer
     @fgScene = new THREE.Scene()
-    @fgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 )
+    @fgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 )
     @fgRenderer = new THREE.WebGLRenderer(alpha: true)
     @fgRenderer.setClearColor(0x0, 0)
     @fgRenderer.setSize(window.innerWidth, window.innerHeight)
@@ -213,7 +213,7 @@ class WebGLUniverse
   paintCanvas: (animate = true)->
     elapsedTime = Date.now() - @startTime
     @uniforms.elapsedTimeMillis.value = elapsedTime
-    @solarSystem.webGLOnFrame?(elapsedTime)
+    @solarSystem.webGLOnFrame(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
     @fgRenderer.render(@fgScene, @fgCamera)
     requestAnimFrame(=> @paintCanvas()) if animate

@@ -54,15 +54,20 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = orbitRadius
     @pivot.add(@planet)
+    @scene.add(@pivot)
     
     # Create the planet trail
     geo = new THREE.TorusGeometry(orbitRadius, planetSize/0.9, 32, 128)
     material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
-
     @scene.add(torus)
-    @scene.add(@pivot)
+  
+#    geo = new THREE.SphereGeometry(100, 64, 64);
+#    material = @getGlowMaterial()
+#    sphere = new THREE.Mesh(geo, material)
+#    sphere.position.x = 150
+#    @scene.add(sphere)
 
   getGlowMaterial: ->
     @uniforms =
@@ -72,29 +77,31 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
       uniforms: @uniforms
       transparent: true
       vertexShader: '''
+        varying vec3 iPosition;
         varying vec3 iNormal;
-        varying vec3 iVectorToCamera;
         void main() {
-          iNormal = normalize(vec3(modelMatrix * vec4(normal,0.0)));
-          iVectorToCamera = normalize(cameraPosition - position);
+          iPosition = vec3(modelMatrix * vec4(position,1.0));
+          iNormal = vec3(modelMatrix * vec4(normal,0.0));
           gl_Position = projectionMatrix *
                         modelViewMatrix *
                         vec4(position,1.0);
         }
         '''
       fragmentShader: '''
-        varying vec3 iNormal;
-        varying vec3 iVectorToCamera;
         uniform vec3 color;
+        varying vec3 iPosition;
+        varying vec3 iNormal;
         void main() {
-          float alpha = max(0.0, dot(iNormal, iVectorToCamera));
-          gl_FragColor = vec4(color, pow(alpha,8.0));
+          vec3 vectorToCamera = normalize(cameraPosition - iPosition);
+          float alpha = pow(1.0 - abs(dot(iNormal, vectorToCamera)),1.0);
+          gl_FragColor = vec4(color, alpha);
         }
         '''
     material
   
   webGLGetPlanetRealPosition: ->
     pos = new THREE.Vector3()
+    @pivot.updateMatrixWorld()
     pos.setFromMatrixPosition(@planet.matrixWorld)
     pos
     
@@ -105,7 +112,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   updateProperties:(elapsedTime)->
     @planet.rotation.y = elapsedTime * @wgPlanetRotationSpeed
     @pivot.rotation.y = @initialRotationAngle + elapsedTime * @wgPlanetTranslationSpeed
-    @animate()
+#    @animate()
 
   paint: (ctx)->
     return if @stopPaint

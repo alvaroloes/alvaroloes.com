@@ -7,7 +7,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   @sunTexture: 'assets/img/solarSystem/sun_texture3.png'
 
   initialize: (@opt = {})->
-    @sunRotationSpeed = 0.001  # Radians per milliseconds
+    @sunRotationSpeed = 0.0005  # Radians per milliseconds
     
     @sunSize = Config.sunSize
     @sunHaloSize = Config.sunSize*1.25
@@ -103,7 +103,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
-    geo = new THREE.SphereGeometry(@sunSize * Config.webGLSizeFactor, 64, 64)
+    geo = new THREE.SphereGeometry(@sunSize * Config.wgSizeFactor, 64, 64)
     material = new THREE.MeshBasicMaterial
       map: texture
     @sun = new THREE.Mesh(geo, material)
@@ -120,75 +120,70 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
     # Testing:
-    planetPivotPos = @planets.personal.planet.position
-    @camera.position.copy(planetPivotPos)
-    @camera.position.x += 20
-    @camera.position.z += 40
-    @camera.position.y += 20
+    @camera.position.z = 4000
+    @camera.position.x = 0
+    @camera.position.y = 500
+    
+    Animatable.makeAnimatable(@camera.position)
+    Animatable.makeAnimatable(@camera.rotation)
 
-    @camera.lookAt(@planets.personal.planet.position)
-    @planets.personal.pivot.add(@camera)
+#    @camera.position.animation
+#      transitions: [
+#        properties:
+#          y: -50
+#        duration: 6000
+#      ]
+#      count: 'infinite'
+#      alternateDirection: true
+#      queue: false
+#    @camera.position.animation
+#      transitions: [
+#        properties:
+#          x: -300
+#        duration: 6000
+#      ]
+#      count: 'infinite'
+#      alternateDirection: true
+#      queue: false
+
+    @camera.position.transition
+      properties:
+        z: 100
+      duration: 10000
+      queue: false
+      easing: Easing.easeOut
+    @camera.position.transition
+      properties:
+        y: 5
+      duration: 10000
+      queue: false
+      easing: Easing.linear
+    @camera.rotation.transition
+      properties:
+        z: Math.PI/8
+      duration: 10000
+      queue: false
+      easing: Easing.easeInOut
+
 
     
   webGLOnFrame: (elapsedTime)->
     planet.updateProperties(elapsedTime) for _,planet of @planets
-#    planetPos = @planets.personal.webGLGetPlanetRealPosition()
-#    newCameraPos = new THREE.Vector3().copy(planetPos)
-#    newCameraPos.multiplyScalar(0.9)
-#    @camera.position.copy(newCameraPos)
-#    @camera.lookAt(planetPos)
     @sun.rotation.y = elapsedTime * @sunRotationSpeed
+    @camera.position.animate()
+    @camera.rotation.animate()
+#    @camera.lookAt(@sun.position)
+
     
-#  getSunMaterial: ->
-#    texture = THREE.ImageUtils.loadTexture('assets/img/solarSystem/sun_texture3.png')
-#
-#    @uniforms =
-#      elapsedTimeMillis:
-#        type: 'f'
-#        value: 0
-#      texture:
-#        type: 't'
-#        value: texture
-#      c:   { type: "f", value: 0 },
-#      p:   { type: "f", value: 5.5 },
-#      glowColor: { type: "c", value: new THREE.Color(0xaaccff) },
-#      viewVector: { type: "v3", value: @camera.position }
-#
-#    material = new THREE.ShaderMaterial
-#      uniforms: @uniforms
-#      vertexShader: '''
-#        varying vec2 iUV;
-#        uniform vec3 viewVector;
-#        uniform float c;
-#        uniform float p;
-#        varying float intensity;
-#        void main() {
-#          iUV = uv;
-#          vec3 vNormal = normalize( normalMatrix * normal );
-#          vec3 vNormel = normalize( normalMatrix * viewVector );
-#          intensity = pow( abs(c - dot(vNormal, vNormel) ), p );
-#          gl_Position = projectionMatrix *
-#                        modelViewMatrix *
-#                        vec4(position,1.0);
-#        }
-#        '''
-#      fragmentShader: '''
-#        varying vec2 iUV;
-#        uniform float elapsedTimeMillis;
-#        uniform sampler2D texture;
-#        uniform vec3 glowColor;
-#        varying float intensity;
-#
-#        void main() {
-#          vec4 finalColor = texture2D(texture, iUV);
-#          vec3 glow = glowColor * intensity;
-#          gl_FragColor = normalize(vec4(glow, 1.) * finalColor);
-#        }
-#        '''
-#    material
+#    planetPos = @planets.personal.webGLGetPlanetRealPosition()
+#    @camera.position.x = planetPos.x
+#    @camera.position.y = planetPos.y + 8
+#    @camera.position.z = planetPos.z + 15
+#    @camera.lookAt(planetPos)
+
       
   addDebuggingObjects: ->
-    axisHelper = new THREE.AxisHelper( 500 );
+    axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
     @scene.add( axisHelper )
     
   # Paint canvas 2d stuff
