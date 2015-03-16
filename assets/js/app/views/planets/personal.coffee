@@ -6,8 +6,6 @@ class MyUniverse.Views.Personal extends MyUniverse.Views.Planet
   articles: {}
 
   initialize: ->
-    @wgPlanetRotationSpeed = 2*Math.PI / Config.personalSelfRotationPeriod
-    @wgPlanetTranslationSpeed = 2*Math.PI / Config.personalOrbitPeriod
     @orbitRadius = Config.personalOrbitRadius
     @orbitPeriod = Config.personalOrbitPeriod
     @selfRotationPeriod = Config.personalSelfRotationPeriod

@@ -9,6 +9,7 @@ class window.Config
 
   # Rotation periods
   @baseSelfRotationPeriod           : 10000
+  @sunSelfRotationPeriod            : 2.5 * @baseSelfRotationPeriod
   @personalSelfRotationPeriod       : 1.2 * @baseSelfRotationPeriod
   @reflexiveSelfRotationPeriod      : 1.5 * @baseSelfRotationPeriod
   @laborSelfRotationPeriod          : 2 * @baseSelfRotationPeriod

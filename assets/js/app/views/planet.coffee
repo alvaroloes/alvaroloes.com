@@ -62,6 +62,30 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
     @scene.add(torus)
+    
+    # Animations: rotation and translation around sun
+    Animatable.makeAnimatable(@planet.rotation)
+    Animatable.makeAnimatable(@pivot.rotation)
+    
+    @planet.rotation.animation
+      transitions: [
+        properties:
+          y: 2 * Math.PI * @selfRotationDirection
+        duration: @selfRotationPeriod
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
+      
+    @pivot.rotation.animation
+      transitions: [
+        properties:
+          y: @initialRotationAngle + 2 * Math.PI
+        duration: @orbitPeriod
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
   
 #    geo = new THREE.SphereGeometry(100, 64, 64);
 #    material = @getGlowMaterial()
@@ -93,7 +117,7 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
         varying vec3 iNormal;
         void main() {
           vec3 vectorToCamera = normalize(cameraPosition - iPosition);
-          float alpha = pow(1.0 - abs(dot(iNormal, vectorToCamera)),1.0);
+          float alpha = pow(1.0 - abs(dot(iNormal, vectorToCamera)),2.0);
           gl_FragColor = vec4(color, alpha);
         }
         '''
@@ -110,8 +134,10 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @
 
   updateProperties:(elapsedTime)->
-    @planet.rotation.y = elapsedTime * @wgPlanetRotationSpeed
-    @pivot.rotation.y = @initialRotationAngle + elapsedTime * @wgPlanetTranslationSpeed
+    @planet.rotation.animate()
+    @pivot.rotation.animate()
+#    @planet.rotation.y = elapsedTime * @wgPlanetRotationSpeed
+#    @pivot.rotation.y = @initialRotationAngle + elapsedTime * @wgPlanetTranslationSpeed
 #    @animate()
 
   paint: (ctx)->

@@ -5,8 +5,6 @@ class MyUniverse.Views.Labor extends MyUniverse.Views.Planet
   planetTexture: 'assets/img/solarSystem/planets/textures/labor.jpg'
 
   initialize: ->
-    @wgPlanetRotationSpeed = 2*Math.PI / Config.laborSelfRotationPeriod
-    @wgPlanetTranslationSpeed = 2*Math.PI / Config.laborOrbitPeriod
     @orbitRadius = Config.laborOrbitRadius
     @orbitPeriod = Config.laborOrbitPeriod
     @selfRotationPeriod = Config.laborSelfRotationPeriod

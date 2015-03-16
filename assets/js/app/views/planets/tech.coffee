@@ -5,8 +5,6 @@ class MyUniverse.Views.Tech extends MyUniverse.Views.Planet
   planetTexture: 'assets/img/solarSystem/planets/textures/tech.png'
 
   initialize: ->
-    @wgPlanetRotationSpeed = 2*Math.PI / Config.laborSelfRotationPeriod
-    @wgPlanetTranslationSpeed = 2*Math.PI / Config.laborOrbitPeriod
     @orbitRadius = Config.techOrbitRadius
     @orbitPeriod = Config.techOrbitPeriod
     @selfRotationPeriod = Config.techSelfRotationPeriod

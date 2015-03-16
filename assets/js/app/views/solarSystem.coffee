@@ -7,7 +7,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   @sunTexture: 'assets/img/solarSystem/sun_texture3.png'
 
   initialize: (@opt = {})->
-    @sunRotationSpeed = 0.0005  # Radians per milliseconds
+    @sunRotationPeriod = Config.sunSelfRotationPeriod
     
     @sunSize = Config.sunSize
     @sunHaloSize = Config.sunSize*1.25
@@ -119,6 +119,19 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
     
+    # Sun animation
+    Animatable.makeAnimatable(@sun.rotation)
+    @sun.rotation.animation
+      transitions: [
+        properties:
+          y: 2 * Math.PI
+        duration: @sunRotationPeriod
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
+    
+    
     # Testing:
     @camera.position.z = 4000
     @camera.position.x = 0
@@ -154,7 +167,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       easing: Easing.easeOut
     @camera.position.transition
       properties:
-        y: 5
+        y: 50
       duration: 10000
       queue: false
       easing: Easing.linear
@@ -169,7 +182,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     
   webGLOnFrame: (elapsedTime)->
     planet.updateProperties(elapsedTime) for _,planet of @planets
-    @sun.rotation.y = elapsedTime * @sunRotationSpeed
+    @sun.rotation.animate()
     @camera.position.animate()
     @camera.rotation.animate()
 #    @camera.lookAt(@sun.position)
