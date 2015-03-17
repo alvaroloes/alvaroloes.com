@@ -161,13 +161,13 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
     @camera.position.transition
       properties:
-        z: 100
+        z: 200
       duration: 10000
       queue: false
       easing: Easing.easeOut
     @camera.position.transition
       properties:
-        y: 50
+        y: 100
       duration: 10000
       queue: false
       easing: Easing.linear
