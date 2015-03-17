@@ -187,7 +187,6 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @camera.rotation.animate()
 #    @camera.lookAt(@sun.position)
 
-    
 #    planetPos = @planets.personal.webGLGetPlanetRealPosition()
 #    @camera.position.x = planetPos.x
 #    @camera.position.y = planetPos.y + 8
@@ -300,3 +299,5 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     @setPauseState(!move)
 
 
+
+class SolarSystemCanvasPainter

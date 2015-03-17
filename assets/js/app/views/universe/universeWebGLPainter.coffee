@@ -1,8 +1,8 @@
-class WebGLUniversePainter
+class UniverseWebGLPainter
 
   constructor: (@$domParent, @imageLoader, @solarSystem, @opt)->
     # Crete a canvas 2D universe only to draw the stars texture
-    @canvasUniverse = new CanvasUniversePainter(@$domParent, @imageLoader, @solarSystem)
+    @canvasUniverse = new UniverseCanvasPainter(@$domParent, @imageLoader, @solarSystem)
     # Background scene, camera an renderer
     @bgScene = new THREE.Scene()
     @bgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 )

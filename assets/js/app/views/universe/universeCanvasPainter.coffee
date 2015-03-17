@@ -1,4 +1,4 @@
-class CanvasUniversePainter
+class UniverseCanvasPainter
   backgroundLastRenderTime: 0
   @backgroundFrameTime: 1000 / 15 # 1000 / (n frames per second)
 

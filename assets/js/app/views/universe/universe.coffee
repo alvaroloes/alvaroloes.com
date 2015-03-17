@@ -55,9 +55,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       
     # Set the paint strategy
     if opt.force2d
-      @sceneStrategy = new CanvasUniversePainter(@$el, @imageLoader, @solarSystem, @opt)
+      @sceneStrategy = new UniverseCanvasPainter(@$el, @imageLoader, @solarSystem, @opt)
     else
-      @sceneStrategy = new WebGLUniversePainter(@$el, @imageLoader, @solarSystem, @opt)
+      @sceneStrategy = new UniverseWebGLPainter(@$el, @imageLoader, @solarSystem, @opt)
 
     $(window).resize => @sceneStrategy.resize()
     null
