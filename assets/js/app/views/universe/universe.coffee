@@ -29,8 +29,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   ]
   # End static variables
 
-  initialize: (opt = {})->
-    @opt = opt
+  initialize: (@opt = {})->
+#    @opt.force2d = true
     @opt.debug = true
 
     # Initialize foreground elements
@@ -53,13 +53,13 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     for o in @constructor.staticObjects
       @addObjects [$.extend({src: o},props)]
       
-    # Set the paint strategy
-    if opt.force2d
-      @sceneStrategy = new UniverseCanvasPainter(@$el, @imageLoader, @solarSystem, @opt)
+    # Choose the paint strategy
+    if @opt.force2d
+      @paintStrategy = new UniverseCanvasPainter(@$el, @imageLoader, @solarSystem, @opt)
     else
-      @sceneStrategy = new UniverseWebGLPainter(@$el, @imageLoader, @solarSystem, @opt)
+      @paintStrategy = new UniverseWebGLPainter(@$el, @imageLoader, @solarSystem, @opt)
 
-    $(window).resize => @sceneStrategy.resize()
+    $(window).resize => @paintStrategy.resize()
     null
 
   addObjects: (objects)->
@@ -78,8 +78,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
-    $.when(@imageLoader, @solarSystem.imageLoaderPromise).done =>
-      @sceneStrategy.prepareScene(@objects, @constructor.totalObjects)
-      @sceneStrategy.paint()
+    $.when(@imageLoader, @solarSystem.getImageLoaderPromise()).done =>
+      @paintStrategy.prepareScene(@objects, @constructor.totalObjects)
+      @paintStrategy.paint()
       promise.resolve()
     promise

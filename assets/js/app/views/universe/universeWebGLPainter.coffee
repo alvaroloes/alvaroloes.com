@@ -2,7 +2,7 @@ class UniverseWebGLPainter
 
   constructor: (@$domParent, @imageLoader, @solarSystem, @opt)->
     # Crete a canvas 2D universe only to draw the stars texture
-    @canvasUniverse = new UniverseCanvasPainter(@$domParent, @imageLoader, @solarSystem)
+    @canvasUniverse = new UniverseCanvasPainter(@$domParent, @imageLoader, null)
     # Background scene, camera an renderer
     @bgScene = new THREE.Scene()
     @bgCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 )
@@ -30,7 +30,7 @@ class UniverseWebGLPainter
     material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
     @bgScene.add(plane)
-    @solarSystem.webGLPrepareScene(@fgScene,@fgCamera)
+    @solarSystem.prepareScene(@fgScene,@fgCamera)
 
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -126,7 +126,7 @@ class UniverseWebGLPainter
   paintCanvas: (animate = true)->
     elapsedTime = Date.now() - @startTime
     @uniforms.elapsedTimeMillis.value = elapsedTime
-    @solarSystem.webGLOnFrame(elapsedTime)
+    @solarSystem.onPaint(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
     @fgRenderer.render(@fgScene, @fgCamera)
     requestAnimFrame(=> @paintCanvas()) if animate

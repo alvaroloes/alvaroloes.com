@@ -135,8 +135,8 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
     @
 
   updateProperties:(elapsedTime)->
-    @planet.rotation.animate()
-    @pivot.rotation.animate()
+#    @planet.rotation.animate()
+#    @pivot.rotation.animate()
 #    @planet.rotation.y = elapsedTime * @wgPlanetRotationSpeed
 #    @pivot.rotation.y = @initialRotationAngle + elapsedTime * @wgPlanetTranslationSpeed
 #    @animate()

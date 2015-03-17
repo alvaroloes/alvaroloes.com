@@ -41,6 +41,7 @@ class UniverseCanvasPainter
 
       @preparedObjects.push(o)
       ++i
+    @solarSystem?.prepareScene()
     null
 
   paint: ->
@@ -85,7 +86,7 @@ class UniverseCanvasPainter
 
   paintForeground: (ctx)->
     @clear(ctx)
-    @solarSystem.paint(ctx)
+    @solarSystem?.onPaint(ctx)
 
   clear: (ctx) ->
     # An ultra-optimized way to clear the canvas (instead of "clearRect")
