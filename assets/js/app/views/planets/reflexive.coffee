@@ -4,13 +4,15 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
   planetImg: 'assets/img/solarSystem/planets/reflexive.png'
   planetTexture: 'assets/img/solarSystem/planets/textures/reflexive.jpg'
 
-  initialize: ->
-    @orbitRadius = Config.reflexiveOrbitRadius
-    @orbitPeriod = Config.reflexiveOrbitPeriod
-    @selfRotationPeriod = Config.laborSelfRotationPeriod
-    @selfRotationDirection = -1
-    @planetColor = Config.reflexiveColor
+  initialize: (@opt)->
     super
+    @paintStrategy.orbitRadius = Config.reflexiveOrbitRadius
+    @paintStrategy.orbitPeriod = Config.reflexiveOrbitPeriod
+    @paintStrategy.selfRotationPeriod = Config.laborSelfRotationPeriod
+    @paintStrategy.selfRotationDirection = -1
+    @paintStrategy.planetColor = Config.reflexiveColor
+    @paintStrategy.planetImg = @planetImg
+    @paintStrategy.planetTexture = @planetTexture
 
   render: ->
     super =>

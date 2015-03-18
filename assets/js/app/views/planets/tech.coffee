@@ -4,13 +4,15 @@ class MyUniverse.Views.Tech extends MyUniverse.Views.Planet
   planetImg: 'assets/img/solarSystem/planets/tech.png'
   planetTexture: 'assets/img/solarSystem/planets/textures/tech.png'
 
-  initialize: ->
-    @orbitRadius = Config.techOrbitRadius
-    @orbitPeriod = Config.techOrbitPeriod
-    @selfRotationPeriod = Config.techSelfRotationPeriod
-    @selfRotationDirection = -1
-    @planetColor = Config.techColor
+  initialize: (@opt)->
     super
+    @paintStrategy.orbitRadius = Config.techOrbitRadius
+    @paintStrategy.orbitPeriod = Config.techOrbitPeriod
+    @paintStrategy.selfRotationPeriod = Config.techSelfRotationPeriod
+    @paintStrategy.selfRotationDirection = -1
+    @paintStrategy.planetColor = Config.techColor
+    @paintStrategy.planetImg = @planetImg
+    @paintStrategy.planetTexture = @planetTexture
 
   render: ->
     super =>

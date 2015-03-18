@@ -8,10 +8,10 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
     # Create subviews
     @sun = new MyUniverse.Views.Sun()
     @planets =
-      personal: new MyUniverse.Views.Personal()
-      reflexive: new MyUniverse.Views.Reflexive()
-      labor: new MyUniverse.Views.Labor()
-      tech: new MyUniverse.Views.Tech()
+      personal: new MyUniverse.Views.Personal(@opt)
+      reflexive: new MyUniverse.Views.Reflexive(@opt)
+      labor: new MyUniverse.Views.Labor(@opt)
+      tech: new MyUniverse.Views.Tech(@opt)
       
     # Choose the paint strategy
     if (@opt.force2d)
@@ -70,9 +70,10 @@ class SolarSystemCanvasPainter
     @imageLoader.loadImages [@constructor.sunImg, @constructor.sunHaloImg]
 
     promises = [@imageLoader]
-    promises.push planet.imageLoader for name,planet of @planets
+    promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when(promises)
-    
+  
+  setAnimations:->
     # Make solar system animatable
     Animatable.makeAnimatable(@)
     @animation
@@ -115,18 +116,18 @@ class SolarSystemCanvasPainter
       queue: false
       
   prepareScene:->
-    #NOP
+    @setAnimations()
+    planet.prepareScene() for _,planet of @planets
       
   onPaint: (ctx)->
     @animate()
-    # Update all planet properties for animation
-    planet.updateProperties() for name,planet of @planets
 
+    planet.onPaint(ctx, true) for name,planet of @planets
+    
     ctx.save()
     # Set the (0,0) in the center and adjust the size of the solar system
     ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2)
     ctx.scale(@solarSystemScale,@solarSystemScale)
-
 
     # Center the solar system in a planet if needed, taking into account if the animation
     # has finished
@@ -151,16 +152,14 @@ class SolarSystemCanvasPainter
       -@sunSize/2, -@sunSize/2,
       @sunSize, @sunSize)
 
-    # Paint all planets
-    @planets.personal.paint(ctx);
-    @planets.reflexive.paint(ctx);
-    @planets.labor.paint(ctx);
-    @planets.tech.paint(ctx);
+#    # Paint all planets
+    planet.onPaint(ctx) for name,planet of @planets
 
     ctx.restore()
     null
 
   goTo: (celestialObject = 'birdsEye')->
+    #TODO
     windowHeight = $(window).height()
     windowHeightInc = 400 # This makes planets overflow the window
     wasCenteredOnSun = !@focusedPlanet
@@ -224,7 +223,7 @@ class SolarSystemWebGLPainter
     @imageLoader.loadImages [@constructor.sunTexture]
 
     promises = [@imageLoader]
-    promises.push planet.imageLoader for name,planet of @planets
+    promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when(promises)
 
   prepareScene: (@scene, @camera)->
@@ -247,7 +246,8 @@ class SolarSystemWebGLPainter
     sunLight.position.set( 0, 0, 0 )
     @scene.add(sunLight)
 
-    planet.webGLPrepareScene(@scene, @camera) for _,planet of @planets
+    # Add planets to scene
+    planet.prepareScene(@scene, @camera) for _,planet of @planets
 
     # Sun animation
     Animatable.makeAnimatable(@sun.rotation)
@@ -311,7 +311,7 @@ class SolarSystemWebGLPainter
 
 
   onPaint: (elapsedTime)->
-    planet.updateProperties(elapsedTime) for _,planet of @planets
+    planet.onPaint(elapsedTime) for _,planet of @planets
     @sun.rotation.animate()
     @camera.position.animate()
     @camera.rotation.animate()

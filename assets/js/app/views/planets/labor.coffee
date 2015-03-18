@@ -4,13 +4,15 @@ class MyUniverse.Views.Labor extends MyUniverse.Views.Planet
   planetImg: 'assets/img/solarSystem/planets/labor.png'
   planetTexture: 'assets/img/solarSystem/planets/textures/labor.jpg'
 
-  initialize: ->
-    @orbitRadius = Config.laborOrbitRadius
-    @orbitPeriod = Config.laborOrbitPeriod
-    @selfRotationPeriod = Config.laborSelfRotationPeriod
-    @selfRotationDirection = -1
-    @planetColor = Config.laborColor
+  initialize: (@opt)->
     super
+    @paintStrategy.orbitRadius = Config.laborOrbitRadius
+    @paintStrategy.orbitPeriod = Config.laborOrbitPeriod
+    @paintStrategy.selfRotationPeriod = Config.laborSelfRotationPeriod
+    @paintStrategy.selfRotationDirection = -1
+    @paintStrategy.planetColor = Config.laborColor
+    @paintStrategy.planetImg = @planetImg
+    @paintStrategy.planetTexture = @planetTexture
 
   render: ->
     super =>
