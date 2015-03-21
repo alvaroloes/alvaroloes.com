@@ -46,6 +46,15 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   onPaint: (args...)->
     @paintStrategy.onPaint.apply(@paintStrategy,args)
 
+  goTo: (celestialObject = 'birdsEye')->
+    section.removeClass("show") for _, section of @sections
+    @paintStrategy.goTo celestialObject, =>
+      sectionToShow = @sections[celestialObject]
+      section.removeClass("preshow") for name, section of @sections
+      return unless sectionToShow?
+      sectionToShow.addClass("preshow")
+      reflow()
+      sectionToShow.addClass("show")
 
 class SolarSystemCanvasPainter
 
@@ -132,7 +141,7 @@ class SolarSystemCanvasPainter
     # Center the solar system in a planet if needed, taking into account if the animation
     # has finished
     if @focusedPlanet and @centeringFinished
-      @centerOffsetAngle = @focusedPlanet.rotationAngle
+      @centerOffsetAngle = @focusedPlanet.rotationAngle()
 
     ctx.rotate(@centerOffsetAngle)
     ctx.translate(@centerOffset,0)
@@ -158,8 +167,7 @@ class SolarSystemCanvasPainter
     ctx.restore()
     null
 
-  goTo: (celestialObject = 'birdsEye')->
-    #TODO
+  goTo: (celestialObject = 'birdsEye', onEnd)->
     windowHeight = $(window).height()
     windowHeightInc = 400 # This makes planets overflow the window
     wasCenteredOnSun = !@focusedPlanet
@@ -167,8 +175,6 @@ class SolarSystemCanvasPainter
     @focusedPlanet = null
     finalRadius = 0
     finalAngle = 0
-
-    section.removeClass("show") for name, section of @sections
 
     switch celestialObject
       when 'birdsEye'
@@ -178,14 +184,12 @@ class SolarSystemCanvasPainter
       when 'sun'
         objectHeight = @sunSize
         @centeringFinished = true
-        sectionToShow = @sections.sun
       else
       # Focus on selected planet
         @focusedPlanet = @planets[celestialObject]
-        finalRadius = -@focusedPlanet.orbitRadius
-        finalAngle = => @focusedPlanet.rotationAngle
-        objectHeight = @focusedPlanet.planetSize
-        sectionToShow = @sections[celestialObject]
+        finalRadius = -@focusedPlanet.orbitRadius()
+        finalAngle = => @focusedPlanet.rotationAngle()
+        objectHeight = @focusedPlanet.planetSize()
 
         if wasCenteredOnSun
           @centeringFinished = true
@@ -202,12 +206,7 @@ class SolarSystemCanvasPainter
         solarSystemScale: ( windowHeight + windowHeightInc ) / objectHeight
         centerOffset: finalRadius
       duration: 3000
-      onEnd: =>
-        section.removeClass("preshow") for name, section of @sections
-        return unless sectionToShow?
-        sectionToShow.addClass("preshow")
-        reflow()
-        sectionToShow.addClass("show")
+      onEnd: onEnd
 
   
 class SolarSystemWebGLPainter

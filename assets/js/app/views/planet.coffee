@@ -24,6 +24,15 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   onPaint: (args...)->
     @paintStrategy.onPaint.apply(@paintStrategy,args)
 
+  orbitRadius:->
+     @paintStrategy.orbitRadius
+  rotationAngle:->
+     @paintStrategy.rotationAngle
+  planetSize:->
+     @paintStrategy.planetSize
+
+
+
 class PlanetCanvasPainter
   
   planetShadow: 'assets/img/solarSystem/planets/planet_shadow.png'

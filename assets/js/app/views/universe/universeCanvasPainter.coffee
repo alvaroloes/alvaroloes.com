@@ -17,7 +17,7 @@ class UniverseCanvasPainter
       o.top = Math.random()   # Percentage
       o.left = Math.random()  # Percentage
       o.angle = o.rotateInterval.sampleInterval()
-      o.opacityAnimationDuration = (1000 / o.pulseFrecuencyInterval.sampleInterval()) / 2
+      o.opacityAnimationDuration = (1000 / o.pulseFrecuencyInterval.sampleInterval())
 
       if o.opacityConfig == 'pulse'
         if forAnimating
