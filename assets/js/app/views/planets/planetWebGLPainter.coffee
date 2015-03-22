@@ -35,7 +35,7 @@ class PlanetWebGLPainter
       transitions: [
         properties:
           y: @initialRotationAngle + 2 * Math.PI
-        duration: @orbitPeriod
+        duration: @orbitPeriod/10
         easing: Easing.linear
       ]
       count: 'infinite'
@@ -47,6 +47,7 @@ class PlanetWebGLPainter
     planetSize = @planetSize * Config.wgSizeFactor
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
+    @pivot.rotation.y = @initialRotationAngle
 
     # Create the planet and add it to the pivot
     texture = new THREE.Texture(@imageLoader.images[@planetTexture])
@@ -60,7 +61,7 @@ class PlanetWebGLPainter
     @scene.add(@pivot)
 
     # Create the planet trail
-    geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 128)
+    geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 256)
     material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
@@ -96,7 +97,7 @@ class PlanetWebGLPainter
           gl_FragColor = vec4(color, alpha);
         }
         '''
-    material.side = THREE.DoubleSide
+    material.side = THREE.BackSide
     material
 
   onPaint: ->
