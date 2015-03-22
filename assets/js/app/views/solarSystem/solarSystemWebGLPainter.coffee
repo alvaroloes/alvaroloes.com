@@ -2,9 +2,11 @@ class SolarSystemWebGLPainter
 
   @sunTexture: 'assets/img/solarSystem/sun_texture3.png'
 
+
   constructor: (@sun, @planets, @opt={})->
     @sunRotationPeriod = Config.sunSelfRotationPeriod
     @sunSize = Config.sunSize * Config.wgSizeFactor
+    @cameraInitialPosition = new THREE.Vector3(5000, 5000, 10000)
 
     # Preload textures
     @imageLoader = new ImageLoader()
@@ -49,53 +51,17 @@ class SolarSystemWebGLPainter
       count: 'infinite'
       queue: false
 
+    # Set the initial camera position and rotation
+    @camera.position.copy(@cameraInitialPosition)
+    @camera.rotation.z =  Math.PI/10;
+    @camera.up.applyEuler(@camera.rotation)
 
-    # Testing:
-    @camera.position.z = 4000
-    @camera.position.x = 0
-    @camera.position.y = 500
+    @focusOnPlanet = null
 
+    # Make the camera position and rotation "animatable"
     Animatable.makeAnimatable(@camera.position)
     Animatable.makeAnimatable(@camera.rotation)
-
-    #    @camera.position.animation
-    #      transitions: [
-    #        properties:
-    #          y: -50
-    #        duration: 6000
-    #      ]
-    #      count: 'infinite'
-    #      alternateDirection: true
-    #      queue: false
-    #    @camera.position.animation
-    #      transitions: [
-    #        properties:
-    #          x: -300
-    #        duration: 6000
-    #      ]
-    #      count: 'infinite'
-    #      alternateDirection: true
-    #      queue: false
-
-    @camera.position.transition
-      properties:
-        z: 200
-      duration: 10000
-      queue: false
-      easing: Easing.easeOut
-    @camera.position.transition
-      properties:
-        y: 100
-      duration: 10000
-      queue: false
-      easing: Easing.linear
-    @camera.rotation.transition
-      properties:
-        z: Math.PI/8
-      duration: 10000
-      queue: false
-      easing: Easing.easeInOut
-
+    Animatable.makeAnimatable(@camera.up)
 
 
   onPaint: (elapsedTime)->
@@ -103,7 +69,15 @@ class SolarSystemWebGLPainter
     @sun.rotation.animate()
     @camera.position.animate()
     @camera.rotation.animate()
-#    @camera.lookAt(@sun.position)
+    @camera.up.animate()
+
+    if @focusOnPlanet
+#      @camera.lookAt(@focusOnPlanet.paintStrategy.getPlanetRealPosition())
+      if @focusFinished
+        pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
+        @camera.position.x = pos.x
+        @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
+
 
 #    planetPos = @planets.personal.webGLGetPlanetRealPosition()
 #    @camera.position.x = planetPos.x
@@ -111,7 +85,83 @@ class SolarSystemWebGLPainter
 #    @camera.position.z = planetPos.z + 15
 #    @camera.lookAt(planetPos)
 
-
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
     @scene.add( axisHelper )
+
+  goTo: (celestialObject, onEnd = $.noop)->
+    duration = 10000
+    yPos = 15
+    @focusOnPlanet = null
+    @focusFinished = false
+
+    switch celestialObject
+      when 'birdsEye'
+        zPos = @sun.position.z + @sunSize*20
+        xPos = @sun.position.x + 100
+        yPos = 300
+      when 'sun'
+        zPos = @sun.position.z + @sunSize*2
+        xPos = @sun.position.x
+      else
+        selectedPlanet = @planets[celestialObject]
+        planetPainter = selectedPlanet.paintStrategy
+        zPos = => planetPainter.getPlanetRealPosition().z + selectedPlanet.planetSize()*Config.wgSizeFactor*2
+        xPos = => planetPainter.getPlanetRealPosition().x
+        @focusOnPlanet = selectedPlanet
+
+
+    @camera.position.transition
+      properties:
+        z: zPos
+      duration: duration
+      queue: false
+      easing: Easing.easeInOut
+    @camera.position.transition
+      properties:
+        x: xPos
+        y: yPos
+      duration: duration
+      queue: false
+      easing: Easing.easeOut
+      onEnd: =>
+        @focusFinished = true
+
+    @camera.rotation.transition
+      properties:
+        x: =>
+          startRotation = new THREE.Euler().copy(@camera.rotation)
+          if planetPainter
+            pos = planetPainter.getPlanetRealPosition()
+          else
+            pos = @sun.position
+          @camera.lookAt(pos)
+          endRotation = new THREE.Euler().copy( @camera.rotation )
+          @camera.rotation.copy(startRotation)
+          return endRotation.x
+        y: =>
+          startRotation = new THREE.Euler().copy(@camera.rotation)
+          if planetPainter
+            pos = planetPainter.getPlanetRealPosition()
+          else
+            pos = @sun.position
+          @camera.lookAt(pos)
+          endRotation = new THREE.Euler().copy( @camera.rotation )
+          @camera.rotation.copy(startRotation)
+          return endRotation.y
+        z: =>
+          startRotation = new THREE.Euler().copy(@camera.rotation)
+          if planetPainter
+            pos = planetPainter.getPlanetRealPosition()
+          else
+            pos = @sun.position
+          @camera.lookAt(pos)
+          endRotation = new THREE.Euler().copy( @camera.rotation )
+          @camera.rotation.copy(startRotation)
+          return endRotation.z
+      duration: duration
+      queue: false
+      easing: Easing.easeInOut
+
+
+

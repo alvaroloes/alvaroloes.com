@@ -35,7 +35,7 @@ class PlanetWebGLPainter
       transitions: [
         properties:
           y: @initialRotationAngle + 2 * Math.PI
-        duration: @orbitPeriod/10
+        duration: @orbitPeriod
         easing: Easing.linear
       ]
       count: 'infinite'
