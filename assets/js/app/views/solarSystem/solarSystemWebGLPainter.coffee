@@ -90,7 +90,7 @@ class SolarSystemWebGLPainter
     @scene.add( axisHelper )
 
   goTo: (celestialObject, onEnd = $.noop)->
-    duration = 10000
+    duration = 5000
     yPos = 15
     @focusOnPlanet = null
     @focusFinished = false

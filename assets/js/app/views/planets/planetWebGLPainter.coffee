@@ -92,12 +92,22 @@ class PlanetWebGLPainter
         varying vec3 iPosition;
         varying vec3 iNormal;
         void main() {
-          vec3 vectorToCamera = normalize(cameraPosition - iPosition);
-          float alpha = pow(1.0 - abs(dot(iNormal, vectorToCamera)),2.0);
+          vec3 vectorToCamera = cameraPosition - iPosition;
+          float alpha = pow(1.0 - abs(dot(iNormal, normalize(vectorToCamera))),2.0);
+
+          float min = 25.0;
+          float range = 100.0;
+          float distanceToCamera = length(vectorToCamera);
+          float distanceModifier = max(0.0,(distanceToCamera-min)/range);
+          if (distanceModifier < 1.0)
+          {
+            alpha *= distanceModifier;
+          }
           gl_FragColor = vec4(color, alpha);
         }
         '''
     material.side = THREE.BackSide
+    material.depthWrite = false
     material
 
   onPaint: ->
