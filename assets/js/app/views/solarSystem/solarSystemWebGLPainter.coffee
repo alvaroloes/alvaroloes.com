@@ -120,12 +120,26 @@ class SolarSystemWebGLPainter
     @camera.position.transition
       properties:
         x: xPos
-        y: yPos
       duration: duration
       queue: false
       easing: Easing.easeOut
       onEnd: =>
         @focusFinished = true
+        onEnd()
+
+    @camera.position.transition
+      properties:
+        y: @sunSize*2
+      duration: duration/2
+      queue: false
+      easing: Easing.easeOut
+    @camera.position.transition
+      properties:
+        y: yPos
+      delay: duration/2
+      duration: duration/2
+      queue: false
+      easing: Easing.easeInOut
 
     @camera.rotation.transition
       properties:
