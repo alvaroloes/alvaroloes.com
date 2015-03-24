@@ -46,6 +46,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   onPaint: (args...)->
     @paintStrategy.onPaint.apply(@paintStrategy,args)
 
+  postProcessingPasses: ->
+    @paintStrategy.postProcessingPasses?()
+
   goTo: (celestialObject = 'birdsEye')->
     section.removeClass("show") for _, section of @sections
     @paintStrategy.goTo celestialObject, =>

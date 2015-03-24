@@ -1,6 +1,6 @@
 class SolarSystemWebGLPainter
 
-  @sunTexture: 'assets/img/solarSystem/sun_texture3.png'
+  @sunTexture: 'assets/img/solarSystem/sun_texture.png'
 
 
   constructor: (@sun, @planets, @opt={})->
@@ -71,19 +71,10 @@ class SolarSystemWebGLPainter
     @camera.rotation.animate()
     @camera.up.animate()
 
-    if @focusOnPlanet
-#      @camera.lookAt(@focusOnPlanet.paintStrategy.getPlanetRealPosition())
-      if @focusFinished
+    if @focusOnPlanet and @focusFinished
         pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
         @camera.position.x = pos.x
         @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
-
-
-#    planetPos = @planets.personal.webGLGetPlanetRealPosition()
-#    @camera.position.x = planetPos.x
-#    @camera.position.y = planetPos.y + 8
-#    @camera.position.z = planetPos.z + 15
-#    @camera.lookAt(planetPos)
 
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
@@ -111,6 +102,7 @@ class SolarSystemWebGLPainter
         @focusOnPlanet = selectedPlanet
 
 
+    # Move the camera x, z coordinates to the to the celestial object
     @camera.position.transition
       properties:
         z: zPos
@@ -127,6 +119,7 @@ class SolarSystemWebGLPainter
         @focusFinished = true
         onEnd()
 
+    # Now move the y coordinate with an up-down movement
     @camera.position.transition
       properties:
         y: @sunSize*2
@@ -141,6 +134,9 @@ class SolarSystemWebGLPainter
       queue: false
       easing: Easing.easeInOut
 
+    # Animate the target of the camera to point to the celestial object, taking into account
+    # that it is moving, so the end position must be recalculated every frame
+    # (The efficiency of the could be improved)
     @camera.rotation.transition
       properties:
         x: =>
@@ -177,5 +173,43 @@ class SolarSystemWebGLPainter
       queue: false
       easing: Easing.easeInOut
 
+  postProcessingPasses: ->
+#    shader = {
+#
+#      uniforms: {
+#        "tDiffuse": { type: "t", value: null },
+#        "amount":     { type: "f", value: 0.5 }
+#      },
+#
+#      vertexShader: [
+#
+#        "varying vec2 vUv;",
+#        "void main() {",
+#        "vUv = uv;",
+#        "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
+#
+#        "}"
+#
+#      ].join("\n"),
+#
+#      fragmentShader: [
+#
+#        "uniform sampler2D tDiffuse;",
+#        "uniform float amount;",
+#        "varying vec2 vUv;",
+#
+#        "void main() {",
+#
+#        "vec4 color = texture2D(tDiffuse, vUv);",
+#        "gl_FragColor = color*amount;",
+#
+#        "}"
+#
+#
+#      ].join("\n")
+#
+#    };
+    pass = new THREE.ShaderPass(THREE.HorizontalBlurShader)
 
+    [new THREE.ShaderPass(THREE.HorizontalBlurShader)]
 

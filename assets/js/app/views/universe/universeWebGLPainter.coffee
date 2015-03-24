@@ -30,7 +30,14 @@ class UniverseWebGLPainter
     material = @getUniverseMaterial(ctx)
     plane = new THREE.Mesh(geo, material)
     @bgScene.add(plane)
+
     @solarSystem.prepareScene(@fgScene,@fgCamera)
+    passes = @solarSystem.postProcessingPasses()
+    if passes?.length > 0
+      @composer = new THREE.EffectComposer(@fgRenderer)
+      @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
+      @composer.addPass(pass) for pass in passes
+      pass.renderToScreen = true
 
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -128,5 +135,8 @@ class UniverseWebGLPainter
     @uniforms.elapsedTimeMillis.value = elapsedTime
     @solarSystem.onPaint(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
-    @fgRenderer.render(@fgScene, @fgCamera)
+    if @composer
+      @composer.render()
+    else
+      @fgRenderer.render(@fgScene, @fgCamera)
     requestAnimFrame(=> @paintCanvas()) if animate
