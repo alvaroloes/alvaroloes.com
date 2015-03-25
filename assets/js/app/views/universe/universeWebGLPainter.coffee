@@ -17,6 +17,21 @@ class UniverseWebGLPainter
     @fgRenderer.setClearColor(0x0, 0)
     @fgRenderer.setSize(window.innerWidth, window.innerHeight)
 
+    # Postprocessing
+    passes = @solarSystem.postProcessingPasses()
+    if passes?.length > 0
+      # We need to specify a render target with RGBA format to avoid loosing transparency
+      parameters =
+        minFilter: THREE.LinearFilter
+        magFilter: THREE.LinearFilter
+        format: THREE.RGBAFormat
+        stencilBuffer: false
+      renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+      @composer = new THREE.EffectComposer(@fgRenderer, renderTarget)
+      @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
+      @composer.addPass(pass) for pass in passes
+      pass.renderToScreen = true
+
   prepareScene: (objects, totalObjects)->
     #Create the background texture with the 2D canvas
     cnv = document.createElement('canvas')
@@ -32,12 +47,6 @@ class UniverseWebGLPainter
     @bgScene.add(plane)
 
     @solarSystem.prepareScene(@fgScene,@fgCamera)
-    passes = @solarSystem.postProcessingPasses()
-    if passes?.length > 0
-      @composer = new THREE.EffectComposer(@fgRenderer)
-      @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
-      @composer.addPass(pass) for pass in passes
-      pass.renderToScreen = true
 
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -129,6 +138,7 @@ class UniverseWebGLPainter
     @fgCamera.aspect = width / height
     @fgCamera.updateProjectionMatrix()
     @fgRenderer.setSize(width, height)
+    @composer?.setSize(width,height)
 
   paintCanvas: (animate = true)->
     elapsedTime = Date.now() - @startTime
