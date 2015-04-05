@@ -90,6 +90,16 @@ class SolarSystemWebGLPainter
     @ocCamera.rotation.copy(@camera.rotation)
     @ocCamera.up.copy(@camera.up)
 
+    @sun.updateMatrixWorld()
+    sunScreenPos = new THREE.Vector3().setFromMatrixPosition(@sun.matrixWorld)
+    sunScreenPos.project(@camera)
+
+    sunScreenPos.x = (sunScreenPos.x + 1) / 2
+    sunScreenPos.y = (sunScreenPos.y + 1) / 2
+
+    @radialBlur.uniforms.fX.value = sunScreenPos.x
+    @radialBlur.uniforms.fY.value = sunScreenPos.y
+
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
     @scene.add( axisHelper )
@@ -221,13 +231,13 @@ class SolarSystemWebGLPainter
     occlusionSceneRenderPass = new THREE.RenderPass(@ocScene, @ocCamera)
 
     linearBlurValue = 2.0
-    radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
+    @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
     verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
     verticalBlur.uniforms.v.value = linearBlurValue / 512.0
     horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
     horizontalBlur.uniforms.h.value = linearBlurValue / 2048.0
 
-    for pass in [occlusionSceneRenderPass, verticalBlur, horizontalBlur, radialBlur]
+    for pass in [occlusionSceneRenderPass, verticalBlur, horizontalBlur, @radialBlur]
       @composer.addPass(pass)
 
     @composer
