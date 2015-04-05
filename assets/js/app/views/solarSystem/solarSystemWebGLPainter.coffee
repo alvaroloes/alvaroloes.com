@@ -209,7 +209,7 @@ class SolarSystemWebGLPainter
 #      ].join("\n")
 #
 #    };
-    pass = new THREE.ShaderPass(THREE.HorizontalBlurShader)
+    pass = new THREE.ShaderPass(THREE.RadialBlurShader)
 
-    [new THREE.ShaderPass(THREE.HorizontalBlurShader)]
+    [pass]
 

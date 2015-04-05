@@ -18,19 +18,27 @@ class UniverseWebGLPainter
     @fgRenderer.setSize(window.innerWidth, window.innerHeight)
 
     # Postprocessing
+    # We need to specify a render target with RGBA format to avoid loosing transparency
+    parameters =
+      minFilter: THREE.LinearFilter
+      magFilter: THREE.LinearFilter
+      format: THREE.RGBAFormat
+      stencilBuffer: false
+    renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+    @composer = new THREE.EffectComposer(@fgRenderer, renderTarget)
+    # Add the main render to the composer
+    @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
+
+    # Add extra shader passes defined in the solar system
     passes = @solarSystem.postProcessingPasses()
     if passes?.length > 0
-      # We need to specify a render target with RGBA format to avoid loosing transparency
-      parameters =
-        minFilter: THREE.LinearFilter
-        magFilter: THREE.LinearFilter
-        format: THREE.RGBAFormat
-        stencilBuffer: false
-      renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
-      @composer = new THREE.EffectComposer(@fgRenderer, renderTarget)
-      @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
       @composer.addPass(pass) for pass in passes
-      pass.renderToScreen = true
+
+    # Add the final copy shader, that shows the final scene to the screen
+    copyShader = new THREE.ShaderPass(THREE.CopyShader)
+    copyShader.renderToScreen = true
+    @composer.addPass(copyShader)
+
 
   prepareScene: (objects, totalObjects)->
     #Create the background texture with the 2D canvas
