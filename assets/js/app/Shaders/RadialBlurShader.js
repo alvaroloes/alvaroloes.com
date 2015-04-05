@@ -7,10 +7,10 @@ THREE.RadialBlurShader = {
         tDiffuse: {type: "t", value:0, texture:null},
         fX: {type: "f", value: 0.5},
         fY: {type: "f", value: 0.5},
-        fExposure: {type: "f", value: 0.6},
-        fDecay: {type: "f", value: 0.93},
-        fDensity: {type: "f", value: 0.96},
-        fWeight: {type: "f", value: 0.4},
+        fExposure: {type: "f", value: 0.7},
+        fDecay: {type: "f", value: 0.9},
+        fDensity: {type: "f", value: 0.5},
+        fWeight: {type: "f", value: 0.35},
         fClamp: {type: "f", value: 1.0}
     },
 

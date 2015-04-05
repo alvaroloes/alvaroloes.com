@@ -16,7 +16,7 @@ class SolarSystemWebGLPainter
     promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when(promises)
 
-  prepareScene: (@scene, @camera)->
+  prepareScene: (@scene, @camera, @renderer)->
     @addDebuggingObjects() if @opt.debug
 
     # Sun
@@ -63,6 +63,14 @@ class SolarSystemWebGLPainter
     Animatable.makeAnimatable(@camera.rotation)
     Animatable.makeAnimatable(@camera.up)
 
+    @prepareOcclusionScene()
+
+  prepareOcclusionScene: ->
+    @ocScene = new THREE.Scene()
+    @ocCamera = @camera.clone()
+
+    @ocSun = @sun.clone()
+    @ocScene.add(@ocSun)
 
   onPaint: (elapsedTime)->
     planet.onPaint(elapsedTime) for _,planet of @planets
@@ -75,6 +83,12 @@ class SolarSystemWebGLPainter
         pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
         @camera.position.x = pos.x
         @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
+
+    # Update occlusion scene
+    @ocSun.rotation.copy(@sun.rotation)
+    @ocCamera.position.copy(@camera.position)
+    @ocCamera.rotation.copy(@camera.rotation)
+    @ocCamera.up.copy(@camera.up)
 
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
@@ -173,43 +187,49 @@ class SolarSystemWebGLPainter
       queue: false
       easing: Easing.easeInOut
 
-  postProcessingPasses: ->
-#    shader = {
+#  postProcessingPasses: ->
+#    # Use postprocessing to get a "god rays" effect.
+#    # This is a combination of radial blur plus linear blur over the occlusion scene
+#    # then add the result to the base scene
+#    occlusionSceneRenderPass = new THREE.RenderPass(@ocScene, @ocCamera)
 #
-#      uniforms: {
-#        "tDiffuse": { type: "t", value: null },
-#        "amount":     { type: "f", value: 0.5 }
-#      },
+#    radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
 #
-#      vertexShader: [
-#
-#        "varying vec2 vUv;",
-#        "void main() {",
-#        "vUv = uv;",
-#        "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
-#
-#        "}"
-#
-#      ].join("\n"),
-#
-#      fragmentShader: [
-#
-#        "uniform sampler2D tDiffuse;",
-#        "uniform float amount;",
-#        "varying vec2 vUv;",
-#
-#        "void main() {",
-#
-#        "vec4 color = texture2D(tDiffuse, vUv);",
-#        "gl_FragColor = color*amount;",
-#
-#        "}"
+#    linearBlurValue = 2.0
+#    verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
+#    verticalBlur.uniforms.v.value = linearBlurValue / 512.0
+#    horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
+#    horizontalBlur.uniforms.h.value = linearBlurValue / 2048.0
 #
 #
-#      ].join("\n")
 #
-#    };
-    pass = new THREE.ShaderPass(THREE.RadialBlurShader)
+#    [occlusionSceneRenderPass, radialBlur, verticalBlur, horizontalBlur]
 
-    [pass]
+  extraComposer: ->
+    # Use postprocessing to get a "god rays" effect.
+    # This is a combination of radial blur plus linear blur over the occlusion scene
+    # then add the result to the base scene
+
+    parameters =
+      minFilter: THREE.LinearFilter
+      magFilter: THREE.LinearFilter
+      format: THREE.RGBAFormat
+      stencilBuffer: false
+    renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+    @composer = new THREE.EffectComposer(@renderer, renderTarget)
+
+    occlusionSceneRenderPass = new THREE.RenderPass(@ocScene, @ocCamera)
+
+    linearBlurValue = 2.0
+    radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
+    verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
+    verticalBlur.uniforms.v.value = linearBlurValue / 512.0
+    horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
+    horizontalBlur.uniforms.h.value = linearBlurValue / 2048.0
+
+    for pass in [occlusionSceneRenderPass, verticalBlur, horizontalBlur, radialBlur]
+      @composer.addPass(pass)
+
+    @composer
+
 

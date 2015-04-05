@@ -29,17 +29,6 @@ class UniverseWebGLPainter
     # Add the main render to the composer
     @composer.addPass(new THREE.RenderPass(@fgScene, @fgCamera))
 
-    # Add extra shader passes defined in the solar system
-    passes = @solarSystem.postProcessingPasses()
-    if passes?.length > 0
-      @composer.addPass(pass) for pass in passes
-
-    # Add the final copy shader, that shows the final scene to the screen
-    copyShader = new THREE.ShaderPass(THREE.CopyShader)
-    copyShader.renderToScreen = true
-    @composer.addPass(copyShader)
-
-
   prepareScene: (objects, totalObjects)->
     #Create the background texture with the 2D canvas
     cnv = document.createElement('canvas')
@@ -54,7 +43,24 @@ class UniverseWebGLPainter
     plane = new THREE.Mesh(geo, material)
     @bgScene.add(plane)
 
-    @solarSystem.prepareScene(@fgScene,@fgCamera)
+    @solarSystem.prepareScene(@fgScene,@fgCamera, @fgRenderer)
+
+    # Add extra shader passes defined in the solar system
+    passes = @solarSystem.postProcessingPasses()
+    if passes?.length > 0
+      @composer.addPass(pass) for pass in passes
+
+    # Make an additive sum of the extra composer defined in solarSystem
+    @extraComposer = @solarSystem.extraComposer()
+    if @extraComposer?
+      additiveShader = new THREE.ShaderPass(THREE.AdditiveShader)
+      additiveShader.uniforms.tAdd.value = @extraComposer.renderTarget1
+      @composer.addPass(additiveShader)
+
+    # Add the final copy shader, that shows the final scene to the screen
+    copyShader = new THREE.ShaderPass(THREE.CopyShader)
+    copyShader.renderToScreen = true
+    @composer.addPass(copyShader)
 
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -153,8 +159,7 @@ class UniverseWebGLPainter
     @uniforms.elapsedTimeMillis.value = elapsedTime
     @solarSystem.onPaint(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
-    if @composer
-      @composer.render()
-    else
-      @fgRenderer.render(@fgScene, @fgCamera)
+    # The fgRenderer is managed by the composer
+    @extraComposer?.render()
+    @composer.render()
     requestAnimFrame(=> @paintCanvas()) if animate
