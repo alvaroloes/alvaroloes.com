@@ -67,20 +67,6 @@ class SolarSystemWebGLPainter
     Animatable.makeAnimatable(@camera.rotation)
     Animatable.makeAnimatable(@camera.up)
 
-    @prepareOcclusionScene()
-
-  prepareOcclusionScene: ->
-#    @ocScene = new THREE.Scene()
-#    @ocCamera = @camera.clone()
-#
-#    # Clone the sun object and add it to the occlusion scene
-#    @ocSun = @sun.clone()
-#    @ocScene.add(@ocSun)
-
-    # Clone all remaining objects to the occlusion scene
-#    for child in @scene.children
-#      if child instanceof THREE.Object3D
-
     @radialBlurCenter = new THREE.Vector3()
 
   onPaint: (elapsedTime)->
@@ -209,47 +195,36 @@ class SolarSystemWebGLPainter
       queue: false
       easing: Easing.easeInOut
 
-#  postProcessingPasses: ->
-#    # Use postprocessing to get a "god rays" effect.
-#    # This is a combination of radial blur plus linear blur over the occlusion scene
-#    # then add the result to the base scene
-#    occlusionSceneRenderPass = new THREE.RenderPass(@ocScene, @ocCamera)
-#
-#    radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
-#
-#    linearBlurValue = 2.0
-#    verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
-#    verticalBlur.uniforms.v.value = linearBlurValue / 512.0
-#    horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
-#    horizontalBlur.uniforms.h.value = linearBlurValue / 2048.0
-#
-#
-#
-#    [occlusionSceneRenderPass, radialBlur, verticalBlur, horizontalBlur]
-
   extraComposer: ->
     # Use postprocessing to get a "god rays" effect.
     # This is a combination of radial blur plus linear blur over the occlusion scene
     # then add the result to the base scene
-
     parameters =
       minFilter: THREE.LinearFilter
       magFilter: THREE.LinearFilter
       format: THREE.RGBAFormat
       stencilBuffer: false
-    renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+    w = window.innerWidth
+    h = window.innerHeight
+    renderTarget = new THREE.WebGLRenderTarget( w/4, h/4, parameters );
     @composer = new THREE.EffectComposer(@renderer, renderTarget)
 
     occlusionSceneRenderPass = new THREE.OcclusionRenderPass(@scene, @camera)
 
-    linearBlurValue = 2.0
+    linearBlurValue = 3.0
     @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
     verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
-    verticalBlur.uniforms.v.value = linearBlurValue / 512.0
+    verticalBlur.uniforms.v.value = linearBlurValue / h
     horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
-    horizontalBlur.uniforms.h.value = linearBlurValue / 2048.0
+    horizontalBlur.uniforms.h.value = linearBlurValue / w
 
-    for pass in [occlusionSceneRenderPass, verticalBlur, horizontalBlur, @radialBlur]
+    passes = [
+      occlusionSceneRenderPass
+      verticalBlur
+      horizontalBlur
+      @radialBlur]
+
+    for pass in passes
       @composer.addPass(pass)
 
     @composer
