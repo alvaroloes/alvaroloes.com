@@ -23,8 +23,12 @@ class SolarSystemWebGLPainter
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
     geo = new THREE.SphereGeometry(@sunSize, 64, 64)
-    material = new THREE.MeshBasicMaterial
-      map: texture
+    material = new THREE.MeshFaceMaterial [
+      new THREE.MeshBasicMaterial
+        map: texture
+      new THREE.MeshBasicMaterial
+        color: 0x00ff00
+    ]
     @sun = new THREE.Mesh(geo, material)
     @scene.add(@sun)
 
@@ -66,11 +70,18 @@ class SolarSystemWebGLPainter
     @prepareOcclusionScene()
 
   prepareOcclusionScene: ->
-    @ocScene = new THREE.Scene()
-    @ocCamera = @camera.clone()
+#    @ocScene = new THREE.Scene()
+#    @ocCamera = @camera.clone()
+#
+#    # Clone the sun object and add it to the occlusion scene
+#    @ocSun = @sun.clone()
+#    @ocScene.add(@ocSun)
 
-    @ocSun = @sun.clone()
-    @ocScene.add(@ocSun)
+    # Clone all remaining objects to the occlusion scene
+#    for child in @scene.children
+#      if child instanceof THREE.Object3D
+
+    @radialBlurCenter = new THREE.Vector3()
 
   onPaint: (elapsedTime)->
     planet.onPaint(elapsedTime) for _,planet of @planets
@@ -85,20 +96,21 @@ class SolarSystemWebGLPainter
         @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
 
     # Update occlusion scene
-    @ocSun.rotation.copy(@sun.rotation)
-    @ocCamera.position.copy(@camera.position)
-    @ocCamera.rotation.copy(@camera.rotation)
-    @ocCamera.up.copy(@camera.up)
+#    @ocSun.rotation.copy(@sun.rotation)
+#    @ocCamera.position.copy(@camera.position)
+#    @ocCamera.rotation.copy(@camera.rotation)
+#    @ocCamera.up.copy(@camera.up)
 
+    # Update the radial blur center to be the sun position
     @sun.updateMatrixWorld()
-    sunScreenPos = new THREE.Vector3().setFromMatrixPosition(@sun.matrixWorld)
-    sunScreenPos.project(@camera)
+    @radialBlurCenter.setFromMatrixPosition(@sun.matrixWorld).project(@camera)
+    # The radial blur shader uniforms expect the center of the screen to be (0.5,0.5)
+    # while "project()" assumes it is (0,0). Normalize this
+    @radialBlurCenter.x = (@radialBlurCenter.x + 1) / 2
+    @radialBlurCenter.y = (@radialBlurCenter.y + 1) / 2
 
-    sunScreenPos.x = (sunScreenPos.x + 1) / 2
-    sunScreenPos.y = (sunScreenPos.y + 1) / 2
-
-    @radialBlur.uniforms.fX.value = sunScreenPos.x
-    @radialBlur.uniforms.fY.value = sunScreenPos.y
+    @radialBlur.uniforms.fX.value = @radialBlurCenter.x
+    @radialBlur.uniforms.fY.value = @radialBlurCenter.y
 
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
@@ -106,7 +118,7 @@ class SolarSystemWebGLPainter
 
   goTo: (celestialObject, onEnd = $.noop)->
     duration = 5000
-    yPos = 15
+    yPos = 5
     @focusOnPlanet = null
     @focusFinished = false
 
@@ -228,7 +240,7 @@ class SolarSystemWebGLPainter
     renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
     @composer = new THREE.EffectComposer(@renderer, renderTarget)
 
-    occlusionSceneRenderPass = new THREE.RenderPass(@ocScene, @ocCamera)
+    occlusionSceneRenderPass = new THREE.OcclusionRenderPass(@scene, @camera)
 
     linearBlurValue = 2.0
     @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
@@ -241,5 +253,6 @@ class SolarSystemWebGLPainter
       @composer.addPass(pass)
 
     @composer
+
 
 
