@@ -1,43 +1,49 @@
 THREE.OcclusionRenderPass = function ( scene, camera, overrideMaterial, clearColor, clearAlpha ) {
     THREE.RenderPass.apply(this, arguments);
+    this.blackMaterial = new THREE.MeshBasicMaterial({
+        color: 0x000000
+    });
 };
 
 THREE.OcclusionRenderPass.prototype = {
 
     render: function ( renderer, writeBuffer, readBuffer, delta ) {
-        this.overrideWithOcclusionMaterial(this.scene.children);
+        this.prepareOcclusionScene(this.scene.children);
         THREE.RenderPass.prototype.render.apply(this, arguments);
-        this.restoreOriginalMaterial(this.scene.children)
+        this.restoreScene(this.scene.children)
     },
-    
-    overrideWithOcclusionMaterial: function(objects) {
+
+    prepareOcclusionScene: function(objects) {
         if (objects === null || objects === undefined) {
             return;
         }
 
         for(var i = 0; i < objects.length; ++i) {
             var child = objects[i];
-            if (child.occlusionMaterial !== undefined) {
-                child.occlusionOriginalMaterial = child.material;
-                child.material = child.occlusionMaterial
+
+            var m = child.occlusionMaterial;
+            if (m == undefined) {
+                m = this.blackMaterial;
             }
-            this.overrideWithOcclusionMaterial(child.children)
+
+            child._originalMaterial = child.material;
+            child.material = m;
+
+            this.prepareOcclusionScene(child.children)
         }
     },
-    
-    restoreOriginalMaterial: function(objects) {
+
+    restoreScene: function(objects) {
         if (objects === null || objects === undefined) {
             return;
         }
 
-        for(var i = 0; i < objects.length; ++i)
-        {
+        for(var i = 0; i < objects.length; ++i) {
             var child = objects[i];
-            if (child.occlusionOriginalMaterial !== undefined) {
-                child.material = child.occlusionOriginalMaterial
+            if (child._originalMaterial !== undefined) {
+                child.material = child._originalMaterial
             }
-            this.restoreOriginalMaterial(child.children)
+            this.restoreScene(child.children)
         }
     }
-
 };

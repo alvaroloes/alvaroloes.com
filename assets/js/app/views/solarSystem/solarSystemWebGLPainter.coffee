@@ -23,13 +23,10 @@ class SolarSystemWebGLPainter
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
     geo = new THREE.SphereGeometry(@sunSize, 64, 64)
-    material = new THREE.MeshFaceMaterial [
-      new THREE.MeshBasicMaterial
+    material = new THREE.MeshBasicMaterial
         map: texture
-      new THREE.MeshBasicMaterial
-        color: 0x00ff00
-    ]
     @sun = new THREE.Mesh(geo, material)
+    @sun.occlusionMaterial = material
     @scene.add(@sun)
 
     # Ambient light
@@ -104,7 +101,7 @@ class SolarSystemWebGLPainter
 
   goTo: (celestialObject, onEnd = $.noop)->
     duration = 5000
-    yPos = 5
+    yPos = 10
     @focusOnPlanet = null
     @focusFinished = false
 
@@ -142,6 +139,9 @@ class SolarSystemWebGLPainter
         onEnd()
 
     # Now move the y coordinate with an up-down movement
+    #TODO: This should not be applied in the initial transition
+    # 1.- Change the
+    # Animation
     @camera.position.transition
       properties:
         y: @sunSize*2
@@ -206,7 +206,7 @@ class SolarSystemWebGLPainter
       stencilBuffer: false
     w = window.innerWidth
     h = window.innerHeight
-    renderTarget = new THREE.WebGLRenderTarget( w/4, h/4, parameters );
+    renderTarget = new THREE.WebGLRenderTarget( w/2, h/2, parameters );
     @composer = new THREE.EffectComposer(@renderer, renderTarget)
 
     occlusionSceneRenderPass = new THREE.OcclusionRenderPass(@scene, @camera)

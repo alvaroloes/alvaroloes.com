@@ -56,8 +56,6 @@ class PlanetWebGLPainter
     material = new THREE.MeshPhongMaterial
       map: texture
     @planet = new THREE.Mesh(geo, material)
-    @planet.occlusionMaterial = new THREE.MeshBasicMaterial
-      color:0x0
     @planet.position.x = orbitRadius
     @pivot.add(@planet)
     @scene.add(@pivot)
@@ -67,20 +65,17 @@ class PlanetWebGLPainter
     material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
-    torus.occlusionMaterial = new THREE.MeshBasicMaterial
-      color:0x0
-      transparent: true
-      opacity: 0
+    torus.occlusionMaterial = @getGlowMaterial(0x000000)
     @scene.add(torus)
 
     @setAnimations()
 
-  getGlowMaterial: ->
-    @uniforms =
-      color: type: "c", value: new THREE.Color(0xffffff)
+  getGlowMaterial: (color = 0xffffff)->
+    uniforms =
+      color: type: "c", value: new THREE.Color(color)
 
     material = new THREE.ShaderMaterial
-      uniforms: @uniforms
+      uniforms: uniforms
       transparent: true
       vertexShader: '''
         varying vec3 iPosition;
