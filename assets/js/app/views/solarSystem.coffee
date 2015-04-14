@@ -55,10 +55,10 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   goTo: (celestialObject = 'birdsEye')->
     section.removeClass("show") for _, section of @sections
     @paintStrategy.goTo celestialObject, =>
-      sectionToShow = @sections[celestialObject]
-      section.removeClass("preshow") for name, section of @sections
-      return unless sectionToShow?
-      sectionToShow.addClass("preshow")
-      reflow()
-      sectionToShow.addClass("show")
+#      sectionToShow = @sections[celestialObject]
+#      section.removeClass("preshow") for name, section of @sections
+#      return unless sectionToShow?
+#      sectionToShow.addClass("preshow")
+#      reflow()
+#      sectionToShow.addClass("show")
 
