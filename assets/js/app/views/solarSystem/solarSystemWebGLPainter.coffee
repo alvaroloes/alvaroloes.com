@@ -74,9 +74,9 @@ class SolarSystemWebGLPainter
     @camera.up.animate()
 
     if @focusOnPlanet and @focusFinished
-        pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
-        @camera.position.x = pos.x
-        @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
+      pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
+      @camera.position.x = pos.x
+      @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
 
     # Update occlusion scene
 #    @ocSun.rotation.copy(@sun.rotation)
