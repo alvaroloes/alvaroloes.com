@@ -2,6 +2,7 @@ class SolarSystemWebGLPainter
 
   @sunTexture: 'assets/img/solarSystem/sun_texture.png'
 
+  linearBlurValue: 3.0
 
   constructor: (@sun, @planets, @opt={})->
     @sunRotationPeriod = Config.sunSelfRotationPeriod
@@ -16,8 +17,11 @@ class SolarSystemWebGLPainter
     promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when(promises)
 
+#Remember to resize the oclusion renderer
+#reduce the size of the textures to 512
+
   prepareScene: (@scene, @camera, @renderer)->
-    @addDebuggingObjects() if @opt.debug
+#    @addDebuggingObjects() if @opt.debug
 
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
@@ -78,12 +82,6 @@ class SolarSystemWebGLPainter
       @camera.position.x = pos.x
       @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
 
-    # Update occlusion scene
-#    @ocSun.rotation.copy(@sun.rotation)
-#    @ocCamera.position.copy(@camera.position)
-#    @ocCamera.rotation.copy(@camera.rotation)
-#    @ocCamera.up.copy(@camera.up)
-
     # Update the radial blur center to be the sun position
     @sun.updateMatrixWorld()
     @radialBlurCenter.setFromMatrixPosition(@sun.matrixWorld).project(@camera)
@@ -94,6 +92,11 @@ class SolarSystemWebGLPainter
 
     @radialBlur.uniforms.fX.value = @radialBlurCenter.x
     @radialBlur.uniforms.fY.value = @radialBlurCenter.y
+
+  onResize: (w, h)->
+    @composer.setSize(w/2, h/2)
+    @verticalBlur.uniforms.v.value = @linearBlurValue / h
+    @horizontalBlur.uniforms.h.value = @linearBlurValue / w
 
   addDebuggingObjects: ->
     axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
@@ -211,17 +214,16 @@ class SolarSystemWebGLPainter
 
     occlusionSceneRenderPass = new THREE.OcclusionRenderPass(@scene, @camera)
 
-    linearBlurValue = 3.0
     @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
-    verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
-    verticalBlur.uniforms.v.value = linearBlurValue / h
-    horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
-    horizontalBlur.uniforms.h.value = linearBlurValue / w
+    @verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
+    @verticalBlur.uniforms.v.value = @linearBlurValue / h
+    @horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
+    @horizontalBlur.uniforms.h.value = @linearBlurValue / w
 
     passes = [
       occlusionSceneRenderPass
-      verticalBlur
-      horizontalBlur
+      @verticalBlur
+      @horizontalBlur
       @radialBlur]
 
     for pass in passes

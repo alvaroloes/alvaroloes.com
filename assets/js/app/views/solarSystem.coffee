@@ -42,9 +42,12 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
   # Paint stuff
   prepareScene: (args...)->
     @paintStrategy.prepareScene.apply(@paintStrategy,args)
-    
+
   onPaint: (args...)->
     @paintStrategy.onPaint.apply(@paintStrategy,args)
+
+  onResize: (args...)->
+    @paintStrategy.onResize.apply(@paintStrategy,args)
 
   postProcessingPasses: ->
     @paintStrategy.postProcessingPasses?()
