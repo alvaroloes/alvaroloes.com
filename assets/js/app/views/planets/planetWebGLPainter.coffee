@@ -65,7 +65,10 @@ class PlanetWebGLPainter
     material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
-    torus.occlusionMaterial = @getGlowMaterial(0x000000)
+    torus.occlusionMaterial = new THREE.MeshBasicMaterial
+      color: 0x000000
+      transparent: true
+      opacity: 0
     @scene.add(torus)
 
     @setAnimations()

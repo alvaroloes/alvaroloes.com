@@ -2,7 +2,7 @@ class SolarSystemWebGLPainter
 
   @sunTexture: 'assets/img/solarSystem/sun_texture.png'
 
-  linearBlurValue: 3.0
+  linearBlurValue: 2.0
 
   constructor: (@sun, @planets, @opt={})->
     @sunRotationPeriod = Config.sunSelfRotationPeriod
@@ -21,8 +21,6 @@ class SolarSystemWebGLPainter
 #reduce the size of the textures to 512
 
   prepareScene: (@scene, @camera, @renderer)->
-#    @addDebuggingObjects() if @opt.debug
-
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
@@ -97,10 +95,6 @@ class SolarSystemWebGLPainter
     @composer.setSize(w/2, h/2)
     @verticalBlur.uniforms.v.value = @linearBlurValue / h
     @horizontalBlur.uniforms.h.value = @linearBlurValue / w
-
-  addDebuggingObjects: ->
-    axisHelper = new THREE.AxisHelper( 500 * Config.wgSizeFactor );
-    @scene.add( axisHelper )
 
   goTo: (celestialObject, onEnd = $.noop)->
     duration = 5000
@@ -228,6 +222,24 @@ class SolarSystemWebGLPainter
 
     for pass in passes
       @composer.addPass(pass)
+
+    #Configure radial blur
+    @radialBlur.uniforms.fExposure.value = 0.65
+    @radialBlur.uniforms.fDecay.value = 0.92
+    @radialBlur.uniforms.fDensity.value = 1
+    @radialBlur.uniforms.fWeight.value = 0.35
+    @radialBlur.uniforms.fClamp.value = 1
+
+    if @opt.debug
+      gui = new dat.GUI()
+      gui.add(@radialBlur.uniforms.fExposure, 'value').min(0.0).max(2.0).step(0.01).name("Exposure")
+      gui.add(@radialBlur.uniforms.fDecay, 'value').min(0.6).max(2.0).step(0.01).name("Decay")
+      gui.add(@radialBlur.uniforms.fDensity, 'value').min(0.0).max(2.0).step(0.01).name("Density")
+      gui.add(@radialBlur.uniforms.fWeight, 'value').min(0.0).max(2.0).step(0.01).name("Weight")
+      gui.add(@radialBlur.uniforms.fClamp, 'value').min(0.0).max(2.0).step(0.01).name("Clamp")
+      gui.add({value: @linearBlurValue}, 'value').min(0.0).max(5.0).step(0.01).name("Blur").onChange (val)=>
+        @verticalBlur.uniforms.v.value = val / h
+        @horizontalBlur.uniforms.h.value = val / w
 
     @composer
 
