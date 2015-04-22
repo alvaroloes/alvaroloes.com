@@ -8,8 +8,10 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
     super
     @paintStrategy.orbitRadius = Config.reflexiveOrbitRadius
     @paintStrategy.orbitPeriod = Config.reflexiveOrbitPeriod
+    @paintStrategy.orbitDirection = -1
+    @paintStrategy.orbitDeflection = Math.PI/20
     @paintStrategy.selfRotationPeriod = Config.laborSelfRotationPeriod
-    @paintStrategy.selfRotationDirection = -1
+    @paintStrategy.selfRotationDirection = 1
     @paintStrategy.planetColor = Config.reflexiveColor
     @paintStrategy.planetImg = @planetImg
     @paintStrategy.planetTexture = @planetTexture

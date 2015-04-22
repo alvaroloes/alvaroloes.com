@@ -36,5 +36,9 @@ class window.Config
   @laborColor          : (a = 1)-> "rgba(225,229,234,#{a})"
   @techColor           : (a = 1)-> "rgba(225,223,225,#{a})"
 
+  # WebGL modifiers
   @wgSizeFactor: 50
   @wgDistanceFactor: 200
+
+  # Animation times
+  @changePlanetAnimationDuration: 4000

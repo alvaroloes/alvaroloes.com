@@ -1,8 +1,13 @@
 class SolarSystemWebGLPainter
 
-  @sunTexture: 'assets/img/solarSystem/sun_texture.png'
+  @sunTexture: 'assets/img/solarSystem/sun_texture.jpg'
 
-  linearBlurValue: 2.0
+  linearBlurValue: 2.5
+  lookAtPlanetFromYOffset: 10
+  lookAtSunFromYOffset: 15
+  lookAtPlanetFromZSizeFactor: 1.5
+  lookAtSunFromZSizeFactor: 2
+
 
   constructor: (@sun, @planets, @opt={})->
     @sunRotationPeriod = Config.sunSelfRotationPeriod
@@ -17,8 +22,6 @@ class SolarSystemWebGLPainter
     promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when(promises)
 
-#Remember to resize the oclusion renderer
-#reduce the size of the textures to 512
 
   prepareScene: (@scene, @camera, @renderer)->
     # Sun
@@ -78,7 +81,8 @@ class SolarSystemWebGLPainter
     if @focusOnPlanet and @focusFinished
       pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
       @camera.position.x = pos.x
-      @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*2
+      @camera.position.y = pos.y + @lookAtPlanetFromYOffset
+      @camera.position.z = pos.z + @focusOnPlanet.planetSize()*Config.wgSizeFactor*@lookAtPlanetFromZSizeFactor
 
     # Update the radial blur center to be the sun position
     @sun.updateMatrixWorld()
@@ -97,8 +101,7 @@ class SolarSystemWebGLPainter
     @horizontalBlur.uniforms.h.value = @linearBlurValue / w
 
   goTo: (celestialObject, onEnd = $.noop)->
-    duration = 5000
-    yPos = 10
+    duration = Config.changePlanetAnimationDuration
     @focusOnPlanet = null
     @focusFinished = false
 
@@ -108,13 +111,15 @@ class SolarSystemWebGLPainter
         xPos = @sun.position.x + 100
         yPos = 300
       when 'sun'
-        zPos = @sun.position.z + @sunSize*2
         xPos = @sun.position.x
+        yPos = @sun.position.y + @lookAtSunFromYOffset
+        zPos = @sun.position.z + @sunSize*@lookAtSunFromZSizeFactor
       else
         selectedPlanet = @planets[celestialObject]
         planetPainter = selectedPlanet.paintStrategy
-        zPos = => planetPainter.getPlanetRealPosition().z + selectedPlanet.planetSize()*Config.wgSizeFactor*2
         xPos = => planetPainter.getPlanetRealPosition().x
+        yPos = => planetPainter.getPlanetRealPosition().y + @lookAtPlanetFromYOffset
+        zPos = => planetPainter.getPlanetRealPosition().z + selectedPlanet.planetSize()*Config.wgSizeFactor*@lookAtPlanetFromZSizeFactor
         @focusOnPlanet = selectedPlanet
 
 
@@ -227,7 +232,7 @@ class SolarSystemWebGLPainter
     @radialBlur.uniforms.fExposure.value = 0.65
     @radialBlur.uniforms.fDecay.value = 0.92
     @radialBlur.uniforms.fDensity.value = 1
-    @radialBlur.uniforms.fWeight.value = 0.35
+    @radialBlur.uniforms.fWeight.value = 0.25
     @radialBlur.uniforms.fClamp.value = 1
 
     if @opt.debug

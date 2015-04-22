@@ -7,6 +7,8 @@ class PlanetWebGLPainter
     #The following properties should be set by specific planets
     @orbitRadius = 0
     @orbitPeriod = 10000
+    @orbitDirection = 1
+    @orbitDeflection = 0
     @selfRotationPeriod = 5000
     @selfRotationDirection = 1
     @planetColor = '#ffffff'
@@ -34,7 +36,7 @@ class PlanetWebGLPainter
     @pivot.rotation.animation
       transitions: [
         properties:
-          y: @initialRotationAngle + 2 * Math.PI
+          y: @initialRotationAngle + 2 * Math.PI * @orbitDirection
         duration: @orbitPeriod
         easing: Easing.linear
       ]
@@ -45,6 +47,11 @@ class PlanetWebGLPainter
 
     orbitRadius = @orbitRadius * Config.wgDistanceFactor
     planetSize = @planetSize * Config.wgSizeFactor
+
+    # Create a parent object to insert the planet pivot and the torus to allow deflected orbits
+    @parent = new THREE.Object3D()
+    @parent.rotation.z = @orbitDeflection
+
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
     @pivot.rotation.y = @initialRotationAngle
@@ -58,7 +65,7 @@ class PlanetWebGLPainter
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = orbitRadius
     @pivot.add(@planet)
-    @scene.add(@pivot)
+    @parent.add(@pivot)
 
     # Create the planet trail
     geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 256)
@@ -69,7 +76,9 @@ class PlanetWebGLPainter
       color: 0x000000
       transparent: true
       opacity: 0
-    @scene.add(torus)
+    @parent.add(torus)
+
+    @scene.add(@parent)
 
     @setAnimations()
 
