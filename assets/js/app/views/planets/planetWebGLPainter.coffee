@@ -11,12 +11,17 @@ class PlanetWebGLPainter
     @orbitDeflection = 0
     @selfRotationPeriod = 5000
     @selfRotationDirection = 1
+    @selfRotationDeflection = 0
     @planetColor = '#ffffff'
     @planetTexture = ''
+    @bumpMap = null
 
   getImageLoaderPromise: ->
     @imageLoader = new ImageLoader()
-    @imageLoader.loadImages [@planetTexture]
+    imgs = [@planetTexture]
+    if @bumpMap?
+      imgs.push @bumpMap
+    @imageLoader.loadImages imgs
 
   setAnimations: ->
     # Animations: rotation and translation around sun
@@ -62,8 +67,14 @@ class PlanetWebGLPainter
     geo = new THREE.SphereGeometry(planetSize, 64, 64)
     material = new THREE.MeshPhongMaterial
       map: texture
+    if @bumpMap?
+      material.bumpMap = new THREE.Texture(@imageLoader.images[@bumpMap])
+      material.bumpMap.needsUpdate = true
+      material.bumpScale = 0.5
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = orbitRadius
+    @planet.rotation.order = "XZY"
+    @planet.rotation.z = @selfRotationDeflection
     @pivot.add(@planet)
     @parent.add(@pivot)
 
