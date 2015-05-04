@@ -211,7 +211,7 @@ class SolarSystemWebGLPainter
     renderTarget = new THREE.WebGLRenderTarget( w/2, h/2, parameters );
     @composer = new THREE.EffectComposer(@renderer, renderTarget)
 
-    occlusionSceneRenderPass = new THREE.OcclusionRenderPass(@scene, @camera)
+    occlusionSceneRenderPass = new THREE.AltMaterialRenderPass('occlusionMaterial', @scene, @camera)
 
     @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
     @verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
