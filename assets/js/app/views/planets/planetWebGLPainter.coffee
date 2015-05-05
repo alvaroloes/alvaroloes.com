@@ -15,12 +15,15 @@ class PlanetWebGLPainter
     @planetColor = '#ffffff'
     @planetTexture = ''
     @bumpMap = null
+    @glowMap = null
 
   getImageLoaderPromise: ->
     @imageLoader = new ImageLoader()
     imgs = [@planetTexture]
     if @bumpMap?
       imgs.push @bumpMap
+    if @glowMap?
+      imgs.push @glowMap
     @imageLoader.loadImages imgs
 
   setAnimations: ->
@@ -75,6 +78,12 @@ class PlanetWebGLPainter
     @planet.position.x = orbitRadius
     @planet.rotation.order = "XZY"
     @planet.rotation.z = @selfRotationDeflection
+    if @glowMap?
+      glowTexture = new THREE.Texture(@imageLoader.images[@glowMap])
+      glowTexture.needsUpdate = true
+      @planet.glowMaterial = new THREE.MeshBasicMaterial
+        map: glowTexture
+
     @pivot.add(@planet)
     @parent.add(@pivot)
 
@@ -83,7 +92,7 @@ class PlanetWebGLPainter
     material = @getGlowMaterial()
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = Math.PI/2
-    torus.occlusionMaterial = new THREE.MeshBasicMaterial
+    torus.occlusionMaterial = torus.glowMaterial = new THREE.MeshBasicMaterial
       color: 0x000000
       transparent: true
       opacity: 0

@@ -2,7 +2,8 @@ class SolarSystemWebGLPainter
 
   @sunTexture: 'assets/img/solarSystem/sun_texture.jpg'
 
-  linearBlurValue: 2.5
+  godRaysLinearBlurValue: 2.5
+  glowLinearBlurValue: 2.5
   lookAtPlanetFromYOffset: 10
   lookAtSunFromYOffset: 15
   lookAtPlanetFromZSizeFactor: 1.5
@@ -64,6 +65,18 @@ class SolarSystemWebGLPainter
 
     @focusOnPlanet = null
 
+    Animatable.makeAnimatable(@)
+#    @animation
+#      transitions: [
+#        properties:
+#          glowLinearBlurValue: 1.5
+#        duration: 3000
+#        easing: Easing.linear
+#      ]
+#      alternateDirection: true
+#      count: 'infinite'
+#      queue: false
+
     # Make the camera position and rotation "animatable"
     Animatable.makeAnimatable(@camera.position)
     Animatable.makeAnimatable(@camera.rotation)
@@ -77,6 +90,7 @@ class SolarSystemWebGLPainter
     @camera.position.animate()
     @camera.rotation.animate()
     @camera.up.animate()
+    @animate()
 
     if @focusOnPlanet and @focusFinished
       pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
@@ -95,10 +109,19 @@ class SolarSystemWebGLPainter
     @radialBlur.uniforms.fX.value = @radialBlurCenter.x
     @radialBlur.uniforms.fY.value = @radialBlurCenter.y
 
-  onResize: (w, h)->
+    @glowVerticalBlur.uniforms.v.value = @glowLinearBlurValue / @h
+    @glowHorizontalBlur.uniforms.h.value = @glowLinearBlurValue / @w
+
+    @glowComposer.render()
+
+  onResize: (@w, @h)->
     @composer.setSize(w/2, h/2)
-    @verticalBlur.uniforms.v.value = @linearBlurValue / h
-    @horizontalBlur.uniforms.h.value = @linearBlurValue / w
+    @glowComposer.setSize(w/2, h/2)
+    @verticalBlur.uniforms.v.value = @godRaysLinearBlurValue / h
+    @horizontalBlur.uniforms.h.value = @godRaysLinearBlurValue / w
+    @glowVerticalBlur.uniforms.v.value = @glowLinearBlurValue / h
+    @glowHorizontalBlur.uniforms.h.value = @glowLinearBlurValue / w
+    @updateAdditiveShader()
 
   goTo: (celestialObject, onEnd = $.noop)->
     duration = Config.changePlanetAnimationDuration
@@ -213,27 +236,34 @@ class SolarSystemWebGLPainter
 
     occlusionSceneRenderPass = new THREE.AltMaterialRenderPass('occlusionMaterial', @scene, @camera)
 
-    @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
     @verticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
-    @verticalBlur.uniforms.v.value = @linearBlurValue / h
+    @verticalBlur.uniforms.v.value = @godRaysLinearBlurValue / h
     @horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
-    @horizontalBlur.uniforms.h.value = @linearBlurValue / w
+    @horizontalBlur.uniforms.h.value = @godRaysLinearBlurValue / w
 
-    passes = [
-      occlusionSceneRenderPass
-      @verticalBlur
-      @horizontalBlur
-      @radialBlur]
-
-    for pass in passes
-      @composer.addPass(pass)
-
+    @radialBlur = new THREE.ShaderPass(THREE.RadialBlurShader)
     #Configure radial blur
     @radialBlur.uniforms.fExposure.value = 0.65
     @radialBlur.uniforms.fDecay.value = 0.92
     @radialBlur.uniforms.fDensity.value = 1
     @radialBlur.uniforms.fWeight.value = 0.25
     @radialBlur.uniforms.fClamp.value = 1
+
+    passes = [
+      occlusionSceneRenderPass
+      @verticalBlur
+      @horizontalBlur
+      @radialBlur
+      new THREE.ShaderPass(THREE.CopyShader)
+    ]
+
+    for pass in passes
+      @composer.addPass(pass)
+
+    @glowComposer = @getGlowComposer(w, h)
+    @additiveShader = new THREE.ShaderPass(THREE.AdditiveShader)
+    @updateAdditiveShader()
+    @composer.addPass(@additiveShader)
 
     if @opt.debug
       gui = new dat.GUI()
@@ -242,11 +272,40 @@ class SolarSystemWebGLPainter
       gui.add(@radialBlur.uniforms.fDensity, 'value').min(0.0).max(2.0).step(0.01).name("Density")
       gui.add(@radialBlur.uniforms.fWeight, 'value').min(0.0).max(2.0).step(0.01).name("Weight")
       gui.add(@radialBlur.uniforms.fClamp, 'value').min(0.0).max(2.0).step(0.01).name("Clamp")
-      gui.add({value: @linearBlurValue}, 'value').min(0.0).max(5.0).step(0.01).name("Blur").onChange (val)=>
+      gui.add({value: @godRaysLinearBlurValue}, 'value').min(0.0).max(5.0).step(0.01).name("Blur").onChange (val)=>
         @verticalBlur.uniforms.v.value = val / h
         @horizontalBlur.uniforms.h.value = val / w
 
     @composer
+
+  getGlowComposer: (w, h)->
+    parameters =
+      minFilter: THREE.LinearFilter
+      magFilter: THREE.LinearFilter
+      format: THREE.RGBAFormat
+      stencilBuffer: false
+    renderTarget = new THREE.WebGLRenderTarget( w/2, h/2, parameters );
+    composer = new THREE.EffectComposer(@renderer, renderTarget)
+
+    blurSceneRenderPass = new THREE.AltMaterialRenderPass('glowMaterial', @scene, @camera)
+    @glowVerticalBlur = new THREE.ShaderPass(THREE.VerticalBlurShader)
+    @glowVerticalBlur.uniforms.v.value = @glowLinearBlurValue / h
+    @glowHorizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader)
+    @glowHorizontalBlur.uniforms.h.value = @glowLinearBlurValue / w
+
+    passes = [
+      blurSceneRenderPass
+      @glowHorizontalBlur
+      @glowVerticalBlur
+      new THREE.ShaderPass(THREE.CopyShader)
+      ]
+
+    for pass in passes
+      composer.addPass(pass)
+    composer
+
+  updateAdditiveShader: ->
+    @additiveShader.uniforms.tAdd.value = @glowComposer.renderTarget1
 
 
 

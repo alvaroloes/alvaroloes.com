@@ -51,8 +51,8 @@ class UniverseWebGLPainter
       @composer.addPass(pass) for pass in passes
 
     # Make an additive sum of the extra composer defined in solarSystem
-    @extraComposer = @solarSystem.extraComposer()
-    if @extraComposer?
+    @solarSystemComposer = @solarSystem.extraComposer()
+    if @solarSystemComposer?
       @additiveShader = new THREE.ShaderPass(THREE.AdditiveShader)
       @updateAdditiveShader()
       @composer.addPass(@additiveShader)
@@ -63,8 +63,8 @@ class UniverseWebGLPainter
     @composer.addPass(copyShader)
 
   updateAdditiveShader: ->
-    if @extraComposer? and @additiveShader?
-      @additiveShader.uniforms.tAdd.value = @extraComposer.renderTarget1
+    if @solarSystemComposer? and @additiveShader?
+      @additiveShader.uniforms.tAdd.value = @solarSystemComposer.renderTarget1
 
   getUniverseMaterial: (ctx) ->
     # Create the texture with the generated canvas
@@ -166,6 +166,6 @@ class UniverseWebGLPainter
     @solarSystem.onPaint(elapsedTime)
     @bgRenderer.render(@bgScene, @bgCamera)
     # The fgRenderer is managed by the composer
-    @extraComposer?.render()
+    @solarSystemComposer?.render()
     @composer.render()
     requestAnimFrame(=> @paintCanvas()) if animate

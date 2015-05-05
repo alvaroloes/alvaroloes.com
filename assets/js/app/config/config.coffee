@@ -13,7 +13,7 @@ class window.Config
   @personalSelfRotationPeriod       : 1.2 * @baseSelfRotationPeriod
   @reflexiveSelfRotationPeriod      : 1.5 * @baseSelfRotationPeriod
   @laborSelfRotationPeriod          : 2 * @baseSelfRotationPeriod
-  @techSelfRotationPeriod           : 0.5 * @baseSelfRotationPeriod
+  @techSelfRotationPeriod           : 1 * @baseSelfRotationPeriod
 
   # Orbits periods (in milliseconds)
   @baseOrbitPeriod           : 20000
