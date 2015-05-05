@@ -3,7 +3,7 @@ class SolarSystemWebGLPainter
   @sunTexture: 'assets/img/solarSystem/sun_texture.jpg'
 
   godRaysLinearBlurValue: 2.5
-  glowLinearBlurValue: 2.5
+  glowLinearBlurValue: 1
   lookAtPlanetFromYOffset: 10
   lookAtSunFromYOffset: 15
   lookAtPlanetFromZSizeFactor: 1.5
@@ -65,17 +65,21 @@ class SolarSystemWebGLPainter
 
     @focusOnPlanet = null
 
-    Animatable.makeAnimatable(@)
-#    @animation
-#      transitions: [
-#        properties:
-#          glowLinearBlurValue: 1.5
-#        duration: 3000
-#        easing: Easing.linear
-#      ]
-#      alternateDirection: true
-#      count: 'infinite'
-#      queue: false
+    @glowAdditiveUniform = {
+      type: 'f'
+      value: 1.7
+    }
+    Animatable.makeAnimatable(@glowAdditiveUniform)
+    @glowAdditiveUniform.animation
+      transitions: [
+        properties:
+          value: 2.5
+        duration: 1000
+        easing: Easing.easeInOut
+      ]
+      alternateDirection: true
+      count: 'infinite'
+      queue: false
 
     # Make the camera position and rotation "animatable"
     Animatable.makeAnimatable(@camera.position)
@@ -90,7 +94,7 @@ class SolarSystemWebGLPainter
     @camera.position.animate()
     @camera.rotation.animate()
     @camera.up.animate()
-    @animate()
+    @glowAdditiveUniform.animate()
 
     if @focusOnPlanet and @focusFinished
       pos = @focusOnPlanet.paintStrategy.getPlanetRealPosition()
@@ -262,6 +266,7 @@ class SolarSystemWebGLPainter
 
     @glowComposer = @getGlowComposer(w, h)
     @additiveShader = new THREE.ShaderPass(THREE.AdditiveShader)
+    @additiveShader.uniforms.mixRatio = @glowAdditiveUniform
     @updateAdditiveShader()
     @composer.addPass(@additiveShader)
 

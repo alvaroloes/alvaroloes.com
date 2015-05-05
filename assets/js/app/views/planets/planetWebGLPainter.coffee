@@ -63,21 +63,24 @@ class PlanetWebGLPainter
     # Create the pivot to rotate around and perform the planet translation
     @pivot = new THREE.Object3D()
     @pivot.rotation.y = @initialRotationAngle
-
+    
     # Create the planet and add it to the pivot
     texture = new THREE.Texture(@imageLoader.images[@planetTexture])
     texture.needsUpdate = true
     geo = new THREE.SphereGeometry(planetSize, 64, 64)
     material = new THREE.MeshPhongMaterial
       map: texture
+
     if @bumpMap?
       material.bumpMap = new THREE.Texture(@imageLoader.images[@bumpMap])
       material.bumpMap.needsUpdate = true
       material.bumpScale = 0.5
+
     @planet = new THREE.Mesh(geo, material)
     @planet.position.x = orbitRadius
     @planet.rotation.order = "XZY"
     @planet.rotation.z = @selfRotationDeflection
+
     if @glowMap?
       glowTexture = new THREE.Texture(@imageLoader.images[@glowMap])
       glowTexture.needsUpdate = true
