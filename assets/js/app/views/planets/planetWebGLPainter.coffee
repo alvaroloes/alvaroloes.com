@@ -41,15 +41,15 @@ class PlanetWebGLPainter
       count: 'infinite'
       queue: false
 
-    @pivot.rotation.animation
-      transitions: [
-        properties:
-          y: @initialRotationAngle + 2 * Math.PI * @orbitDirection
-        duration: @orbitPeriod
-        easing: Easing.linear
-      ]
-      count: 'infinite'
-      queue: false
+#    @pivot.rotation.animation
+#      transitions: [
+#        properties:
+#          y: @initialRotationAngle + 2 * Math.PI * @orbitDirection
+#        duration: @orbitPeriod
+#        easing: Easing.linear
+#      ]
+#      count: 'infinite'
+#      queue: false
 
   prepareScene:(@scene, @camera)->
 
@@ -92,9 +92,9 @@ class PlanetWebGLPainter
 
     # Create the planet trail
     geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 256)
-    material = @getGlowMaterial()
+    material = @getTrailMaterial(orbitRadius, planetSize, Math.PI*2.0)
     torus = new THREE.Mesh(geo, material)
-    torus.rotation.x = Math.PI/2
+#    torus.rotation.x = Math.PI/2
     torus.occlusionMaterial = torus.glowMaterial = new THREE.MeshBasicMaterial
       color: 0x000000
       transparent: true
@@ -105,22 +105,64 @@ class PlanetWebGLPainter
 
     @setAnimations()
 
-  getGlowMaterial: (color = 0xffffff)->
-    uniforms =
+  getTrailMaterial: (orbitRadius, planetRadius, planetYTranslationAngle, color = 0xffffff)->
+    @trailMaterialUniforms =
       color: type: "c", value: new THREE.Color(color)
+      orbitRadius: type: "f", value: orbitRadius
+      planetYTranslationAngle: type:"f", value: planetYTranslationAngle
+      planetRadius: type:"f", value: planetRadius
 
     material = new THREE.ShaderMaterial
-      uniforms: uniforms
+      uniforms: @trailMaterialUniforms
       transparent: true
       vertexShader: '''
+        uniform float orbitRadius;
+        uniform float planetYTranslationAngle;
+        uniform float planetRadius;
         varying vec3 iPosition;
         varying vec3 iNormal;
+        #define PI 3.1415926535897932384626433832795
+        #define DOUBLE_PI 2.0*PI
+
         void main() {
-          iPosition = vec3(modelMatrix * vec4(position,1.0));
+          //Interpolated normal for fragment shader
           iNormal = vec3(modelMatrix * vec4(normal,0.0));
+
+          //--> Modify the position if it is near the planet position
+          //Calculate the angle of the current position
+          float positionZAngle = acos(dot(normalize(position), vec3(1,0,0)));
+          if (position.y < 0.0) {
+            positionZAngle = DOUBLE_PI - positionZAngle;
+          }
+
+          //Make the planet angle to be between 0 and 360 and always positive
+          float planetAngle = mod(planetYTranslationAngle,DOUBLE_PI);
+          if (planetAngle < 0.0) {
+            planetAngle += DOUBLE_PI;
+          }
+
+          //Calculate the offset between the two angles, taking care of the limits (360 and 0)
+          float angleOffset = abs(mod(positionZAngle - planetAngle + PI, DOUBLE_PI) - PI);
+
+          float currentPositionInPerimeter = positionZAngle * orbitRadius;
+          float planetPositionInPerimeter = planetAngle * orbitRadius;
+
+          //float tolerance =
+          //Finally calculate the new position taking into account the planet radius
+          vec3 newPosition;
+          if (angleOffset < 0.3 ) {
+            newPosition = position + normal * 8.0;
+          }
+          else {
+            newPosition = position;
+          }
+
+          //Interpolated position for fragment shader
+          iPosition = vec3(modelMatrix * vec4(newPosition,1.0));
+
           gl_Position = projectionMatrix *
                         modelViewMatrix *
-                        vec4(position,1.0);
+                        vec4(newPosition,1.0);
         }
         '''
       fragmentShader: '''
@@ -128,9 +170,11 @@ class PlanetWebGLPainter
         varying vec3 iPosition;
         varying vec3 iNormal;
         void main() {
+          //The more facing to camera the more transparent
           vec3 vectorToCamera = cameraPosition - iPosition;
           float alpha = pow(1.0 - abs(dot(iNormal, normalize(vectorToCamera))),2.0);
 
+          //If the camera is too close, make it transparent
           float min = 25.0;
           float range = 100.0;
           float distanceToCamera = length(vectorToCamera);
@@ -139,6 +183,7 @@ class PlanetWebGLPainter
           {
             alpha *= distanceModifier;
           }
+
           gl_FragColor = vec4(color, alpha);
         }
         '''

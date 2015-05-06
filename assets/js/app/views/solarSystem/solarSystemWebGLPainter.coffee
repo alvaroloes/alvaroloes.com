@@ -25,6 +25,9 @@ class SolarSystemWebGLPainter
 
 
   prepareScene: (@scene, @camera, @renderer)->
+    if @opt.debug
+      @scene.add(new THREE.AxisHelper(300))
+
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
@@ -128,7 +131,7 @@ class SolarSystemWebGLPainter
     @updateAdditiveShader()
 
   goTo: (celestialObject, onEnd = $.noop)->
-    duration = Config.changePlanetAnimationDuration
+    duration = 10; #Config.changePlanetAnimationDuration
     @focusOnPlanet = null
     @focusFinished = false
 
