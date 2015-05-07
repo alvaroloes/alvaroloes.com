@@ -131,7 +131,7 @@ class SolarSystemWebGLPainter
     @updateAdditiveShader()
 
   goTo: (celestialObject, onEnd = $.noop)->
-    duration = 10; #Config.changePlanetAnimationDuration
+    duration = Config.changePlanetAnimationDuration
     @focusOnPlanet = null
     @focusFinished = false
 

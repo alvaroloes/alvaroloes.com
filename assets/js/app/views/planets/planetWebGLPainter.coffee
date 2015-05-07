@@ -41,15 +41,15 @@ class PlanetWebGLPainter
       count: 'infinite'
       queue: false
 
-#    @pivot.rotation.animation
-#      transitions: [
-#        properties:
-#          y: @initialRotationAngle + 2 * Math.PI * @orbitDirection
-#        duration: @orbitPeriod
-#        easing: Easing.linear
-#      ]
-#      count: 'infinite'
-#      queue: false
+    @pivot.rotation.animation
+      transitions: [
+        properties:
+          y: @initialRotationAngle + 2 * Math.PI * @orbitDirection
+        duration: @orbitPeriod
+        easing: Easing.linear
+      ]
+      count: 'infinite'
+      queue: false
 
   prepareScene:(@scene, @camera)->
 
@@ -92,9 +92,9 @@ class PlanetWebGLPainter
 
     # Create the planet trail
     geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 256)
-    material = @getTrailMaterial(orbitRadius, planetSize, Math.PI*2.0)
+    material = @getTrailMaterial(orbitRadius, planetSize, @pivot.rotation.y)
     torus = new THREE.Mesh(geo, material)
-#    torus.rotation.x = Math.PI/2
+    torus.rotation.x = -Math.PI/2
     torus.occlusionMaterial = torus.glowMaterial = new THREE.MeshBasicMaterial
       color: 0x000000
       transparent: true
@@ -147,11 +147,11 @@ class PlanetWebGLPainter
           float currentPositionInPerimeter = positionZAngle * orbitRadius;
           float planetPositionInPerimeter = planetAngle * orbitRadius;
 
-          //float tolerance =
+          float tolerance = planetRadius / orbitRadius;
           //Finally calculate the new position taking into account the planet radius
           vec3 newPosition;
-          if (angleOffset < 0.3 ) {
-            newPosition = position + normal * 8.0;
+          if (angleOffset < tolerance ) {
+            newPosition = position + normal * 15.0;
           }
           else {
             newPosition = position;
@@ -194,6 +194,7 @@ class PlanetWebGLPainter
   onPaint: ->
     @planet.rotation.animate()
     @pivot.rotation.animate()
+    @trailMaterialUniforms.planetYTranslationAngle.value = @pivot.rotation.y
 
   getPlanetRealPosition: ->
     pos = new THREE.Vector3()
