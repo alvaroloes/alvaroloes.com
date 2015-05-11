@@ -5,8 +5,8 @@ class SolarSystemWebGLPainter
   godRaysLinearBlurValue: 2.5
   glowLinearBlurValue: 1
   lookAtPlanetFromYOffset: 10
-  lookAtSunFromYOffset: 15
   lookAtPlanetFromZSizeFactor: 1.5
+  lookAtSunFromYOffset: 15
   lookAtSunFromZSizeFactor: 2
 
 

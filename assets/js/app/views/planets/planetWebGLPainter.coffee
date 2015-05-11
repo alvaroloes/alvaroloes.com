@@ -91,7 +91,7 @@ class PlanetWebGLPainter
     @parent.add(@pivot)
 
     # Create the planet trail
-    geo = new THREE.TorusGeometry(orbitRadius, planetSize*1.1, 32, 256)
+    geo = new THREE.TorusGeometry(orbitRadius, planetSize*0.7, 32, 1024)
     material = @getTrailMaterial(orbitRadius, planetSize, @pivot.rotation.y)
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = -Math.PI/2
@@ -111,6 +111,7 @@ class PlanetWebGLPainter
       orbitRadius: type: "f", value: orbitRadius
       planetYTranslationAngle: type:"f", value: planetYTranslationAngle
       planetRadius: type:"f", value: planetRadius
+      time: type: "f", value: 0
 
     material = new THREE.ShaderMaterial
       uniforms: @trailMaterialUniforms
@@ -119,46 +120,59 @@ class PlanetWebGLPainter
         uniform float orbitRadius;
         uniform float planetYTranslationAngle;
         uniform float planetRadius;
+        uniform float time;
         varying vec3 iPosition;
         varying vec3 iNormal;
         #define PI 3.1415926535897932384626433832795
-        #define DOUBLE_PI 2.0*PI
+        #define TWO_PI 2.0*PI
+
+        float easeInOut(float t) {
+          return 3.0*(1.0-t)*t*t + t*t*t;
+        }
+
+        vec3 calculateNewPosition(float anglesOffset, float tolerance) {
+          if (anglesOffset > tolerance ) {
+            return position;
+          }
+
+          vec3 newPosition;
+          float distanceRatio = anglesOffset/tolerance;
+          float distanceModifier = easeInOut(1.0 - distanceRatio);
+          float waveModifier = 0.5*(1.0-distanceRatio)*sin(25.0*(distanceRatio - time/1000.0));
+          newPosition = position + normal * planetRadius*0.5 * distanceModifier + waveModifier;
+
+          return newPosition;
+        }
 
         void main() {
-          //Interpolated normal for fragment shader
-          iNormal = vec3(modelMatrix * vec4(normal,0.0));
 
           //--> Modify the position if it is near the planet position
+
           //Calculate the angle of the current position
           float positionZAngle = acos(dot(normalize(position), vec3(1,0,0)));
           if (position.y < 0.0) {
-            positionZAngle = DOUBLE_PI - positionZAngle;
+            positionZAngle = TWO_PI - positionZAngle;
           }
 
           //Make the planet angle to be between 0 and 360 and always positive
-          float planetAngle = mod(planetYTranslationAngle,DOUBLE_PI);
+          float planetAngle = mod(planetYTranslationAngle,TWO_PI);
           if (planetAngle < 0.0) {
-            planetAngle += DOUBLE_PI;
+            planetAngle += TWO_PI;
           }
 
           //Calculate the offset between the two angles, taking care of the limits (360 and 0)
-          float angleOffset = abs(mod(positionZAngle - planetAngle + PI, DOUBLE_PI) - PI);
+          float anglesOffset = abs(mod(positionZAngle - planetAngle + PI, TWO_PI) - PI);
 
-          float currentPositionInPerimeter = positionZAngle * orbitRadius;
-          float planetPositionInPerimeter = planetAngle * orbitRadius;
+          //Positions inside the tolerance will be modified
+          float tolerance = 5.0*planetRadius / orbitRadius;
 
-          float tolerance = planetRadius / orbitRadius;
-          //Finally calculate the new position taking into account the planet radius
-          vec3 newPosition;
-          if (angleOffset < tolerance ) {
-            newPosition = position + normal * 15.0;
-          }
-          else {
-            newPosition = position;
-          }
+          //Finally calculate the new position
+          vec3 newPosition = calculateNewPosition(anglesOffset, tolerance);
 
           //Interpolated position for fragment shader
           iPosition = vec3(modelMatrix * vec4(newPosition,1.0));
+          //Interpolated normal for fragment shader
+          iNormal = vec3(modelMatrix * vec4(normal,0.0));
 
           gl_Position = projectionMatrix *
                         modelViewMatrix *
@@ -191,10 +205,11 @@ class PlanetWebGLPainter
     material.depthWrite = false
     material
 
-  onPaint: ->
+  onPaint: (elapsedTime)->
     @planet.rotation.animate()
     @pivot.rotation.animate()
     @trailMaterialUniforms.planetYTranslationAngle.value = @pivot.rotation.y
+    @trailMaterialUniforms.time.value = elapsedTime
 
   getPlanetRealPosition: ->
     pos = new THREE.Vector3()
