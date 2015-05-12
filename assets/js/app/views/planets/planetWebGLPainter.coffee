@@ -92,7 +92,7 @@ class PlanetWebGLPainter
 
     # Create the planet trail
     geo = new THREE.TorusGeometry(orbitRadius, planetSize*0.7, 32, 1024)
-    material = @getTrailMaterial(orbitRadius, planetSize, @pivot.rotation.y)
+    material = @getTrailMaterial(orbitRadius, planetSize, @pivot.rotation.y, @orbitDirection)
     torus = new THREE.Mesh(geo, material)
     torus.rotation.x = -Math.PI/2
     torus.occlusionMaterial = torus.glowMaterial = new THREE.MeshBasicMaterial
@@ -105,11 +105,12 @@ class PlanetWebGLPainter
 
     @setAnimations()
 
-  getTrailMaterial: (orbitRadius, planetRadius, planetYTranslationAngle, color = 0xffffff)->
+  getTrailMaterial: (orbitRadius, planetRadius, planetYTranslationAngle, direction, color = 0xffffff)->
     @trailMaterialUniforms =
       color: type: "c", value: new THREE.Color(color)
       orbitRadius: type: "f", value: orbitRadius
       planetYTranslationAngle: type:"f", value: planetYTranslationAngle
+      direction: type:"f", value: direction
       planetRadius: type:"f", value: planetRadius
       time: type: "f", value: 0
 
@@ -121,6 +122,7 @@ class PlanetWebGLPainter
         uniform float planetYTranslationAngle;
         uniform float planetRadius;
         uniform float time;
+        uniform float direction;
         varying vec3 iPosition;
         varying vec3 iNormal;
         #define PI 3.1415926535897932384626433832795
@@ -131,15 +133,18 @@ class PlanetWebGLPainter
         }
 
         vec3 calculateNewPosition(float anglesOffset, float tolerance) {
-          if (anglesOffset > tolerance ) {
+          if (abs(anglesOffset) > tolerance ) {
             return position;
           }
 
-          vec3 newPosition;
-          float distanceRatio = anglesOffset/tolerance;
+          float distanceRatio = abs(anglesOffset)/tolerance;
           float distanceModifier = easeInOut(1.0 - distanceRatio);
           float waveModifier = 0.5*(1.0-distanceRatio)*sin(25.0*(distanceRatio - time/1000.0));
-          newPosition = position + normal * planetRadius*0.5 * distanceModifier + waveModifier;
+          vec3 newPosition = position + normal * planetRadius*0.5 * distanceModifier;
+
+          if (sign(anglesOffset) != sign(direction)) {
+            newPosition += waveModifier;
+          }
 
           return newPosition;
         }
@@ -161,7 +166,7 @@ class PlanetWebGLPainter
           }
 
           //Calculate the offset between the two angles, taking care of the limits (360 and 0)
-          float anglesOffset = abs(mod(positionZAngle - planetAngle + PI, TWO_PI) - PI);
+          float anglesOffset = mod(positionZAngle - planetAngle + PI, TWO_PI) - PI;
 
           //Positions inside the tolerance will be modified
           float tolerance = 5.0*planetRadius / orbitRadius;
