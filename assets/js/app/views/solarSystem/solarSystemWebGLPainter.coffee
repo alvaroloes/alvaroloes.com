@@ -25,8 +25,8 @@ class SolarSystemWebGLPainter
 
 
   prepareScene: (@scene, @camera, @renderer)->
-    if @opt.debug
-      @scene.add(new THREE.AxisHelper(300))
+#    if @opt.debug
+#      @scene.add(new THREE.AxisHelper(300))
 
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])

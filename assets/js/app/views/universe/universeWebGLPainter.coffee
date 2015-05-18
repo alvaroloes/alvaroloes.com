@@ -1,6 +1,13 @@
 class UniverseWebGLPainter
 
   constructor: (@$domParent, @imageLoader, @solarSystem, @opt)->
+    if (@opt.debug)
+      @stats = new Stats()
+      @stats.setMode(0)
+      @stats.domElement.style.position = 'absolute'
+      @stats.domElement.style.left = '0px'
+      @stats.domElement.style.top = '0px'
+      document.body.appendChild( @stats.domElement )
     # Crete a canvas 2D universe only to draw the stars texture
     @canvasUniverse = new UniverseCanvasPainter(@$domParent, @imageLoader, null)
     # Background scene, camera an renderer
@@ -161,6 +168,7 @@ class UniverseWebGLPainter
     @updateAdditiveShader()
 
   paintCanvas: (animate = true)->
+    @stats?.begin()
     elapsedTime = Date.now() - @startTime
     @uniforms.elapsedTimeMillis.value = elapsedTime
     @solarSystem.onPaint(elapsedTime)
@@ -168,4 +176,5 @@ class UniverseWebGLPainter
     # The fgRenderer is managed by the composer
     @solarSystemComposer?.render()
     @composer.render()
+    @stats?.end()
     requestAnimFrame(=> @paintCanvas()) if animate

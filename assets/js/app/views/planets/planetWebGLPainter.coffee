@@ -86,94 +86,86 @@ class PlanetWebGLPainter
       glowTexture.needsUpdate = true
       @planet.glowMaterial = new THREE.MeshBasicMaterial
         map: glowTexture
-
     @pivot.add(@planet)
-    @parent.add(@pivot)
 
-    # Create the planet trail
-    geo = new THREE.TorusGeometry(orbitRadius, planetSize*0.7, 32, 1024)
-    material = @getTrailMaterial(orbitRadius, planetSize, @pivot.rotation.y, @orbitDirection)
-    torus = new THREE.Mesh(geo, material)
-    torus.rotation.x = -Math.PI/2
-    torus.occlusionMaterial = torus.glowMaterial = new THREE.MeshBasicMaterial
+
+    # Create the planet trail. We compose it with two arcs, one of them animated
+    torusColor = 0xffffff
+    torusWidth = planetSize*1.1
+    torusTransparentMaterial = new THREE.MeshBasicMaterial
       color: 0x000000
       transparent: true
       opacity: 0
-    @parent.add(torus)
+    animatedTrailRatio = 5
+    animatedArcAngle = -@orbitDirection*animatedTrailRatio*planetSize/orbitRadius
 
+    geo = new THREE.TorusGeometry(orbitRadius, torusWidth, 32, 24, animatedArcAngle)
+    material = @getTrailMaterial(true, animatedArcAngle, torusColor)
+    animatedTorusArc = new THREE.Mesh(geo, material)
+    animatedTorusArc.rotation.x = -Math.PI/2
+    animatedTorusArc.occlusionMaterial = torusTransparentMaterial
+    animatedTorusArc.glowMaterial = torusTransparentMaterial
+    @pivot.add(animatedTorusArc)
+
+    geo = new THREE.TorusGeometry(orbitRadius,torusWidth, 32, 256, -@orbitDirection*2*Math.PI - animatedArcAngle)
+    material = @getTrailMaterial(false, 0, torusColor)
+    fixedTorusArc = new THREE.Mesh(geo, material)
+    fixedTorusArc.rotation.x = -Math.PI/2
+    fixedTorusArc.rotation.z = animatedArcAngle
+    fixedTorusArc.occlusionMaterial = torusTransparentMaterial
+    fixedTorusArc.glowMaterial = torusTransparentMaterial
+    @pivot.add(fixedTorusArc)
+
+    @parent.add(@pivot)
     @scene.add(@parent)
 
     @setAnimations()
 
-  getTrailMaterial: (orbitRadius, planetRadius, planetYTranslationAngle, direction, color = 0xffffff)->
-    @trailMaterialUniforms =
+  getTrailMaterial: (withWavyBehavior, wavySizeRadians, color = 0xffffff)->
+    uniforms =
       color: type: "c", value: new THREE.Color(color)
-      orbitRadius: type: "f", value: orbitRadius
-      planetYTranslationAngle: type:"f", value: planetYTranslationAngle
-      direction: type:"f", value: direction
-      planetRadius: type:"f", value: planetRadius
-      time: type: "f", value: 0
+      wavySizeRadians: type:"f", value: wavySizeRadians
+    if (withWavyBehavior)
+      @wavyTimeUniform =
+        type: "f",
+        value: 0
+      uniforms.time = @wavyTimeUniform
+
+    wavyCode = ''
+    if withWavyBehavior
+      wavyCode = '''
+          //--> Modify the position to create a wavy effect if it is near the planet position
+          //Calculate the angle of the current position
+          float positionZAngle = acos(dot(normalize(position), vec3(1,0,0)));
+
+          //Finally calculate the new position
+          newPosition = calculateNewPosition(positionZAngle);
+      '''
 
     material = new THREE.ShaderMaterial
-      uniforms: @trailMaterialUniforms
+      uniforms: uniforms
       transparent: true
-      vertexShader: '''
-        uniform float orbitRadius;
-        uniform float planetYTranslationAngle;
-        uniform float planetRadius;
+      vertexShader: """
+        uniform float wavySizeRadians;
         uniform float time;
-        uniform float direction;
         varying vec3 iPosition;
         varying vec3 iNormal;
-        #define PI 3.1415926535897932384626433832795
+        #define PI 3.14159265359
         #define TWO_PI 2.0*PI
 
         float easeInOut(float t) {
           return 3.0*(1.0-t)*t*t + t*t*t;
         }
 
-        vec3 calculateNewPosition(float anglesOffset, float tolerance) {
-          if (abs(anglesOffset) > tolerance ) {
-            return position;
-          }
-
-          float distanceRatio = abs(anglesOffset)/tolerance;
-          float distanceModifier = easeInOut(1.0 - distanceRatio);
-          float waveModifier = 0.5*(1.0-distanceRatio)*sin(25.0*(distanceRatio - time/1000.0));
-          vec3 newPosition = position + normal * planetRadius*0.5 * distanceModifier;
-
-          if (sign(anglesOffset) != sign(direction)) {
-            newPosition += waveModifier;
-          }
-
-          return newPosition;
+        vec3 calculateNewPosition(float angleOffset) {
+          float distanceRatio = abs(angleOffset/wavySizeRadians);
+          float waveModifier =  easeInOut(distanceRatio)*2.0*(1.0-distanceRatio)*sin(25.0*(distanceRatio - time/1000.0));
+          return  position + waveModifier;
         }
 
         void main() {
-
-          //--> Modify the position if it is near the planet position
-
-          //Calculate the angle of the current position
-          float positionZAngle = acos(dot(normalize(position), vec3(1,0,0)));
-          if (position.y < 0.0) {
-            positionZAngle = TWO_PI - positionZAngle;
-          }
-
-          //Make the planet angle to be between 0 and 360 and always positive
-          float planetAngle = mod(planetYTranslationAngle,TWO_PI);
-          if (planetAngle < 0.0) {
-            planetAngle += TWO_PI;
-          }
-
-          //Calculate the offset between the two angles, taking care of the limits (360 and 0)
-          float anglesOffset = mod(positionZAngle - planetAngle + PI, TWO_PI) - PI;
-
-          //Positions inside the tolerance will be modified
-          float tolerance = 5.0*planetRadius / orbitRadius;
-
-          //Finally calculate the new position
-          vec3 newPosition = calculateNewPosition(anglesOffset, tolerance);
-
+          vec3 newPosition = position;
+          #{wavyCode}
           //Interpolated position for fragment shader
           iPosition = vec3(modelMatrix * vec4(newPosition,1.0));
           //Interpolated normal for fragment shader
@@ -183,7 +175,7 @@ class PlanetWebGLPainter
                         modelViewMatrix *
                         vec4(newPosition,1.0);
         }
-        '''
+        """
       fragmentShader: '''
         uniform vec3 color;
         varying vec3 iPosition;
@@ -213,8 +205,7 @@ class PlanetWebGLPainter
   onPaint: (elapsedTime)->
     @planet.rotation.animate()
     @pivot.rotation.animate()
-    @trailMaterialUniforms.planetYTranslationAngle.value = @pivot.rotation.y
-    @trailMaterialUniforms.time.value = elapsedTime
+    @wavyTimeUniform.value = elapsedTime
 
   getPlanetRealPosition: ->
     pos = new THREE.Vector3()
