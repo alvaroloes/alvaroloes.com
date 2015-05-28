@@ -9,6 +9,8 @@ class SolarSystemWebGLPainter
   lookAtSunFromYOffset: 15
   lookAtSunFromZSizeFactor: 2
 
+  pendingCameraAnimations: 0
+
 
   constructor: (@sun, @planets, @opt={})->
     @sunRotationPeriod = Config.sunSelfRotationPeriod
@@ -131,6 +133,7 @@ class SolarSystemWebGLPainter
     @updateAdditiveShader()
 
   goTo: (celestialObject, onEnd = $.noop)->
+    @pendingCameraAnimations++
     duration = Config.changePlanetAnimationDuration
     @focusOnPlanet = null
     @focusFinished = false
@@ -167,7 +170,8 @@ class SolarSystemWebGLPainter
       queue: false
       easing: Easing.easeOut
       onEnd: =>
-        @focusFinished = true
+        if --@pendingCameraAnimations <= 0
+          @focusFinished = true
         onEnd()
 
     # Now move the y coordinate with an up-down movement
@@ -191,38 +195,23 @@ class SolarSystemWebGLPainter
     # Animate the target of the camera to point to the celestial object, taking into account
     # that it is moving, so the end position must be recalculated every frame
     # (The efficiency of the could be improved)
+
+    getRotationLookingAtTarget = =>
+      startRotation = new THREE.Euler().copy(@camera.rotation)
+      if planetPainter
+        pos = planetPainter.getPlanetRealPosition()
+      else
+        pos = @sun.position
+      @camera.lookAt(pos)
+      endRotation = new THREE.Euler().copy( @camera.rotation )
+      @camera.rotation.copy(startRotation)
+      endRotation
+
     @camera.rotation.transition
       properties:
-        x: =>
-          startRotation = new THREE.Euler().copy(@camera.rotation)
-          if planetPainter
-            pos = planetPainter.getPlanetRealPosition()
-          else
-            pos = @sun.position
-          @camera.lookAt(pos)
-          endRotation = new THREE.Euler().copy( @camera.rotation )
-          @camera.rotation.copy(startRotation)
-          return endRotation.x
-        y: =>
-          startRotation = new THREE.Euler().copy(@camera.rotation)
-          if planetPainter
-            pos = planetPainter.getPlanetRealPosition()
-          else
-            pos = @sun.position
-          @camera.lookAt(pos)
-          endRotation = new THREE.Euler().copy( @camera.rotation )
-          @camera.rotation.copy(startRotation)
-          return endRotation.y
-        z: =>
-          startRotation = new THREE.Euler().copy(@camera.rotation)
-          if planetPainter
-            pos = planetPainter.getPlanetRealPosition()
-          else
-            pos = @sun.position
-          @camera.lookAt(pos)
-          endRotation = new THREE.Euler().copy( @camera.rotation )
-          @camera.rotation.copy(startRotation)
-          return endRotation.z
+        x: => getRotationLookingAtTarget().x
+        y: => getRotationLookingAtTarget().y
+        z: => getRotationLookingAtTarget().z
       duration: duration
       queue: false
       easing: Easing.easeInOut
