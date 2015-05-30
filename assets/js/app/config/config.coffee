@@ -42,3 +42,4 @@ class window.Config
 
   # Animation times
   @changePlanetAnimationDuration: 4000
+  @initialAnimationDuration: 6000

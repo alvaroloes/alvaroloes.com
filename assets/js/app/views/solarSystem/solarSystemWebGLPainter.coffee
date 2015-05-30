@@ -27,9 +27,6 @@ class SolarSystemWebGLPainter
 
 
   prepareScene: (@scene, @camera, @renderer)->
-#    if @opt.debug
-#      @scene.add(new THREE.AxisHelper(300))
-
     # Sun
     texture = new THREE.Texture(@imageLoader.images[@constructor.sunTexture])
     texture.needsUpdate = true
@@ -69,6 +66,7 @@ class SolarSystemWebGLPainter
     @camera.up.applyEuler(@camera.rotation)
 
     @focusOnPlanet = null
+    @comingFromOutsideSolarSystem = true
 
     @glowAdditiveUniform = {
       type: 'f'
@@ -89,7 +87,6 @@ class SolarSystemWebGLPainter
     # Make the camera position and rotation "animatable"
     Animatable.makeAnimatable(@camera.position)
     Animatable.makeAnimatable(@camera.rotation)
-    Animatable.makeAnimatable(@camera.up)
 
     @radialBlurCenter = new THREE.Vector3()
 
@@ -98,7 +95,6 @@ class SolarSystemWebGLPainter
     @sun.rotation.animate()
     @camera.position.animate()
     @camera.rotation.animate()
-    @camera.up.animate()
     @glowAdditiveUniform.animate()
 
     if @focusOnPlanet and @focusFinished
@@ -134,7 +130,11 @@ class SolarSystemWebGLPainter
 
   goTo: (celestialObject, onEnd = $.noop)->
     @pendingCameraAnimations++
-    duration = Config.changePlanetAnimationDuration
+    if @comingFromOutsideSolarSystem
+      duration = Config.initialAnimationDuration
+    else
+      duration = Config.changePlanetAnimationDuration
+
     @focusOnPlanet = null
     @focusFinished = false
 
@@ -159,13 +159,19 @@ class SolarSystemWebGLPainter
     # Move the camera x, z coordinates to the to the celestial object
     @camera.position.transition
       properties:
-        z: zPos
+        x: xPos
       duration: duration
       queue: false
       easing: Easing.easeInOut
     @camera.position.transition
       properties:
-        x: xPos
+        y: yPos
+      duration: duration
+      queue: false
+      easing: Easing.easeInOut
+    @camera.position.transition
+      properties:
+        z: zPos
       duration: duration
       queue: false
       easing: Easing.easeOut
@@ -174,23 +180,22 @@ class SolarSystemWebGLPainter
           @focusFinished = true
         onEnd()
 
-    # Now move the y coordinate with an up-down movement
-    #TODO: This should not be applied in the initial transition
-    # 1.- Change the
-    # Animation
-    @camera.position.transition
-      properties:
-        y: @sunSize*2
-      duration: duration/2
-      queue: false
-      easing: Easing.easeOut
-    @camera.position.transition
-      properties:
-        y: yPos
-      delay: duration/2
-      duration: duration/2
-      queue: false
-      easing: Easing.easeInOut
+    # Override the y coordinate with an up-down movement to avoid go thtough the sun
+    # (Only do this if this isn't the initial animation, when coming from outside the solar system)
+    unless @comingFromOutsideSolarSystem
+      @camera.position.transition
+        properties:
+          y: @sunSize*2
+        duration: duration/2
+        queue: false
+        easing: Easing.easeOut
+      @camera.position.transition
+        properties:
+          y: yPos
+        delay: duration/2
+        duration: duration/2
+        queue: false
+        easing: Easing.easeInOut
 
     # Animate the target of the camera to point to the celestial object, taking into account
     # that it is moving, so the end position must be recalculated every frame
@@ -215,6 +220,8 @@ class SolarSystemWebGLPainter
       duration: duration
       queue: false
       easing: Easing.easeInOut
+
+    @comingFromOutsideSolarSystem = false
 
   extraComposer: ->
     # Use postprocessing to get a "god rays" effect.
