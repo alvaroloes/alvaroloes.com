@@ -178,7 +178,7 @@ class SolarSystemWebGLPainter
       onEnd: =>
         if --@pendingCameraAnimations <= 0
           @focusFinished = true
-        onEnd()
+          onEnd()
 
     # Override the y coordinate with an up-down movement to avoid go thtough the sun
     # (Only do this if this isn't the initial animation, when coming from outside the solar system)
@@ -216,7 +216,8 @@ class SolarSystemWebGLPainter
       properties:
         x: => getRotationLookingAtTarget().x
         y: => getRotationLookingAtTarget().y
-        z: => getRotationLookingAtTarget().z
+        # Without animating z we avoid weird jumps due to the free rotation along the three axis
+        # z: => getRotationLookingAtTarget().z
       duration: duration
       queue: false
       easing: Easing.easeInOut
