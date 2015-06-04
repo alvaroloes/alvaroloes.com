@@ -20,7 +20,6 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
     super =>
       @$el.html(@template
         t: i18n.t
-        subsections: i18n.t('reflexive.subsections')
       )
       @$el.on('transitionend', (e)=> @sectionDidAppear(e))
     
