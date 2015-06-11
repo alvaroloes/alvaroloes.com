@@ -21,7 +21,9 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
       @$el.html(@template
         t: i18n.t
       )
+      @cylinder = new QuotesSlider(@$el.find('#quotesSlider'))
       @$el.on('transitionend', (e)=> @sectionDidAppear(e))
+
     
   sectionDidAppear: (e)->
     return if e.target != @el
@@ -31,7 +33,5 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
         @$el.children('nav').addClass('showNav')
       else
         @$el.children('nav').removeClass('showNav')
-        
-    @cylinder = new Cylinder(@$el.find('#cylinder'))
 
 

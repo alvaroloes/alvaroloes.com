@@ -1,0 +1,13 @@
+.quotesSlider
+  height: 5em
+  outline: 1px solid red
+  perspective: 500px
+  > *
+    display: none
+    transition: all 0.5s
+
+  > .selected
+    display: block
+    transform: rotateY(-35deg) translateX(-53px);
+    transform-origin: 50% 50% -1000px;
+    background-color: green;

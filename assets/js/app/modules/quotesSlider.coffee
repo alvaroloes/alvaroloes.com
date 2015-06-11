@@ -1,20 +1,18 @@
 global = exports ? this
 
-class global.Cylinder
+class global.QuotesSlider
   constructor: (el, opt = {})->
     @$el = $(el)
-    @$el.addClass('cylinder')
+    @$el.addClass('quotesSlider')
     $.extend @,
-      elementsOffset: 1
+      random: false
     , opt
     
     @build()
     
   build: ->
-    @children = @$el.children();
-    @childHeight = @children.outerHeight();
-    @$el.height(@childHeight * (2*@elementsOffset + 1))
-    @centerOn(0)
+    @children = @$el.children() #.wrap('<div>').end().children()
+    @children.first().addClass('selected')
   
   centerOn: (@elementIndex)->
     for i in [0..@children.length]
