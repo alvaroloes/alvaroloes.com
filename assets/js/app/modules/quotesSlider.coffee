@@ -5,18 +5,19 @@ class global.QuotesSlider
     @$el = $(el)
     @$el.addClass('quotesSlider')
     $.extend @,
-      @index: 0
+      index: 0
       selectedClass: 'selected'
       deselectedClass: 'deselected'
       noTransitionClass: 'noTransition'
-      random: false
+      shuffle: false
     , opt
     
     @build()
     
   build: ->
     @children = @$el.children().wrap('<div class="quoteContainer"/>').end().children()
-
+    if @shuffle
+      @children = $(@children.get().shuffle())
   
   select: (@index)->
     # The actual selected index becomes deselected
@@ -32,10 +33,10 @@ class global.QuotesSlider
     @elem.removeClass(@noTransitionClass).addClass(@selectedClass)
     
   next: ->
-    @select(@index + 1)
+    @select((@index + 1) % @children.length)
     
   prev: ->
-    @select(@index - 1)
+    @select((@index - 1) % @children.length)
      
      
     
