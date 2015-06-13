@@ -21,7 +21,7 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
       @$el.html(@template
         t: i18n.t
       )
-      @cylinder = new QuotesSlider(@$el.find('#quotesSlider'))
+      @quoteSlider = new QuotesSlider(@$el.find('#quotesSlider'))
       @$el.on('transitionend', (e)=> @sectionDidAppear(e))
 
     

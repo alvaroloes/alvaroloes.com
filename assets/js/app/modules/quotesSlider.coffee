@@ -5,27 +5,37 @@ class global.QuotesSlider
     @$el = $(el)
     @$el.addClass('quotesSlider')
     $.extend @,
+      @index: 0
+      selectedClass: 'selected'
+      deselectedClass: 'deselected'
+      noTransitionClass: 'noTransition'
       random: false
     , opt
     
     @build()
     
   build: ->
-    @children = @$el.children() #.wrap('<div>').end().children()
-    @children.first().addClass('selected')
+    @children = @$el.children().wrap('<div class="quoteContainer"/>').end().children()
+
   
-  centerOn: (@elementIndex)->
-    for i in [0..@children.length]
-      child = @children.eq(i)
-      posY = -@elementIndex * @childHeight;
-      child.css('transform','translateY(' + posY + 'px)')
-    null
+  select: (@index)->
+    # The actual selected index becomes deselected
+    @children.filter(".#{@selectedClass}")
+             .removeClass(@selectedClass)
+             .addClass(@deselectedClass)
+
+    # Select the desired element
+    @elem = @children.eq(@index)
+    @elem.removeClass(@deselectedClass) # In case it was previously deselected
+         .addClass(@noTransitionClass)
+    reflow()
+    @elem.removeClass(@noTransitionClass).addClass(@selectedClass)
     
   next: ->
-    @centerOn(@elementIndex + 1)
+    @select(@index + 1)
     
   prev: ->
-    @centerOn(@elementIndex - 1)
+    @select(@index - 1)
      
      
     

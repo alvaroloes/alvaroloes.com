@@ -1,13 +1,33 @@
+xTranslation = 500px
+yRotation = 45deg
+animDuration = 8s
+animOpacityDuration = animDuration/2
+quoteOutDelay = animDuration/5
+
 .quotesSlider
+  position: relative
   height: 5em
+  overflow: visible
   outline: 1px solid red
   perspective: 500px
-  > *
-    display: none
-    transition: all 0.5s
+  >.quoteContainer
+    position: absolute
+    background-color: green
+    opacity: 0
+    height: 100%
+    width: 100%
+    transform-origin: 50% 50% -1000px
+    transform: rotateY(-(yRotation)) translateX(-(xTranslation))
+    transition-property: opacity, transform
+    transition-duration: animOpacityDuration, animDuration
 
-  > .selected
-    display: block
-    transform: rotateY(-35deg) translateX(-53px);
-    transform-origin: 50% 50% -1000px;
-    background-color: green;
+  >.selected
+    opacity: 1
+    transform: rotateY(0) translateX(0)
+
+  >.deselected
+    transition-delay: quoteOutDelay
+    transform: rotateY(yRotation) translateX(xTranslation)
+
+.noTransition
+  transition: none !important
