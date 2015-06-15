@@ -12,6 +12,7 @@ quoteOutDelay = animDuration/5
   perspective: 500px
   >.quoteContainer
     position: absolute
+    overflow: hidden
     background-color: green
     opacity: 0
     height: 100%
@@ -20,6 +21,7 @@ quoteOutDelay = animDuration/5
     transform: rotateY(-(yRotation)) translateX(-(xTranslation))
     transition-property: opacity, transform
     transition-duration: animOpacityDuration, animDuration
+    backface-visibility: hidden
 
   >.selected
     opacity: 1
@@ -29,5 +31,11 @@ quoteOutDelay = animDuration/5
     transition-delay: quoteOutDelay
     transform: rotateY(yRotation) translateX(xTranslation)
 
-.noTransition
+  .quoteScroller
+    transition-property: margin-top
+    transition-timing-function: linear
+    transition-delay: animDuration
+    //transition-duration set in javascript
+
+.clearTransitions
   transition: none !important

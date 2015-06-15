@@ -21,8 +21,8 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
       @$el.html(@template
         t: i18n.t
       )
-      @quoteSlider = new QuotesSlider @$el.find('#quotesSlider'),
-        shuffle: true
+      @quoteSlider = new QuotesSlider @$el.find('#quotesSlider')
+#      ,  shuffle: true
       @$el.on('transitionend', (e)=> @sectionDidAppear(e))
 
     
