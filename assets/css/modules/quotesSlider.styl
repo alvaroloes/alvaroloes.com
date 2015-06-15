@@ -3,6 +3,7 @@ yRotation = 45deg
 animDuration = 8s
 animOpacityDuration = animDuration/2
 quoteOutDelay = animDuration/5
+scrollTimeMargins = 1s
 
 .quotesSlider
   position: relative
@@ -29,12 +30,13 @@ quoteOutDelay = animDuration/5
 
   >.deselected
     transition-delay: quoteOutDelay
+    transition-duration: animDuration, animDuration
     transform: rotateY(yRotation) translateX(xTranslation)
 
   .quoteScroller
     transition-property: margin-top
-    transition-timing-function: linear
-    transition-delay: animDuration
+    transition-timing-function: ease-in
+    transition-delay: animDuration + scrollTimeMargins
     //transition-duration set in javascript
 
 .clearTransitions

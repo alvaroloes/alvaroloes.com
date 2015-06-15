@@ -10,7 +10,7 @@ class global.QuotesSlider
       deselectedClass: 'deselected'
       noTransitionClass: 'clearTransitions'
       shuffle: false
-      quoteScrollSpeed: 15 #In pixels/seconds
+      quoteScrollSpeed: 10 #In pixels/seconds
     , opt
     
     @build()
@@ -43,6 +43,7 @@ class global.QuotesSlider
     elem.removeClass(@noTransitionClass)
         .addClass(@selectedClass)
 
+    # Scroll the quote if needed
     delta = Math.max(0,scroller.outerHeight() - elem.outerHeight())
     scroller.removeClass(@noTransitionClass)
             .css
