@@ -28,11 +28,13 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
     
   sectionDidAppear: (e)->
     return if e.target != @el
+    @quoteSlider.play()
     event = e.originalEvent;
     if event.propertyName == 'opacity'
       if @$el.css('opacity') > 0
         @$el.children('nav').addClass('showNav')
       else
         @$el.children('nav').removeClass('showNav')
+
 
 

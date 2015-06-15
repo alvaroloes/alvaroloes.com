@@ -11,16 +11,18 @@ class global.QuotesSlider
       noTransitionClass: 'clearTransitions'
       shuffle: false
       quoteScrollSpeed: 10 #In pixels/seconds
+      delayBeforeNextQuote: 5 #In seconds
     , opt
-    
+
+    @playing = false
+
     @build()
     
   build: ->
     @children = @$el.children().wrap('<div class="quoteContainer"><div class="quoteScroller"></div></div>').end().children()
     if @shuffle
       @children = $(@children.get().shuffle())
-#    @select(@index)
-  
+
   select: (@index)->
     # The actual selected index becomes deselected
     @children.filter(".#{@selectedClass}")
@@ -52,6 +54,23 @@ class global.QuotesSlider
     
   next: ->
     @select((@index + 1) % @children.length)
+    @setNextQuoteTimer() if @playing
+
+  play: ->
+    @playing = true
+    @select(@index)
+    @setNextQuoteTimer()
+
+  setNextQuoteTimer: ->
+    elem = @children.eq(@index)
+    scroller = elem.children()
+    animDurationPlusScrollerDelay = parseFloat(scroller.css('transitionDelay'))
+    scrollerDuration = parseFloat(scroller.css('transitionDuration'))
+    totalTimeInSeconds = animDurationPlusScrollerDelay + scrollerDuration + @delayBeforeNextQuote
+
+    setTimeout =>
+      @next()
+    , totalTimeInSeconds * 1000
 
      
      
