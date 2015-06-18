@@ -20,6 +20,7 @@ class MyUniverse.Views.Reflexive extends MyUniverse.Views.Planet
     super =>
       @$el.html(@template
         t: i18n.t
+        quotesHTML: JST["templates/locales/#{i18n.lng()}/quotes"]()
       )
       @quoteSlider = new QuotesSlider @$el.find('#quotesSlider')
 #      ,  shuffle: true

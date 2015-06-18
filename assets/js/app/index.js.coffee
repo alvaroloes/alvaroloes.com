@@ -28,7 +28,10 @@ $ ->
   i18n.addPostProcessor "markdown", (value, key, options) ->
     parts = key.split('_')
     if parts[parts.length - 1] == 'md'
-      marked value
+      if value.constructor == Array
+        marked elem for elem in value
+      else
+        marked value
     else
       value
 
@@ -38,5 +41,6 @@ $ ->
     resGetPath: '/locales/__lng__/__ns__.json'
     returnObjectTrees: true
     postProcess: 'markdown'
+
   , ->
     MyUniverse.start()
