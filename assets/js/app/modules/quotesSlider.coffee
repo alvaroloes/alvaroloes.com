@@ -10,7 +10,7 @@ class global.QuotesSlider
       deselectedClass: 'deselected'
       noTransitionClass: 'clearTransitions'
       shuffle: false
-      quoteScrollSpeed: 10 #In pixels/seconds
+      quoteScrollSpeed: 15 #In pixels/seconds
       delayBeforeNextQuote: 5 #In seconds
     , opt
 
@@ -60,6 +60,9 @@ class global.QuotesSlider
     @playing = true
     @select(@index)
     @setNextQuoteTimer()
+
+  stop: ->
+    @playing = false
 
   setNextQuoteTimer: ->
     elem = @children.eq(@index)
