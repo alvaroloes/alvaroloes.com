@@ -11,6 +11,9 @@ scrollTimeMargins = 1s
   overflow: visible
   perspective: 500px
   >.quoteContainer
+    display: flex
+    flex-flow: row wrap
+    align-content: space-between
     position: absolute
     overflow: hidden
     opacity: 0
@@ -32,10 +35,19 @@ scrollTimeMargins = 1s
     transform: rotateY(yRotation) translateX(xTranslation)
 
   .quoteScroller
+    width: 100%
     transition-property: margin-top
     transition-timing-function: ease-in
     transition-delay: animDuration + scrollTimeMargins
     //transition-duration set in javascript
+
+  //These pseudoelements allow centering the qouteScroller while letting it grow
+  //as needed without overflowing its parent on top
+  .quoteContainer::before,
+  .quoteContainer::after
+    content: ""
+    height: 0;
+    width: 100%;
 
 .clearTransitions
   transition: none !important
