@@ -1,8 +1,9 @@
 header
   h3= t('planetPretitle')
   h1= t('reflexive.title')
-#quotesSlider
-  != quotesHTML
+#quotesSliderContainer
+  #quotesSlider
+    != quotesHTML
 h4= t('choose_satellite')
 nav.navMenu
   a(href='/reflexive')

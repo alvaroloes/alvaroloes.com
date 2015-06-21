@@ -2,7 +2,7 @@ xTranslation = 500px
 yRotation = 45deg
 animDuration = 8s
 animOpacityDuration = animDuration/2
-quoteOutDelay = animDuration/5
+quoteOutDelay = animDuration/6
 scrollTimeMargins = 1s
 
 .quotesSlider
@@ -24,6 +24,13 @@ scrollTimeMargins = 1s
     transition-property: opacity, transform
     transition-duration: animOpacityDuration, animDuration
     backface-visibility: hidden
+    //These pseudoelements allow centering the qouteScroller while letting it grow
+    //as needed without overflowing its parent on top
+    &:before,
+    &:after
+      content: ""
+      height: 0;
+      width: 100%;
 
   >.selected
     opacity: 1
@@ -40,14 +47,6 @@ scrollTimeMargins = 1s
     transition-timing-function: ease-in
     transition-delay: animDuration + scrollTimeMargins
     //transition-duration set in javascript
-
-  //These pseudoelements allow centering the qouteScroller while letting it grow
-  //as needed without overflowing its parent on top
-  .quoteContainer::before,
-  .quoteContainer::after
-    content: ""
-    height: 0;
-    width: 100%;
 
 .clearTransitions
   transition: none !important

@@ -7,8 +7,27 @@ section.planet.reflexive
     text-align: center
     margin: 1em 0
 
-#quotesSlider
+#quotesSliderContainer
+  position: relative
   background-color: rgba(0,0,0,0.8)
+  quotes: "\201C""\201D""\2018""\2019";
+  &:before
+  &:after
+    position: absolute
+    font-family: serif
+    font-size: 6em
+  &:before
+    left: 0.1em
+    top: -0.1em
+    content: open-quote
+  &:after
+    right: 0.1em
+    bottom: -0.5em
+    content: close-quote
+
+#quotesSlider
+  .quoteContainer
+    /*background-color: rgba(0,0,0,0.8)*/
   blockquote
     font-size: 2em
     text-align: center
