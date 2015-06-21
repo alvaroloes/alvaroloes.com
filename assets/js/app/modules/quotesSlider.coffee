@@ -5,7 +5,6 @@ class global.QuotesSlider
     @$el = $(el)
     @$el.addClass('quotesSlider')
     $.extend @,
-      index: 0
       selectedClass: 'selected'
       deselectedClass: 'deselected'
       noTransitionClass: 'clearTransitions'
@@ -15,6 +14,8 @@ class global.QuotesSlider
     , opt
 
     @playing = false
+    @nextTimeoutID = null
+    @index = -1
 
     @build()
     
@@ -58,11 +59,11 @@ class global.QuotesSlider
 
   play: ->
     @playing = true
-    @select(@index)
-    @setNextQuoteTimer()
+    @next()
 
   stop: ->
     @playing = false
+    clearTimeout(@nextTimeoutID)
 
   setNextQuoteTimer: ->
     elem = @children.eq(@index)
@@ -70,8 +71,7 @@ class global.QuotesSlider
     animDurationPlusScrollerDelay = parseFloat(scroller.css('transitionDelay'))
     scrollerDuration = parseFloat(scroller.css('transitionDuration'))
     totalTimeInSeconds = animDurationPlusScrollerDelay + scrollerDuration + @delayBeforeNextQuote
-
-    setTimeout =>
+    @nextTimeoutID = setTimeout =>
       @next()
     , totalTimeInSeconds * 1000
 
