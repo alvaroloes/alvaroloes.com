@@ -60,6 +60,19 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
       @paintStrategy = new UniverseWebGLPainter(@$el, @imageLoader, @solarSystem, @opt)
 
     $(window).resize => @paintStrategy.resize()
+
+    # Wrap all image loaders promises together to keep track of the loading process
+    @promiseAllImages = $.when(@imageLoader, @solarSystem.getImageLoaderPromise())
+
+    totalImages = @imageLoader.sources.length + @solarSystem.getNumberOfImagesToLoad()
+
+    @loadTracker = new LoadTracker totalImages,
+      onStep: (percentage)->
+        console.log "Step: #{percentage}"
+      onComplete: (percentage)->
+        console.log "Complete"
+
+    @promiseAllImages.progress @loadTracker.stepper()
     null
 
   addObjects: (objects)->
@@ -78,7 +91,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
-    $.when(@imageLoader, @solarSystem.getImageLoaderPromise()).done =>
+    @promiseAllImages.done =>
       @paintStrategy.prepareScene(@objects, @constructor.totalObjects)
       @paintStrategy.paint()
       promise.resolve()
