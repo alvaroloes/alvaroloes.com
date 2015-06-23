@@ -17,6 +17,9 @@ class MyUniverse.Views.Planet extends MyUniverse.Views.View
   getImageLoaderPromise: ->
     @paintStrategy.getImageLoaderPromise()
 
+  getNumberOfImagesToLoad: ->
+    @paintStrategy.getNumberOfImagesToLoad()
+
   # Paint stuff
   prepareScene: (args...)->
     @paintStrategy.prepareScene.apply(@paintStrategy,args)

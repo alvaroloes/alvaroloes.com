@@ -27,6 +27,9 @@ class PlanetWebGLPainter
     @imageLoader.loadImages imgs
     @imageLoader
 
+  getNumberOfImagesToLoad: ->
+    @imageLoader.sources.length
+
   setAnimations: ->
     # Animations: rotation and translation around sun
     Animatable.makeAnimatable(@planet.rotation)

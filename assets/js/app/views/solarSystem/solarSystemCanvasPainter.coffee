@@ -19,13 +19,19 @@ class SolarSystemCanvasPainter
     # Preload images
     @imageLoader = new ImageLoader()
     @imageLoader.loadImages [@constructor.sunImg, @constructor.sunHaloImg]
+    @numImagesToLoad = @imageLoader.sources.length
 
     promises = [@imageLoader]
-    promises.push planet.getImageLoaderPromise() for name,planet of @planets
+    for name,planet of @planets
+      promises.push planet.getImageLoaderPromise()
+      @numImagesToLoad += planet.getNumberOfImagesToLoad()
     @imageLoaderPromise = $.when.apply($,promises)
 
   getImageLoaderPromise: ->
     @imageLoaderPromise
+
+  getNumberOfImagesToLoad: ->
+    @numImagesToLoad
 
   setAnimations:->
     # Make solar system animatable

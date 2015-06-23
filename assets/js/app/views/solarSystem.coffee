@@ -21,6 +21,9 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
 
   getImageLoaderPromise: ->
     @paintStrategy.getImageLoaderPromise()
+
+  getNumberOfImagesToLoad: ->
+    @paintStrategy.getNumberOfImagesToLoad()
     
   # Render DOM stuff
   render: ->

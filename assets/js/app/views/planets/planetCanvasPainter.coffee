@@ -22,6 +22,9 @@ class PlanetCanvasPainter
     @imageLoader.loadImages [@planetImg, @planetShadow]
     @imageLoader
 
+  getNumberOfImagesToLoad: ->
+    @imageLoader.sources.length
+
   setAnimations: ->
     Animatable.makeAnimatable(@)
     @animation
