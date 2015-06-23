@@ -25,6 +25,8 @@ class SolarSystemWebGLPainter
     promises.push planet.getImageLoaderPromise() for name,planet of @planets
     @imageLoaderPromise = $.when.apply($, promises)
 
+  getImageLoaderPromise: ->
+    @imageLoaderPromise
 
   prepareScene: (@scene, @camera, @renderer)->
     # Sun

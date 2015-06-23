@@ -20,7 +20,7 @@ class MyUniverse.Views.SolarSystem extends MyUniverse.Views.View
       @paintStrategy = new SolarSystemWebGLPainter(@sun, @planets, @opt)
 
   getImageLoaderPromise: ->
-    @paintStrategy.imageLoader
+    @paintStrategy.getImageLoaderPromise()
     
   # Render DOM stuff
   render: ->

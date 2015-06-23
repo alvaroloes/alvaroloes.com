@@ -22,7 +22,10 @@ class SolarSystemCanvasPainter
 
     promises = [@imageLoader]
     promises.push planet.getImageLoaderPromise() for name,planet of @planets
-    @imageLoaderPromise = $.when(promises)
+    @imageLoaderPromise = $.when.apply($,promises)
+
+  getImageLoaderPromise: ->
+    @imageLoaderPromise
 
   setAnimations:->
     # Make solar system animatable
