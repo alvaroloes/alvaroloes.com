@@ -25,6 +25,7 @@ class PlanetWebGLPainter
     if @glowMap?
       imgs.push @glowMap
     @imageLoader.loadImages imgs
+    @imageLoader
 
   setAnimations: ->
     # Animations: rotation and translation around sun

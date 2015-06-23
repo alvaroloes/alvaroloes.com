@@ -20,6 +20,7 @@ class PlanetCanvasPainter
   getImageLoaderPromise: ->
     @imageLoader = new ImageLoader()
     @imageLoader.loadImages [@planetImg, @planetShadow]
+    @imageLoader
 
   setAnimations: ->
     Animatable.makeAnimatable(@)
