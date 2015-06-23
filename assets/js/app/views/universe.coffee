@@ -65,7 +65,6 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @promiseAllImages = $.when(@imageLoader, @solarSystem.getImageLoaderPromise())
 
     totalImages = @imageLoader.sources.length + @solarSystem.getNumberOfImagesToLoad()
-
     @loadTracker = new LoadTracker totalImages,
       onStep: (percentage)->
         console.log "Step: #{percentage}"
@@ -85,6 +84,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   render: ->
     this.$el.html(@template())
     @$el.append(@solarSystem.render().el)
+
     @
 
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
