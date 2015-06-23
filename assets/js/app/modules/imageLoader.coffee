@@ -16,6 +16,8 @@ class global.ImageLoader
       @images[src].src = src
 
   onLoad: ->
-    if ++@loadedImages >= @sources.length
+    @loadedImages++
+    @notify(@loadedImages, @sources.length)
+    if @loadedImages >= @sources.length
       @resolve()
 
