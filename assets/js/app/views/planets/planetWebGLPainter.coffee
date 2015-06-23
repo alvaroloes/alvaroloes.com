@@ -125,14 +125,13 @@ class PlanetWebGLPainter
     uniforms =
       color: type: "c", value: new THREE.Color(color)
       wavySizeRadians: type:"f", value: wavySizeRadians
-    if (withWavyBehavior)
+
+    wavyCode = ''
+    if withWavyBehavior
       @wavyTimeUniform =
         type: "f",
         value: 0
       uniforms.time = @wavyTimeUniform
-
-    wavyCode = ''
-    if withWavyBehavior
       wavyCode = '''
           //--> Modify the position to create a wavy effect if it is near the planet position
           //Calculate the angle of the current position
@@ -186,8 +185,8 @@ class PlanetWebGLPainter
           float alpha = pow(1.0 - abs(dot(iNormal, normalize(vectorToCamera))),2.0);
 
           //If the camera is too close, make it transparent
-          float min = 25.0;
-          float range = 100.0;
+          float min = 35.0;
+          float range = 125.0;
           float distanceToCamera = length(vectorToCamera);
           float distanceModifier = max(0.0,(distanceToCamera-min)/range);
           if (distanceModifier < 1.0)
