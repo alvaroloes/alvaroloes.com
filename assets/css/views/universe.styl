@@ -27,11 +27,83 @@
     top: 0
     left: 0
 
-#loadingUnverseView
+transitionTime = 3s
+doorSpikeWidth = 100px
+doorSpikeHeight = 300px
+doorSpikeAngle = 15deg
+leftDoorBackground = rgb(80,80,80)
+rightDoorBackground = rgb(60,60,60)
+#loadUniverseView
   position: absolute
   top: 0
   left: 0
   bottom: 0
   right: 0
-  border: 1px solid red
+  overflow: hidden
   z-index: 1000
+  #leftSide, #rightSide
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 50%
+  #leftSide
+    left: 0
+    transition: left transitionTime
+    .leftSideInternal
+      background: leftDoorBackground
+      position: relative
+      right: doorSpikeWidth
+      height: 100%
+  #rightSide
+    right: 0
+    transition: right transitionTime
+    background: rightDoorBackground
+
+  .spike,.negativeSpikeContainer
+    position: absolute
+    height: doorSpikeHeight
+    width: doorSpikeWidth
+    top: 50%
+    margin-top: -(@height/2)
+  .spike
+    left: -(doorSpikeWidth)
+    transform-origin: 100% 50%
+    transform: skewY(doorSpikeAngle)
+    overflow: hidden
+    .spikeInternal
+      height: 100%
+      width: 100%
+      background-color: rgb(60,60,60)
+      transform-origin: 100% 50%
+      transform: skewY(-2*doorSpikeAngle)
+  .negativeSpikeContainer
+    right: 0
+    .negativeSpikeTop,.negativeSpikeBottom
+      position: absolute
+      width: 100%
+      height: 2000px // To avoid showind its end in the screen
+      transform-origin: 100% 50%
+      background: leftDoorBackground
+    .negativeSpikeTop
+      bottom: 100%
+      transform: skewY(-(doorSpikeAngle + 2))
+    .negativeSpikeBottom
+      top: 100%
+      transform: skewY(doorSpikeAngle)
+
+  &.loadingComplete
+    #leftSide
+      left: -65%
+    #rightSide
+      right: -65%
+  #loadProgressView
+    position: absolute
+    top: 50%
+    height: size = 300px
+    width: size
+    margin-top: -(size/2)
+    margin-left: -(size/2)
+    border-radius: size
+    border: 10px outset gray
+    background-color: black
+

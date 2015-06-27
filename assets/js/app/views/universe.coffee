@@ -66,10 +66,8 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
     totalImages = @imageLoader.sources.length + @solarSystem.getNumberOfImagesToLoad()
     @loadTracker = new LoadTracker totalImages,
-      onStep: (percentage)->
-        console.log "Step: #{percentage}"
-      onComplete: (percentage)->
-        console.log "Complete"
+      onStep: (percentage)=> @onLoadingStep(percentage)
+      onComplete: => @onLoadingComplete()
 
     @promiseAllImages.progress @loadTracker.stepper()
     null
@@ -84,8 +82,15 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   render: ->
     this.$el.html(@template())
     @$el.append(@solarSystem.render().el)
-
     @
+
+  onLoadingStep: (percentage)->
+    console.log "Step: #{percentage}"
+
+  onLoadingComplete: ()->
+    @$el.find('#loadUniverseView').addClass('loadingComplete')
+    # Need to remove the loadUniverseViewHere
+    console.log "Complete"
 
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
   # the first paint has finished (meaning that all images has been loaded from server and painted)
