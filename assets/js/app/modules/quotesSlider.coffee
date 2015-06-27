@@ -10,7 +10,7 @@ class global.QuotesSlider
       noTransitionClass: 'clearTransitions'
       shuffle: false
       quoteScrollSpeed: 15 #In pixels/seconds
-      delayBeforeNextQuote: 5 #In seconds
+      delayBeforeNextQuote: 10 #In seconds
     , opt
 
     @playing = false
