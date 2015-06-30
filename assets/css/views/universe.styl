@@ -46,9 +46,9 @@ rightDoorBackground = rgb(30,30,30)
     top: 0
     bottom: 0
     width: 50%
+    transition: left transitionTime, right transitionTime
   #leftSide
     left: 0
-    transition: left transitionTime ease 2s //This two seconds of delay are temporal. Remove when the stars are generated
     .leftSideInternal
       background: leftDoorBackground
       position: relative
@@ -75,7 +75,6 @@ rightDoorBackground = rgb(30,30,30)
         border-top: doorSpikeCompression solid transparent
   #rightSide
     right: 0
-    transition: right transitionTime ease 2s
     background: rightDoorBackground
     .spike
       position: absolute

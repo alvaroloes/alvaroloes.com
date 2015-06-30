@@ -86,17 +86,29 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   onLoadingStep: (ratio)->
     console.log "Step: #{ratio}"
-    lightYears = Math.round((1 - ratio) * 100000)
-    @$el.find('#lightYearsLabel').text(lightYears)
+    @setLightYearsLabel(ratio)
     @$el.find('#loadBarInner').css width: ratio*100 + "%"
 
   onLoadingComplete: ()->
     @$el.find('#loadUniverseView').addClass('loadingComplete')
     # Need to remove the loadUniverseViewHere
-    @$el.find('#lightYearsLabel').text(0)
+    @setLightYearsLabel(1, false)
     @$el.find('#loadBarInner').css width: "100%"
     console.log "Complete"
 
+  setLightYearsLabel: (ratio, addRandom = true)->
+    $lightYearsLabel = @$el.find('#lightYearsLabel')
+    oldLightYearsObject =
+      counter: parseInt($lightYearsLabel.text())
+
+    newLightYears = Math.round((1 - ratio) * 100000)
+    if addRandom
+      newLightYears += Math.random()*1000
+
+    $(oldLightYearsObject).animate counter: newLightYears,
+      duration:200
+      easing: "swing"
+      step: -> $lightYearsLabel.text(Math.round(@counter))
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
