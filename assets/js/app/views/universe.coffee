@@ -84,12 +84,17 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @$el.append(@solarSystem.render().el)
     @
 
-  onLoadingStep: (percentage)->
-    console.log "Step: #{percentage}"
+  onLoadingStep: (ratio)->
+    console.log "Step: #{ratio}"
+    lightYears = Math.round((1 - ratio) * 100000)
+    @$el.find('#lightYearsLabel').text(lightYears)
+    @$el.find('#loadBarInner').css width: ratio*100 + "%"
 
   onLoadingComplete: ()->
     @$el.find('#loadUniverseView').addClass('loadingComplete')
     # Need to remove the loadUniverseViewHere
+    @$el.find('#lightYearsLabel').text(0)
+    @$el.find('#loadBarInner').css width: "100%"
     console.log "Complete"
 
   # This method returns a deferred object, so you must use paint().done(callback) to ensure

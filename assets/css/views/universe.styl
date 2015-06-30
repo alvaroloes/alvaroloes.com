@@ -31,8 +31,8 @@ transitionTime = 3s
 doorSpikeWidth = 150px
 doorSpikeHeight = 300px
 doorSpikeCompression = doorSpikeHeight/8
-leftDoorBackground = rgb(80,80,80)
-rightDoorBackground = rgb(60,60,60)
+leftDoorBackground = rgb(50,50,50)
+rightDoorBackground = rgb(30,30,30)
 #loadUniverseView
   position: absolute
   top: 0
@@ -48,7 +48,7 @@ rightDoorBackground = rgb(60,60,60)
     width: 50%
   #leftSide
     left: 0
-    transition: left transitionTime
+    transition: left transitionTime ease 2s //This two seconds of delay are temporal. Remove when the stars are generated
     .leftSideInternal
       background: leftDoorBackground
       position: relative
@@ -75,7 +75,7 @@ rightDoorBackground = rgb(60,60,60)
         border-top: doorSpikeCompression solid transparent
   #rightSide
     right: 0
-    transition: right transitionTime
+    transition: right transitionTime ease 2s
     background: rightDoorBackground
     .spike
       position: absolute
@@ -94,14 +94,36 @@ rightDoorBackground = rgb(60,60,60)
       left: -65%
     #rightSide
       right: -65%
-  #loadProgressView
+  .loadProgressView
     position: absolute
     top: 50%
-    height: size = 300px
-    width: size
-    margin-top: -(size/2)
-    margin-left: -(size/2)
-    border-radius: size
-    border: 10px outset gray
-    background-color: black
-
+    height: 150px
+    width: 300px
+    margin-top: -(@height/2)
+    margin-left: -(@width/2)
+    padding: 1em
+    h5
+      font-family: Orbitron
+      text-align: center
+      margin-bottom: 0.8em
+    .loadBar
+      position: relative
+      margin-top: 1em
+      box-sizing: border-box
+      height: 30px
+      border-radius: 10px
+      overflow: hidden
+      &:before
+        content:''
+        display:block
+        box-shadow: 0px 0px 20px 3px black inset
+        position:absolute
+        top:0
+        left:0
+        width:100%
+        height:100%
+    #loadBarInner
+      height: 100%
+      width: 0
+      background-color: #eee
+      transition: width 0.2s
