@@ -46,7 +46,7 @@ rightDoorBackground = rgb(30,30,30)
     top: 0
     bottom: 0
     width: 50%
-    transition: left transitionTime, right transitionTime
+    transition: left transitionTime ease 1s, right transitionTime ease 1s
   #leftSide
     left: 0
     .leftSideInternal
@@ -93,6 +93,7 @@ rightDoorBackground = rgb(30,30,30)
       left: -65%
     #rightSide
       right: -65%
+
   .loadProgressView
     position: absolute
     top: 50%
@@ -103,6 +104,7 @@ rightDoorBackground = rgb(30,30,30)
     padding: 1em
     h5
       font-family: Orbitron
+      font-weight: bold
       text-align: center
       margin-bottom: 0.8em
     .loadBar
@@ -121,6 +123,9 @@ rightDoorBackground = rgb(30,30,30)
         left:0
         width:100%
         height:100%
+    p
+      text-align: center
+      font-family: Orbitron
     #loadBarInner
       height: 100%
       width: 0

@@ -29,6 +29,9 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
   ]
   # End static variables
 
+  totalLightYears: 100000
+
+
   initialize: (@opt = {})->
 #    @opt.force2d = true
     @opt.debug = true
@@ -65,11 +68,13 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     @promiseAllImages = $.when(@imageLoader, @solarSystem.getImageLoaderPromise())
 
     totalImages = @imageLoader.sources.length + @solarSystem.getNumberOfImagesToLoad()
-    @loadTracker = new LoadTracker totalImages,
+    @loadTracker = new LoadTracker totalImages + 1, # + 1 To track the creation of the stars
       onStep: (percentage)=> @onLoadingStep(percentage)
       onComplete: => @onLoadingComplete()
 
     @promiseAllImages.progress @loadTracker.stepper()
+
+    @lastLightYears = @totalLightYears
     null
 
   addObjects: (objects)->
@@ -80,8 +85,11 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
     null
 
   render: ->
-    this.$el.html(@template())
+    this.$el.html(@template(
+      t: i18n.t
+    ))
     @$el.append(@solarSystem.render().el)
+    @setLightYearsLabel(0)
     @
 
   onLoadingStep: (ratio)->
@@ -91,30 +99,31 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   onLoadingComplete: ()->
     @$el.find('#loadUniverseView').addClass('loadingComplete')
+    @$el.find('#leftSide').one 'transitionend', =>
+      @$el.find('#loadUniverseView').remove()
     # Need to remove the loadUniverseViewHere
     @setLightYearsLabel(1, false)
     @$el.find('#loadBarInner').css width: "100%"
-    console.log "Complete"
 
   setLightYearsLabel: (ratio, addRandom = true)->
-    $lightYearsLabel = @$el.find('#lightYearsLabel')
-    oldLightYearsObject =
-      counter: parseInt($lightYearsLabel.text())
+    $lightYearsLabel = @$el.find('#distanceMessage')
 
-    newLightYears = Math.round((1 - ratio) * 100000)
-    if addRandom
-      newLightYears += Math.random()*1000
+    if ratio < 0.8
+      @lastLightYears = Math.round((1 - ratio) * @totalLightYears)
+      if addRandom
+        @lastLightYears += Math.random()*1000
 
-    $(oldLightYearsObject).animate counter: newLightYears,
-      duration:200
-      easing: "swing"
-      step: -> $lightYearsLabel.text(Math.round(@counter))
+      $lightYearsLabel.text(i18n.t('loading.remainingDistance', lightYears: Math.round(@lastLightYears)))
+    else
+      $lightYearsLabel.text(i18n.t('loading.decelerating'))
+
   # This method returns a deferred object, so you must use paint().done(callback) to ensure
   # the first paint has finished (meaning that all images has been loaded from server and painted)
   paint: ->
     promise = $.Deferred()
     @promiseAllImages.done =>
       @paintStrategy.prepareScene(@objects, @constructor.totalObjects)
+      @loadTracker.step()
       @paintStrategy.paint()
       promise.resolve()
     promise
