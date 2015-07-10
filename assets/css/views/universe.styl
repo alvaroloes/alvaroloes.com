@@ -31,7 +31,7 @@ transitionTime = 3s
 doorSpikeWidth = 150px
 doorSpikeHeight = 300px
 doorSpikeCompression = doorSpikeHeight/8
-leftDoorBackground = rgb(20,20,20)
+leftDoorBackground = rgb(15,15,15)
 rightDoorBackground = rgb(10,10,10)
 #loadUniverseView
   position: absolute
@@ -48,7 +48,7 @@ rightDoorBackground = rgb(10,10,10)
     width: 50%
     transition-property: left, right, opacity
     transition-duration: transitionTime
-    transition-delay: 1s
+    transition-delay: 1.5s, 1.5s, 0.5s
   #leftSide
     left: 0
     .leftSideInternal
@@ -93,10 +93,10 @@ rightDoorBackground = rgb(10,10,10)
   &.loadingComplete
     #leftSide
       left: -65%
-      opacity: 0.3
+      opacity: 0.4
     #rightSide
       right: -65%
-      opacity: 0.3
+      opacity: 0.4
 
   .loadProgressView
     position: absolute
