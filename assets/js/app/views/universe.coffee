@@ -34,7 +34,7 @@ class MyUniverse.Views.Universe extends MyUniverse.Views.View
 
   initialize: (@opt = {})->
 #    @opt.force2d = true
-    @opt.debug = true
+    @opt.debug = false
 
     # Initialize foreground elements
     @solarSystem = new MyUniverse.Views.SolarSystem(@opt)
