@@ -1,11 +1,11 @@
-// THIS SCRIPT NEEDS AN UPDATE.
 
 
 var appRoot = process.env.APP_ROOT || process.argv[2] || '../';
-var filters = (process.env.FILTERS || process.argv[3] || "img/**,*").split(',');
+var filters = (process.env.FILTERS || process.argv[3] || "img/**,fonts/**,*").split(',');
 
-var Mincer = require('connect-mincer/node_modules/mincer'),
+var Mincer = require('mincer'),
     env = new Mincer.Environment(appRoot),
+    nib = require('nib'),
     uglifyjs = require('uglify-js'),
     csso = require('csso'),
     fs = require('fs'),
@@ -15,38 +15,22 @@ var Mincer = require('connect-mincer/node_modules/mincer'),
 if (fs.existsSync(appRoot + '/public/assets')) {
   wrench.rmdirSyncRecursive(appRoot + '/public/assets');
 }
-/**
- * This minifies Javascript using the UglifyJS2 default compression settings.
- */
-env.jsCompressor = function(context, data, next) {
-  try {
-    var min = uglifyjs.minify(data, {
-      fromString: true
-    });
-    next(null, min.code);
-  } catch (err) {
-    console.err(err);
-    next(err);
-  }
-};
 
-/**
- * This minifies CSS using the Csso default compression options.
- */
-env.cssCompressor = function(context, data, next) {
-  try {
-    next(null, csso.justDoIt(data));
-  } catch (err) {
-    console.err(err);
-    next(err);
-  }
-};
-
+//env.jsCompressor = 'uglify';
+//env.cssCompressor = 'csso';
 env.appendPath('assets/css');
 env.appendPath('assets/js');
 env.appendPath('assets');
 
-var manifest = new Mincer.Manifest(env, appRoot + '/public/assets');
+Mincer.StylusEngine.configure(function(style){
+    style.use(nib());
+});
+
+console.info(appRoot + 'public/assets');
+
+var manifest = new Mincer.Manifest(env, appRoot + 'public/assets');
 manifest.compile(filters, function(err, data) {
-  console.info('Finished precompile');
+    console.error(err);
+    console.info('Finished precompile');
+    console.dir(data)
 });

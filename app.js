@@ -15,6 +15,8 @@ var express = require('express')
 global.APP_ROOT = __dirname;
 
 var app = express();
+var env = 'production';
+//var env = app.get('env');
 
 // all environments
 
@@ -25,14 +27,15 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
+app.use(express.cookieParser('TODO'));
 app.use(express.session());
 
 
 var connectMincer = new ConnectMincer({
   root: __dirname,
   mincer: Mincer,
-  production: app.get('env') === 'production',
+  // TODO: Compile assets for production and uncomment this
+  production: false, //env === 'production',
   manifestFile: __dirname + '/public/assets/manifest.json',
   paths: [
     'assets/css',
@@ -44,15 +47,15 @@ var connectMincer = new ConnectMincer({
 //Use nib library in stylus and other custom functions
 connectMincer.Mincer.StylusEngine.configure(function(style){
   style.use(nib());
-//  style.use(require('./modules/stylus-extensions').functions);
 });
 
 app.use(connectMincer.assets());
 
-if( 'production' != app.get('env')){
+// TODO: Compile assets for production and uncomment this
+//if( 'production' != env){
     app.use('/assets', connectMincer.createServer());
-    app.use(express.errorHandler());
-}
+    //app.use(express.errorHandler());
+//}
 
 app.use(express.static(path.join(__dirname, 'public'),{maxAge: 36000000}));
 app.use(app.router);
